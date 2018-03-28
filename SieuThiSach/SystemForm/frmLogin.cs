@@ -36,9 +36,10 @@ namespace SieuThiSach.SystemForm
                 UserInformation.MaNV = UserInformation.vMaNV(UserInformation.Code);
                 UserInformation.MaDV = UserInformation.vMaDV(UserInformation.Code);
                 UserInformation.Name = UserInformation.vName(UserInformation.MaNV, UserInformation.MaDV);
+                UserInformation.CheckPass = UserInformation.vCheckPass(UserInformation.Code);
                 #endregion
                 //Gọi đổi mật khẩu nếu như đây là lần đăng nhập đầu tiên
-                if (DatLoa.NameReturn("CHECK_PASS", "[USER]", "CODE = '" + txtUserName.Text + "'") == "Y")
+                if (UserInformation.CheckPass == "Y")
                 {
                     using (frmPassword digForm = new frmPassword())
                     {
@@ -51,7 +52,7 @@ namespace SieuThiSach.SystemForm
                         }
                     }  
                 }
-                else
+                else if (UserInformation.CheckPass == "N")
                 {
                     //Goi phan quyen o day
                     PhanQuyen.ShowAll();

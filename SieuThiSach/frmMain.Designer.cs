@@ -89,6 +89,7 @@
             this.ItemMnuSystemPassword.Name = "ItemMnuSystemPassword";
             this.ItemMnuSystemPassword.Size = new System.Drawing.Size(178, 22);
             this.ItemMnuSystemPassword.Text = "Đổi mật khẩu";
+            this.ItemMnuSystemPassword.Click += new System.EventHandler(this.ItemMnuSystemPassword_Click);
             // 
             // ItemMnuSystemUser
             // 

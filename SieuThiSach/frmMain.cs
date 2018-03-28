@@ -76,6 +76,7 @@ namespace SieuThiSach
                     UserInformation.MaNV = "";
                     UserInformation.MaDV = "";
                     UserInformation.Name = "";
+                    UserInformation.CheckPass = "";
                     #endregion
                     PhanQuyen.HideAll(); //ẩn tất cả các menu
                     frmLogin digForm = new frmLogin();
@@ -96,6 +97,12 @@ namespace SieuThiSach
         private void ItemMnuSystemUser_Click(object sender, EventArgs e)
         {
             frmUsers callForm = new frmUsers();
+            callForm.ShowDialog();
+        }
+
+        private void ItemMnuSystemPassword_Click(object sender, EventArgs e)
+        {
+            frmPassword callForm = new frmPassword();
             callForm.ShowDialog();
         }
     }
