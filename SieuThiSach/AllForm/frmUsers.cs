@@ -41,11 +41,11 @@ namespace SieuThiSach
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
             Char chkChangePWDLogon = chkUsingCheck.Checked ? 'Y' : 'N';
-            string sql = "USER_NHAP '" + TxtUserId.Text + 
+            string sql = "USER_NHAP '" + TxtUserId.Text +
                 "',N'" + TxtUserName.Text +
                 "','" + dExpiredDate.Text +
-                "','" + TxtStaffId.Text + 
-                "','" + txtBranchID.Text + 
+                "','" + TxtStaffId.Text +
+                "','" + txtBranchID.Text +
                 "','" + vchkUsingCheck +
                 "','" + chkChangePWDLogon + "',1";
 
@@ -64,11 +64,11 @@ namespace SieuThiSach
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
             Char chkChangePWDLogon = chkUsingCheck.Checked ? 'Y' : 'N';
-            string sql = "USER_EDIT '" + TxtUserId.Text + 
+            string sql = "USER_EDIT '" + TxtUserId.Text +
                 "',N'" + TxtUserName.Text +
-                "','" + dExpiredDate.Text + 
-                "','" + TxtStaffId.Text + 
-                "','"+ txtBranchID.Text + 
+                "','" + dExpiredDate.Text +
+                "','" + TxtStaffId.Text +
+                "','" + txtBranchID.Text +
                 "','" + vchkUsingCheck +
                  "','" + chkChangePWDLogon + "',1";
             int _ok = DatLoa.AddNew(sql);
@@ -85,7 +85,8 @@ namespace SieuThiSach
         private void FindData()
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
-            string vFilter = "Where SDUNG = '" + vchkUsingCheck + "'";
+            Char chkChangePWDLogon = chkUsingCheck.Checked ? 'Y' : 'N';
+            string vFilter = "Where SDUNG = '" + vchkUsingCheck + "' and CHECK_PASS = '" + chkChangePWDLogon + "'";
             if (TxtUserId.Text != "")
             {
                 vFilter = vFilter + " and CODE like '%" + TxtUserId.Text + "%'";
@@ -254,8 +255,8 @@ namespace SieuThiSach
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            if (DatLoa.DelData("USER_EDIT_SDUNG",ref dataGridView1,"CODE", "MA_NHAN_VIEN", "SDUNG") >0)
-            loadData();
+            if (DatLoa.DelData("USER_EDIT_SDUNG", ref dataGridView1, "CODE", "MA_NHAN_VIEN", "SDUNG") > 0)
+                loadData();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -299,6 +300,25 @@ namespace SieuThiSach
             //        btnCancel.PerformClick();
             //        break;
             //}
+        }
+
+        //Trả giá trị về 
+        public string BranchID
+        {
+            get
+            {
+                if (dataGridView1.Rows.Count <=0) return "";
+                else return dataGridView1.CurrentRow.Cells["MA_DVI"].Value.ToString();
+            }
+        }
+
+        public string StaffId
+        {
+            get
+            {
+                if (dataGridView1.Rows.Count <= 0) return "";
+                else return dataGridView1.CurrentRow.Cells["MA_NHAN_VIEN"].Value.ToString();
+            }
         }
     }
 }

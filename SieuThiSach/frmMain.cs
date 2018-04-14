@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SieuThiSach.SO;
 using SieuThiSach.SystemForm;
+using SieuThiSach.AllForm;
 
 namespace SieuThiSach
 {
@@ -103,6 +104,12 @@ namespace SieuThiSach
         private void ItemMnuSystemPassword_Click(object sender, EventArgs e)
         {
             frmPassword callForm = new frmPassword();
+            callForm.ShowDialog();
+        }
+
+        private void ItemMnuDanhMuc_KHACHHANG_Click(object sender, EventArgs e)
+        {
+            frmKhachHang callForm = new frmKhachHang();
             callForm.ShowDialog();
         }
     }
