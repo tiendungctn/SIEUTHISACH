@@ -197,6 +197,7 @@ namespace SieuThiSach.AllForm
             DesignForm.vForm = this;
             ViewMode();
             loadData();
+            DatLoa.loadCBB("select distinct loai from TB_KHACH_HANG", ref cbbLoai);
         }
 
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -243,6 +244,8 @@ namespace SieuThiSach.AllForm
             btnEdit_Click(sender, e);
         }
 
+        //Xử lý trên key trên form-----------------------------------------------------------
+
         private void frmKhachHang_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.N) btnAdd.PerformClick();
@@ -255,8 +258,11 @@ namespace SieuThiSach.AllForm
             }
         }
 
-        //Xử lý trên key trên form-----------------------------------------------------------
-
-
+        private void cbbLoai_TextChanged(object sender, EventArgs e)
+        {
+            if (cbbLoai.Text == "CC") lblNameLoai.Text = "Nhà Cung Cấp";
+            else if (cbbLoai.Text == "KH") lblNameLoai.Text = "Khách Hàng";
+            else lblNameLoai.Text = "";
+        }
     }
 }

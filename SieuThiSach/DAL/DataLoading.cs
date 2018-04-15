@@ -95,5 +95,26 @@ namespace SieuThiSach.DAL
                 }
             return _ok;
         }
+
+        public void loadCBB(string sql, ref ComboBox cbb)
+        {
+            try
+            {
+                ct = dbA.ExecuteAsDataSetSql(sql);
+                if (ct.Tables[0].Rows.Count > 0)
+                {
+                    cbb.Items.Add("");
+                    for (byte i = 0; i < ct.Tables[0].Rows.Count; i++)
+                    {
+                        cbb.Items.Add(ct.Tables[0].Rows[i][0].ToString());
+                    }
+                }
+
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

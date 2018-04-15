@@ -91,12 +91,13 @@
             // 
             // cbbLoai
             // 
+            this.cbbLoai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbLoai.FormattingEnabled = true;
             this.cbbLoai.Location = new System.Drawing.Point(465, 63);
             this.cbbLoai.Name = "cbbLoai";
             this.cbbLoai.Size = new System.Drawing.Size(47, 21);
             this.cbbLoai.TabIndex = 14;
-            this.cbbLoai.Text = "KH";
+            this.cbbLoai.TextChanged += new System.EventHandler(this.cbbLoai_TextChanged);
             // 
             // btnCancel
             // 
@@ -213,7 +214,6 @@
             this.lblNameLoai.Name = "lblNameLoai";
             this.lblNameLoai.Size = new System.Drawing.Size(84, 13);
             this.lblNameLoai.TabIndex = 6;
-            this.lblNameLoai.Text = "Khách hàng";
             this.lblNameLoai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
