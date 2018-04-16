@@ -11,3 +11,5 @@ D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.csprojResolveAssemblyReference.
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.frmUsers.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.SystemForm.frmPassword.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmKhachHang.resources
+D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.csproj.ResolveComReference.cache
+D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmExecl.resources

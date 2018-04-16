@@ -298,6 +298,7 @@
             this.btnExcel.TabIndex = 7;
             this.btnExcel.Text = "Excel";
             this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // btnHistory
             // 
@@ -419,7 +420,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh Mục Khách Hàng";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmKhachHang_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmKhachHang_KeyDown);
             this.grDetail.ResumeLayout(false);

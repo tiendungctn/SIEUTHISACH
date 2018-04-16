@@ -270,6 +270,28 @@ namespace SieuThiSach.AllForm
             MessageBox.Show("Chức năng chưa được xây dựng","Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            DialogResult dlr = MessageBox.Show("Nhập/Xuất file Excel", "Thông báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (dlr == DialogResult.Yes)
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog())
+                {
+                    ofd.Filter = "(Các tệp excel)|*.xlsx|(Tất cả các tệp)|*.";
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        using (frmExecl exc = new frmExecl())
+                        {
+                            exc.FilePath = ofd.FileName;
+                            exc.ShowDialog();
+                        }         
+                    }
+                }
+                    
+            }
+            
+        }
+
         //Xử lý trên key trên form-----------------------------------------------------------
 
         private void frmKhachHang_KeyDown(object sender, KeyEventArgs e)
@@ -307,5 +329,7 @@ namespace SieuThiSach.AllForm
                 else return dataGridView1.CurrentRow.Cells["MA_KH"].Value.ToString();
             }
         }
+
+
     }
 }
