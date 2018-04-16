@@ -27,16 +27,15 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "TEN_KH", true, "Tên khách hàng");
             DesFor.EditCollum(ref dataGridView1, "DIA_CHI", true, "Địa chỉ");
             DesFor.EditCollum(ref dataGridView1, "SDT", true, "Số điện thoại");
-            DesFor.EditCollum(ref dataGridView1, "EMAIL", true, "ĐC");
+            DesFor.EditCollum(ref dataGridView1, "EMAIL", true, "Email");
             DesFor.EditCollum(ref dataGridView1, "TTHAI", true, "Trạng thái");
             DesFor.EditCollum(ref dataGridView1, "LOAI", false, "Loại");
         }
 
         private void AddNew()
         {
-            string sql = "KHACH_HANG_NHAP '" + TxtID.Text +
-                "',N'" + TxtName.Text +
-                "','" + txtDiaChi.Text +
+            string sql = "KHACH_HANG_NHAP N'" + TxtName.Text +
+                "',N'" + txtDiaChi.Text +
                 "','" + TxtSDT.Text +
                 "','" + txtEmail.Text +
                 "','" + cbbLoai.Text +
@@ -57,11 +56,10 @@ namespace SieuThiSach.AllForm
         {
             string sql = "KHACH_HANG_EDIT '" + TxtID.Text +
                 "',N'" + TxtName.Text +
-                "','" + txtDiaChi.Text +
+                "',N'" + txtDiaChi.Text +
                 "','" + TxtSDT.Text +
                 "','" + txtEmail.Text +
-                "','" + cbbLoai.Text +
-                "'," + txtTThai.Text;
+                "','" + cbbLoai.Text +"'";
             int _ok = DatLoa.AddNew(sql);
             if (_ok > 0)
             {
@@ -86,7 +84,7 @@ namespace SieuThiSach.AllForm
             }
             if (txtDiaChi.Text != "")
             {
-                vFilter = vFilter + " and DIA_CHI like '%" + txtDiaChi.Text + "%'";
+                vFilter = vFilter + " and DIA_CHI like N'%" + txtDiaChi.Text + "%'";
             }
             if (TxtSDT.Text != "")
             {
@@ -127,7 +125,8 @@ namespace SieuThiSach.AllForm
                     TxtSDT.Text = "";
                     txtEmail.Text = "";
                     cbbLoai.Text = "";
-                    txtTThai.Text = "";
+                    txtTThai.Text = "1";
+                    txtTThai.Enabled = false;
                     TxtID.Enabled = false;
                     #endregion
                     TxtID.Focus();
@@ -146,6 +145,7 @@ namespace SieuThiSach.AllForm
                     txtEmail.Text = "";
                     cbbLoai.Text = "";
                     txtTThai.Text = "";
+                    txtTThai.Enabled = true;
                     TxtID.Enabled = true;
                     #endregion
                     TxtID.Focus();
@@ -165,6 +165,7 @@ namespace SieuThiSach.AllForm
                     cbbLoai.Text = dataGridView1.CurrentRow.Cells["LOAI"].Value.ToString();
                     txtTThai.Text = dataGridView1.CurrentRow.Cells["TTHAI"].Value.ToString();
                     TxtID.Enabled = false;
+                    txtTThai.Enabled = false;
                     #endregion
                     TxtName.Focus();
                     DesFor.AlignCenterToScreen();
@@ -181,6 +182,7 @@ namespace SieuThiSach.AllForm
                     cbbLoai.Text = "";
                     txtTThai.Text = "";
                     TxtID.Enabled = true;
+                    txtTThai.Enabled = true;
                     #endregion
                     this.Height = 336;
                     DesFor.AlignCenterToScreen();
@@ -208,6 +210,7 @@ namespace SieuThiSach.AllForm
                 {
                     //if (dataGridView1.Rows[i] == dataGridView1.CurrentRow)
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightBlue;
+                    dataGridView1.Rows[i].DefaultCellStyle.SelectionBackColor = Color.DarkBlue;
                 }
             }
 
@@ -239,9 +242,32 @@ namespace SieuThiSach.AllForm
             DesFor.AlignCenterToScreen();
         }
 
+        private void btnCommit_Click(object sender, EventArgs e)
+        {
+            switch (_pMode)
+            {
+                case "ADD":
+                    AddNew();
+                    break;
+                case "EDIT":
+                    EditData();
+                    break;
+                case "FIND":
+                    FindData();
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             btnEdit_Click(sender, e);
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Chức năng chưa được xây dựng","Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //Xử lý trên key trên form-----------------------------------------------------------
@@ -263,6 +289,23 @@ namespace SieuThiSach.AllForm
             if (cbbLoai.Text == "CC") lblNameLoai.Text = "Nhà Cung Cấp";
             else if (cbbLoai.Text == "KH") lblNameLoai.Text = "Khách Hàng";
             else lblNameLoai.Text = "";
+        }
+
+        private void cbbLoai_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (cbbLoai.Text == "CC") lblNameLoai.Text = "Nhà Cung Cấp";
+            else if (cbbLoai.Text == "KH") lblNameLoai.Text = "Khách Hàng";
+            else lblNameLoai.Text = "";
+        }
+
+        //Trả giá trị về 
+        public string KH_ID
+        {
+            get
+            {
+                if (dataGridView1.Rows.Count <= 0) return "";
+                else return dataGridView1.CurrentRow.Cells["MA_KH"].Value.ToString();
+            }
         }
     }
 }
