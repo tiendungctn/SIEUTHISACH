@@ -66,7 +66,7 @@ namespace SieuThiSach.DAL
         }
 
         public int DelData
-            (string PROC,ref DataGridView table, string code, string name, string sdung)
+            (string PROC, ref DataGridView table, string code, string name, string sdung)
         {
             int _ok = 0;
             if (table.Rows.Count <= 0)
@@ -82,7 +82,7 @@ namespace SieuThiSach.DAL
 
                     if (MessageBox.Show("Có chắc chắn xóa/ngưng sử dụng '" + _code + " - " + _name + "' không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        string sql = "EXEC "+PROC+" '" + _code + "','"+ _sdung + "'";
+                        string sql = "EXEC " + PROC + " '" + _code + "','" + _sdung + "'";
                         try
                         {
                             _ok = dbA.vExecuteData(sql);
@@ -115,6 +115,22 @@ namespace SieuThiSach.DAL
             {
                 MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public int InsExc(string tb, ref DataGridView dtv)
+        {
+            int ret = 0;
+            try
+            {
+                int rw = dbA.ImportExcel(tb, ref dtv);
+                MessageBox.Show("Đã nạp thành công " + rw + " dòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ret = 1;
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Lỗi tại dòng: " + dbA.RowEr + "\n" +es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return ret;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SieuThiSach.DAL
 {
@@ -127,6 +128,7 @@ namespace SieuThiSach.DAL
                 da.SelectCommand = cmd;
                 cnn.Open();
                 da.Fill(ds);
+
                 cnn.Close();
                 return ds;
             }
@@ -136,6 +138,49 @@ namespace SieuThiSach.DAL
             }
         }
 
+        public int ImportExcel(string table, ref DataGridView dt)
+        {
+            using (DbConnection cnn = oFactory.CreateConnection())
+            {
+                int Iret = 1;
+                cnn.ConnectionString = this.ConnectionString;
+                cnn.Open();
+                DbTransaction transaction = cnn.BeginTransaction();              
+                try
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string value = "";
+                        for (int j = 0; j < dt.Columns.Count; j++)
+                        {
+                            if (j == 0) value = "N'" + dt.Rows[i].Cells[j].Value.ToString() + "'";
+                            else value = value + ",N'" + dt.Rows[i].Cells[j].Value.ToString() + "'";
+                        }
+                        string sSql = "insert into " + table + " values (" + value + ")";
+                        DbCommand cmd = oFactory.CreateCommand();
+                        cmd.Connection = cnn;
+                        cmd.CommandText = sSql;
+                        cmd.CommandType = CommandType.Text;                       
+                        cmd.Transaction = transaction;
+                        Iret = Iret + cmd.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    RowEr = Iret;
+                    throw e;
+                    transaction.Rollback();                  
+                }
+                finally
+                {                    
+                    cnn.Close();                  
+                }
+                return Iret;
+            }
+        }
+
+        public int RowEr;
 
         /// <summary>
         /// Thực thi câu lệnh sql
@@ -191,12 +236,12 @@ namespace SieuThiSach.DAL
                 da.SelectCommand = cmd;
                 cnn.Open();
                 iret = cmd.ExecuteNonQuery();
-                cnn.Close();               
+                cnn.Close();
             }
             catch (Exception e)
             {
                 iret = -1;
-                throw e;       
+                throw e;
             }
             return iret;
         }

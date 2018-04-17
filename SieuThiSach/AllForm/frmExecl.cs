@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SieuThiSach.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,9 +18,9 @@ namespace SieuThiSach.AllForm
         {
             InitializeComponent();
         }
-
+        public string table;
         public string FilePath;
-
+        DataLoading DatLoa = new DataLoading();
         private void LoadExcel()
         {
             Excel.Application app = new Excel.Application();
@@ -35,21 +36,28 @@ namespace SieuThiSach.AllForm
                 for (int c = 1; c <= cols; c++)
                 {
                     string columnname = range.Cells[1, c].Value.ToString();
-                    ColumnHeader col = new ColumnHeader();
-                    col.Text = columnname;
-                    col.Width = 120;
-                    lstExcel.Columns.Add(col);
+                    //ColumnHeader col = new ColumnHeader();
+                    //col.Text = columnname;
+                    //col.Width = 120;
+                    //lstExcel.Columns.Add(col);
+                    dataGridView1.Columns.Add(""+(c-1), columnname);
                 }
                 //dữ liệu
                 for (int i = 2; i < rows; i++)
                 {
-                    ListViewItem item = new ListViewItem();
+                    //ListViewItem item = new ListViewItem();
+                    DataGridViewRow dr = new DataGridViewRow();
                     for (int j = 1; j <= cols; j++)
                     {
-                        if (j == 1) item.Text = range.Cells[i, j].Value.ToString();
-                        else item.SubItems.Add(range.Cells[i, j].Value.ToString());
+                        //if (j == 1) item.Text = range.Cells[i, j].Value.ToString();
+                        //else item.SubItems.Add(range.Cells[i, j].Value.ToString());
+                        DataGridViewCell _cell = new DataGridViewTextBoxCell();
+                        _cell.Value = range.Cells[i, j].Value.ToString();
+                        dr.Cells.Add(_cell);
+                        //dr.Cells.Add(range.Cells[i, j].Value.ToString());
                     }
-                    lstExcel.Items.Add(item);
+                    //lstExcel.Items.Add(item);
+                    dataGridView1.Rows.Add(dr);
                 }
 
             }
@@ -61,6 +69,24 @@ namespace SieuThiSach.AllForm
         private void frmExecl_Load(object sender, EventArgs e)
         {
             LoadExcel();
+        }
+
+        private void btnCommit_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                int i = DatLoa.InsExc(table, ref dataGridView1);
+                if (i == 1)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
         }
     }
 }

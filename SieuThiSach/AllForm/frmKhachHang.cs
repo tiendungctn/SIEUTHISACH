@@ -34,12 +34,12 @@ namespace SieuThiSach.AllForm
 
         private void AddNew()
         {
-            string sql = "KHACH_HANG_NHAP N'" + TxtName.Text +
-                "',N'" + txtDiaChi.Text +
-                "','" + TxtSDT.Text +
-                "','" + txtEmail.Text +
-                "','" + cbbLoai.Text +
-                "'," + txtTThai.Text;
+            string sql = "KHACH_HANG_NHAP N'" + TxtName.Text.Trim() +
+                "',N'" + txtDiaChi.Text.Trim() +
+                "','" + TxtSDT.Text.Trim() +
+                "','" + txtEmail.Text.Trim() +
+                "','" + cbbLoai.Text.Trim() +
+                "'," + txtTThai.Text.Trim();
 
             int _ok = DatLoa.AddNew(sql);
             if (_ok > 0)
@@ -54,12 +54,12 @@ namespace SieuThiSach.AllForm
 
         private void EditData()
         {
-            string sql = "KHACH_HANG_EDIT '" + TxtID.Text +
-                "',N'" + TxtName.Text +
-                "',N'" + txtDiaChi.Text +
-                "','" + TxtSDT.Text +
-                "','" + txtEmail.Text +
-                "','" + cbbLoai.Text +"'";
+            string sql = "KHACH_HANG_EDIT '" + TxtID.Text.Trim() +
+                "',N'" + TxtName.Text.Trim() +
+                "',N'" + txtDiaChi.Text.Trim() +
+                "','" + TxtSDT.Text.Trim() +
+                "','" + txtEmail.Text.Trim() +
+                "','" + cbbLoai.Text.Trim() + "'";
             int _ok = DatLoa.AddNew(sql);
             if (_ok > 0)
             {
@@ -76,31 +76,31 @@ namespace SieuThiSach.AllForm
             string vFilter = "Where MA_KH != 'KH00000'";
             if (TxtID.Text != "")
             {
-                vFilter = vFilter + " and MA_KH like '%" + TxtID.Text + "%'";
+                vFilter = vFilter + " and MA_KH like '%" + TxtID.Text.Trim() + "%'";
             }
             if (TxtName.Text != "")
             {
-                vFilter = vFilter + " and TEN_KH like N'%" + TxtName.Text + "%'";
+                vFilter = vFilter + " and TEN_KH like N'%" + TxtName.Text.Trim() + "%'";
             }
             if (txtDiaChi.Text != "")
             {
-                vFilter = vFilter + " and DIA_CHI like N'%" + txtDiaChi.Text + "%'";
+                vFilter = vFilter + " and DIA_CHI like N'%" + txtDiaChi.Text.Trim() + "%'";
             }
             if (TxtSDT.Text != "")
             {
-                vFilter = vFilter + " and SDT like '%" + TxtSDT.Text + "%'";
+                vFilter = vFilter + " and SDT like '%" + TxtSDT.Text.Trim() + "%'";
             }
             if (txtEmail.Text != "")
             {
-                vFilter = vFilter + " and EMAIL like '%" + txtEmail.Text + "%'";
+                vFilter = vFilter + " and EMAIL like '%" + txtEmail.Text.Trim() + "%'";
             }
             if (cbbLoai.Text != "")
             {
-                vFilter = vFilter + " and LOAI like '%" + cbbLoai.Text + "%'";
+                vFilter = vFilter + " and LOAI like '%" + cbbLoai.Text.Trim() + "%'";
             }
             if (txtTThai.Text != "")
             {
-                vFilter = vFilter + " and TTHAI like '%" + txtTThai.Text + "%'";
+                vFilter = vFilter + " and TTHAI like '%" + txtTThai.Text.Trim() + "%'";
             }
             loadData(vFilter);
             _pMode = "";
@@ -275,19 +275,19 @@ namespace SieuThiSach.AllForm
             DialogResult dlr = MessageBox.Show("Nhập/Xuất file Excel", "Thông báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
             {
-                using (OpenFileDialog ofd = new OpenFileDialog())
+                using (OpenFileDialog ofd = new OpenFileDialog()) //Mở form chọn file (form hệ thống)
                 {
-                    ofd.Filter = "(Các tệp excel)|*.xlsx|(Tất cả các tệp)|*.";
-                    if (ofd.ShowDialog() == DialogResult.OK)
+                    ofd.Filter = "Các tệp excel|*.xlsx|Tất cả các tệp|*.*"; //Lọc file .excel
+                    if (ofd.ShowDialog() == DialogResult.OK) //Kiểm tra tệp có được chọn không ?
                     {
-                        using (frmExecl exc = new frmExecl())
+                        using (frmExecl exc = new frmExecl()) //Mở form load Excel
                         {
                             exc.FilePath = ofd.FileName;
-                            exc.ShowDialog();
+                            exc.table = "TB_KHACH_HANG";
+                            if (exc.ShowDialog() == DialogResult.OK) frmKhachHang_Load(sender, e);                     
                         }         
                     }
-                }
-                    
+                }                
             }
             
         }

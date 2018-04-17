@@ -41,11 +41,11 @@ namespace SieuThiSach
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
             Char chkChangePWDLogon = chkUsingCheck.Checked ? 'Y' : 'N';
-            string sql = "USER_NHAP '" + TxtUserId.Text +
-                "',N'" + TxtUserName.Text +
-                "','" + dExpiredDate.Text +
-                "','" + TxtStaffId.Text +
-                "','" + txtBranchID.Text +
+            string sql = "USER_NHAP '" + TxtUserId.Text.Trim() +
+                "',N'" + TxtUserName.Text.Trim() +
+                "','" + dExpiredDate.Text.Trim() +
+                "','" + TxtStaffId.Text.Trim() +
+                "','" + txtBranchID.Text.Trim() +
                 "','" + vchkUsingCheck +
                 "','" + chkChangePWDLogon + "',1";
 
@@ -64,11 +64,11 @@ namespace SieuThiSach
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
             Char chkChangePWDLogon = chkUsingCheck.Checked ? 'Y' : 'N';
-            string sql = "USER_EDIT '" + TxtUserId.Text +
-                "',N'" + TxtUserName.Text +
-                "','" + dExpiredDate.Text +
-                "','" + TxtStaffId.Text +
-                "','" + txtBranchID.Text +
+            string sql = "USER_EDIT '" + TxtUserId.Text.Trim() +
+                "',N'" + TxtUserName.Text.Trim() +
+                "','" + dExpiredDate.Text.Trim() +
+                "','" + TxtStaffId.Text.Trim() +
+                "','" + txtBranchID.Text.Trim() +
                 "','" + vchkUsingCheck +
                  "','" + chkChangePWDLogon + "',1";
             int _ok = DatLoa.AddNew(sql);
@@ -89,19 +89,19 @@ namespace SieuThiSach
             string vFilter = "Where SDUNG = '" + vchkUsingCheck + "' and CHECK_PASS = '" + chkChangePWDLogon + "'";
             if (TxtUserId.Text != "")
             {
-                vFilter = vFilter + " and CODE like '%" + TxtUserId.Text + "%'";
+                vFilter = vFilter + " and CODE like '%" + TxtUserId.Text.Trim() + "%'";
             }
             if (TxtUserName.Text != "")
             {
-                vFilter = vFilter + " and TEN_NHAN_VIEN like N'%" + TxtUserName.Text + "%'";
+                vFilter = vFilter + " and TEN_NHAN_VIEN like N'%" + TxtUserName.Text.Trim() + "%'";
             }
             if (TxtStaffId.Text != "")
             {
-                vFilter = vFilter + " and MA_NHAN_VIEN like '%" + TxtStaffId.Text + "%'";
+                vFilter = vFilter + " and MA_NHAN_VIEN like '%" + TxtStaffId.Text.Trim() + "%'";
             }
             if (txtBranchID.Text != "")
             {
-                vFilter = vFilter + " and MA_DVI like '%" + txtBranchID.Text + "%'";
+                vFilter = vFilter + " and MA_DVI like '%" + txtBranchID.Text.Trim() + "%'";
             }
             loadData(vFilter);
             _pMode = "";
