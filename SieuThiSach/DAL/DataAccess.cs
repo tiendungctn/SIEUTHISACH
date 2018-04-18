@@ -142,7 +142,7 @@ namespace SieuThiSach.DAL
         {
             using (DbConnection cnn = oFactory.CreateConnection())
             {
-                int Iret = 1;
+                int Iret = 0;
                 cnn.ConnectionString = this.ConnectionString;
                 cnn.Open();
                 DbTransaction transaction = cnn.BeginTransaction();              
@@ -168,7 +168,7 @@ namespace SieuThiSach.DAL
                 }
                 catch (Exception e)
                 {
-                    RowEr = Iret;
+                    RowEr = Iret+1;
                     throw e;
                     transaction.Rollback();                  
                 }

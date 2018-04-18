@@ -32,6 +32,12 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCommit = new System.Windows.Forms.Button();
+            this.txtWS = new System.Windows.Forms.TextBox();
+            this.txtColNam = new System.Windows.Forms.TextBox();
+            this.txtDat = new System.Windows.Forms.TextBox();
+            this.cbxWS = new System.Windows.Forms.CheckBox();
+            this.cbxColNam = new System.Windows.Forms.CheckBox();
+            this.cbxDat = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,27 +67,87 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(596, 280);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(530, 296);
+            this.btnCancel.Location = new System.Drawing.Point(532, 299);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Hủy bỏ";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnCommit
             // 
-            this.btnCommit.Location = new System.Drawing.Point(449, 296);
+            this.btnCommit.Location = new System.Drawing.Point(451, 299);
             this.btnCommit.Name = "btnCommit";
             this.btnCommit.Size = new System.Drawing.Size(75, 23);
-            this.btnCommit.TabIndex = 2;
+            this.btnCommit.TabIndex = 7;
             this.btnCommit.Text = "Nhập";
             this.btnCommit.UseVisualStyleBackColor = true;
             this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
+            // 
+            // txtWS
+            // 
+            this.txtWS.Location = new System.Drawing.Point(94, 301);
+            this.txtWS.Name = "txtWS";
+            this.txtWS.Size = new System.Drawing.Size(47, 20);
+            this.txtWS.TabIndex = 2;
+            this.txtWS.Text = "1";
+            this.txtWS.TextChanged += new System.EventHandler(this.txtWS_TextChanged);
+            // 
+            // txtColNam
+            // 
+            this.txtColNam.Location = new System.Drawing.Point(229, 301);
+            this.txtColNam.Name = "txtColNam";
+            this.txtColNam.Size = new System.Drawing.Size(47, 20);
+            this.txtColNam.TabIndex = 4;
+            this.txtColNam.Text = "1";
+            this.txtColNam.TextChanged += new System.EventHandler(this.txtColNam_TextChanged);
+            // 
+            // txtDat
+            // 
+            this.txtDat.Location = new System.Drawing.Point(360, 301);
+            this.txtDat.Name = "txtDat";
+            this.txtDat.Size = new System.Drawing.Size(47, 20);
+            this.txtDat.TabIndex = 6;
+            this.txtDat.Text = "2";
+            this.txtDat.TextChanged += new System.EventHandler(this.txtDat_TextChanged);
+            // 
+            // cbxWS
+            // 
+            this.cbxWS.AutoSize = true;
+            this.cbxWS.Location = new System.Drawing.Point(11, 303);
+            this.cbxWS.Name = "cbxWS";
+            this.cbxWS.Size = new System.Drawing.Size(83, 17);
+            this.cbxWS.TabIndex = 9;
+            this.cbxWS.Text = "Work Sheet";
+            this.cbxWS.UseVisualStyleBackColor = true;
+            this.cbxWS.CheckedChanged += new System.EventHandler(this.cbxWS_CheckedChanged);
+            // 
+            // cbxColNam
+            // 
+            this.cbxColNam.AutoSize = true;
+            this.cbxColNam.Location = new System.Drawing.Point(159, 303);
+            this.cbxColNam.Name = "cbxColNam";
+            this.cbxColNam.Size = new System.Drawing.Size(63, 17);
+            this.cbxColNam.TabIndex = 10;
+            this.cbxColNam.Text = "Tên cột";
+            this.cbxColNam.UseVisualStyleBackColor = true;
+            this.cbxColNam.CheckedChanged += new System.EventHandler(this.cbxColNam_CheckedChanged);
+            // 
+            // cbxDat
+            // 
+            this.cbxDat.AutoSize = true;
+            this.cbxDat.Location = new System.Drawing.Point(297, 303);
+            this.cbxDat.Name = "cbxDat";
+            this.cbxDat.Size = new System.Drawing.Size(59, 17);
+            this.cbxDat.TabIndex = 11;
+            this.cbxDat.Text = "Dữ liệu";
+            this.cbxDat.UseVisualStyleBackColor = true;
+            this.cbxDat.CheckedChanged += new System.EventHandler(this.cbxDat_CheckedChanged);
             // 
             // frmExecl
             // 
@@ -90,7 +156,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(617, 325);
+            this.ClientSize = new System.Drawing.Size(617, 332);
+            this.Controls.Add(this.cbxDat);
+            this.Controls.Add(this.cbxColNam);
+            this.Controls.Add(this.cbxWS);
+            this.Controls.Add(this.txtDat);
+            this.Controls.Add(this.txtColNam);
+            this.Controls.Add(this.txtWS);
             this.Controls.Add(this.btnCommit);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.dataGridView1);
@@ -103,6 +175,7 @@
             this.Load += new System.EventHandler(this.frmExecl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -111,5 +184,11 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCommit;
+        private System.Windows.Forms.TextBox txtWS;
+        private System.Windows.Forms.TextBox txtColNam;
+        private System.Windows.Forms.TextBox txtDat;
+        private System.Windows.Forms.CheckBox cbxWS;
+        private System.Windows.Forms.CheckBox cbxColNam;
+        private System.Windows.Forms.CheckBox cbxDat;
     }
 }

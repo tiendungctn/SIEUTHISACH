@@ -46,10 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllForm\frmExecl.cs">
+    <Compile Include="SystemForm\frmExecl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AllForm\frmExecl.Designer.cs">
+    <Compile Include="SystemForm\frmExecl.Designer.cs">
       <DependentUpon>frmExecl.cs</DependentUpon>
     </Compile>
     <Compile Include="AllForm\frmKhachHang.cs">
@@ -91,7 +91,7 @@
     <Compile Include="SystemForm\frmPassword.Designer.cs">
       <DependentUpon>frmPassword.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AllForm\frmExecl.resx">
+    <EmbeddedResource Include="SystemForm\frmExecl.resx">
       <DependentUpon>frmExecl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AllForm\frmKhachHang.resx">

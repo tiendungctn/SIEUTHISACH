@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SieuThiSach.AllForm
 {
@@ -267,7 +269,7 @@ namespace SieuThiSach.AllForm
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chức năng chưa được xây dựng","Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Chức năng chưa được xây dựng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnExcel_Click(object sender, EventArgs e)
@@ -284,14 +286,70 @@ namespace SieuThiSach.AllForm
                         {
                             exc.FilePath = ofd.FileName;
                             exc.table = "TB_KHACH_HANG";
-                            if (exc.ShowDialog() == DialogResult.OK) frmKhachHang_Load(sender, e);                     
-                        }         
+                            if (exc.ShowDialog() == DialogResult.OK) frmKhachHang_Load(sender, e);
+                        }
                     }
-                }                
+                }
             }
-            
+            else if (dlr == DialogResult.No)
+            {
+                using (SaveFileDialog sfd = new SaveFileDialog())
+                {
+                    sfd.Filter = "Các tệp excel|*.xlsx|Tất cả các tệp|*.*"; //Lọc file .excel
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        Excel.Application app = new Excel.Application();//Tạo excel app                        
+                        Excel.Workbook wb = app.Workbooks.Add(Type.Missing);//tạo workbook                       
+                        Excel.Worksheet sheet = null;//tạo sheet
+                        Excel.Range Cells;
+                        try
+                        {
+                            //đọc dữ liệu từ dtg ra excel
+                            sheet = wb.ActiveSheet;
+                            sheet.Name = "Dữ liệu xuất";
+                            sheet.Range[sheet.Cells[1, 1], sheet.Cells[1, dataGridView1.Columns.Count]].Merge();
+                            sheet.Cells[1, 1].Value = "Danh sách Khách hàng";
+                            sheet.Cells[1, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                            sheet.Cells[1, 1].Font.Size = 20;
+                            sheet.Cells[1, 1].Borders.Weight = Excel.XlBorderWeight.xlThin;
+                            //Sinh cột
+                            for (int i = 1; i <= dataGridView1.Columns.Count; i++)
+                            {
+                                sheet.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
+                                sheet.Cells[2, i].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                                sheet.Cells[2, i].Font.Bold = true;
+                                sheet.Cells[2, i].Borders.Weight = Excel.XlBorderWeight.xlThin;
+                            }
+                            //Sinh dữ liệu
+                            Cells = sheet.Columns[4]; Cells.NumberFormat = "@";
+                            for (int i = 1; i <= dataGridView1.Rows.Count; i++)
+                            {
+                                for (int j = 1; j <= dataGridView1.Columns.Count; j++)
+                                {
+                                    sheet.Cells[i + 2, j] = dataGridView1.Rows[i - 1].Cells[j - 1].Value.ToString();
+                                    sheet.Cells[i + 2, j].Borders.weight = Excel.XlBorderWeight.xlThin;
+                                    if (j==4)
+                                    {
+                                        sheet.Cells[i+2,j].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+                                    }
+                                }
+                            }                            
+                            wb.SaveAs(sfd.FileName);
+                            MessageBox.Show("Lưu tập tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi lưu tệp tin\n" + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            app.Quit();
+                            wb = null;
+                        }
+                    }
+                }
+            }
         }
-
         //Xử lý trên key trên form-----------------------------------------------------------
 
         private void frmKhachHang_KeyDown(object sender, KeyEventArgs e)
@@ -299,6 +357,7 @@ namespace SieuThiSach.AllForm
             if (e.Control && e.KeyCode == Keys.N) btnAdd.PerformClick();
             else if (e.Control && e.KeyCode == Keys.E) btnEdit.PerformClick();
             else if (e.Control && e.KeyCode == Keys.F) btnFind.PerformClick();
+            else if (e.Control && e.KeyCode == Keys.L) btnExcel.PerformClick();
             else if (e.KeyCode == Keys.Escape)
             {
                 if (_pMode == "") this.Close();
@@ -329,7 +388,5 @@ namespace SieuThiSach.AllForm
                 else return dataGridView1.CurrentRow.Cells["MA_KH"].Value.ToString();
             }
         }
-
-
     }
 }
