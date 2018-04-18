@@ -38,7 +38,7 @@ namespace SieuThiSach.AllForm
                 {
                     for (int c = 1; c <= cols; c++)
                     {
-                        string columnname = range.Cells[colnam, c].Value.ToString();
+                        string columnname = range.Cells[colnam, c].Value ?? string.Empty.ToString();
                         dataGridView1.Columns.Add("" + (c - 1), columnname);
                     }
                 }
@@ -55,12 +55,11 @@ namespace SieuThiSach.AllForm
                 #region "Load Dữ liệu"
                 for (int i = dat; i <= rows; i++)
                 {
-                    //ListViewItem item = new ListViewItem();
                     DataGridViewRow dr = new DataGridViewRow();
                     for (int j = 1; j <= cols; j++)
                     {
                         DataGridViewCell _cell = new DataGridViewTextBoxCell();
-                        _cell.Value = range.Cells[i, j].Value.ToString();
+                        _cell.Value = range.Cells[i, j].Value ?? string.Empty.ToString();
                         dr.Cells.Add(_cell);
                     }
                     dataGridView1.Rows.Add(dr);
