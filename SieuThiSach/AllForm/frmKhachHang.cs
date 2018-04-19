@@ -1,4 +1,5 @@
 ﻿using SieuThiSach.DAL;
+using SieuThiSach.SystemForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -274,77 +275,80 @@ namespace SieuThiSach.AllForm
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            DialogResult dlr = MessageBox.Show("Nhập/Xuất file Excel", "Thông báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if (dlr == DialogResult.Yes)
+            using (frmImExQuestion excQ = new frmImExQuestion())
             {
-                using (OpenFileDialog ofd = new OpenFileDialog()) //Mở form chọn file (form hệ thống)
+                DialogResult dlr = excQ.ShowDialog();
+                if (dlr == DialogResult.Yes)
                 {
-                    ofd.Filter = "Các tệp excel|*.xlsx|Tất cả các tệp|*.*"; //Lọc file .excel
-                    if (ofd.ShowDialog() == DialogResult.OK) //Kiểm tra tệp có được chọn không ?
+                    using (OpenFileDialog ofd = new OpenFileDialog()) //Mở form chọn file (form hệ thống)
                     {
-                        using (frmExecl exc = new frmExecl()) //Mở form load Excel
+                        ofd.Filter = "Các tệp excel|*.xlsx|Tất cả các tệp|*.*"; //Lọc file .excel
+                        if (ofd.ShowDialog() == DialogResult.OK) //Kiểm tra tệp có được chọn không ?
                         {
-                            exc.FilePath = ofd.FileName;
-                            exc.table = "TB_KHACH_HANG";
-                            if (exc.ShowDialog() == DialogResult.OK) frmKhachHang_Load(sender, e);
+                            using (frmExecl exc = new frmExecl()) //Mở form load Excel
+                            {
+                                exc.FilePath = ofd.FileName;
+                                exc.table = "TB_KHACH_HANG";
+                                if (exc.ShowDialog() == DialogResult.OK) frmKhachHang_Load(sender, e);
+                            }
                         }
                     }
                 }
-            }
-            else if (dlr == DialogResult.No)
-            {
-                using (SaveFileDialog sfd = new SaveFileDialog())
+                else if (dlr == DialogResult.No)
                 {
-                    sfd.Filter = "Các tệp excel|*.xlsx|Tất cả các tệp|*.*"; //Lọc file .excel
-                    if (sfd.ShowDialog() == DialogResult.OK)
+                    using (SaveFileDialog sfd = new SaveFileDialog())
                     {
-                        Excel.Application app = new Excel.Application();//Tạo excel app                        
-                        Excel.Workbook wb = app.Workbooks.Add(Type.Missing);//tạo workbook                       
-                        Excel.Worksheet sheet = null;//tạo sheet
-                        Excel.Range Cells;
-                        try
+                        sfd.Filter = "Các tệp excel|*.xlsx|Tất cả các tệp|*.*"; //Lọc file .excel
+                        if (sfd.ShowDialog() == DialogResult.OK)
                         {
-                            //đọc dữ liệu từ dtg ra excel
-                            sheet = wb.ActiveSheet;
-                            sheet.Name = "Dữ liệu xuất";
-                            sheet.Range[sheet.Cells[1, 1], sheet.Cells[1, dataGridView1.Columns.Count]].Merge();
-                            sheet.Cells[1, 1].Value = "Danh sách Khách hàng";
-                            sheet.Cells[1, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                            sheet.Cells[1, 1].Font.Size = 20;
-                            sheet.Cells[1, 1].Borders.Weight = Excel.XlBorderWeight.xlThin;
-                            //Sinh cột
-                            for (int i = 1; i <= dataGridView1.Columns.Count; i++)
+                            Excel.Application app = new Excel.Application();//Tạo excel app                        
+                            Excel.Workbook wb = app.Workbooks.Add(Type.Missing);//tạo workbook                       
+                            Excel.Worksheet sheet = null;//tạo sheet
+                            Excel.Range Cells;
+                            try
                             {
-                                sheet.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
-                                sheet.Cells[2, i].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                                sheet.Cells[2, i].Font.Bold = true;
-                                sheet.Cells[2, i].Borders.Weight = Excel.XlBorderWeight.xlThin;
-                            }
-                            //Sinh dữ liệu
-                            Cells = sheet.Columns[4]; Cells.NumberFormat = "@";
-                            for (int i = 1; i <= dataGridView1.Rows.Count; i++)
-                            {
-                                for (int j = 1; j <= dataGridView1.Columns.Count; j++)
+                                //đọc dữ liệu từ dtg ra excel
+                                sheet = wb.ActiveSheet;
+                                sheet.Name = "Dữ liệu xuất";
+                                sheet.Range[sheet.Cells[1, 1], sheet.Cells[1, dataGridView1.Columns.Count]].Merge();
+                                sheet.Cells[1, 1].Value = "Danh sách Khách hàng";
+                                sheet.Cells[1, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter; //căn giữa
+                                sheet.Cells[1, 1].Font.Size = 20; //Cỡ chữ
+                                sheet.Cells[1, 1].Borders.Weight = Excel.XlBorderWeight.xlThin;
+                                //Sinh cột
+                                for (int i = 1; i <= dataGridView1.Columns.Count; i++)
                                 {
-                                    sheet.Cells[i + 2, j] = dataGridView1.Rows[i - 1].Cells[j - 1].Value.ToString();
-                                    sheet.Cells[i + 2, j].Borders.weight = Excel.XlBorderWeight.xlThin;
-                                    if (j==4)
+                                    sheet.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
+                                    sheet.Cells[2, i].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                                    sheet.Cells[2, i].Font.Bold = true;
+                                    sheet.Cells[2, i].Borders.Weight = Excel.XlBorderWeight.xlThin;
+                                }
+                                //Sinh dữ liệu
+                                Cells = sheet.Columns[4]; Cells.NumberFormat = "@";
+                                for (int i = 1; i <= dataGridView1.Rows.Count; i++)
+                                {
+                                    for (int j = 1; j <= dataGridView1.Columns.Count; j++)
                                     {
-                                        sheet.Cells[i+2,j].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+                                        sheet.Cells[i + 2, j] = dataGridView1.Rows[i - 1].Cells[j - 1].Value.ToString();
+                                        sheet.Cells[i + 2, j].Borders.weight = Excel.XlBorderWeight.xlThin;
+                                        if (j == 4)
+                                        {
+                                            sheet.Cells[i + 2, j].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight; //căn lề phải
+                                        }
                                     }
                                 }
-                            }                            
-                            wb.SaveAs(sfd.FileName);
-                            MessageBox.Show("Lưu tập tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Lỗi lưu tệp tin\n" + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        finally
-                        {
-                            app.Quit();
-                            wb = null;
+                                wb.SaveAs(sfd.FileName);
+                                MessageBox.Show("Lưu tập tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Lỗi lưu tệp tin\n" + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            finally
+                            {
+                                app.Quit();
+                                wb = null;
+                            }
                         }
                     }
                 }

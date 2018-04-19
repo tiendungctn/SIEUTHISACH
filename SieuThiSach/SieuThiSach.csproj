@@ -79,6 +79,12 @@
     <Compile Include="DAL\DataAccess.cs" />
     <Compile Include="SO\PhanQuyen.cs" />
     <Compile Include="SO\UserInformation.cs" />
+    <Compile Include="SystemForm\frmImExQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemForm\frmImExQuestion.Designer.cs">
+      <DependentUpon>frmImExQuestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemForm\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,7 +117,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SystemForm\frmImExQuestion.resx">
+      <DependentUpon>frmImExQuestion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SystemForm\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -159,6 +169,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circle-question-mark-512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

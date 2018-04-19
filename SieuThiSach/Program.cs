@@ -1,4 +1,5 @@
 ﻿using SieuThiSach.AllForm;
+using SieuThiSach.SystemForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace SieuThiSach
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmKhachHang());
+            Application.Run(new frmMain());
         }
     }
 }
