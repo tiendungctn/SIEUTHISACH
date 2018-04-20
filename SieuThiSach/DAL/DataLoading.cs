@@ -118,17 +118,38 @@ namespace SieuThiSach.DAL
             }
         }
 
-        public void loadCBBfromList(List<string> TenCotExcel, ref ComboBox cbb)
+        public void loadCBBfromHeaderText(ref DataGridView dgv, ref ComboBox cbb)
         {
             cbb.Items.Clear();
             try
             {
-                if (TenCotExcel.Count > 0)
+                if (dgv.Columns.Count > 0)
                 {
-                    cbb.Items.Add("");
-                    for (byte i = 0; i < TenCotExcel.Count; i++)
+                    List<string> check = new List<string>();
+                    for (byte i = 0; i < dgv.Columns.Count; i++)
                     {
-                        cbb.Items.Add(TenCotExcel[i]);
+                        cbb.Items.Add(dgv.Columns[i].HeaderText.ToString());
+                        check.Add(dgv.Columns[i].HeaderText.ToString());
+                    }
+                    if (!check.Contains("")) cbb.Items.Add("");
+                }
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void loadCBBfromColNameNumber(ref DataGridView dgv, ref ComboBox cbb)
+        {
+            cbb.Items.Clear();
+            try
+            {
+                if (dgv.Columns.Count > 0)
+                {
+                    for (byte i = 0; i < dgv.Columns.Count; i++)
+                    {
+                        cbb.Items.Add((Convert.ToInt16(dgv.Columns[i].Name)+1).ToString());
                     }
                 }
             }
@@ -138,6 +159,24 @@ namespace SieuThiSach.DAL
             }
         }
 
+        public void loadCBBfromList(List<string> list, ref ComboBox cbb)
+        {
+            cbb.Items.Clear();
+            try
+            {
+                if (list.Count > 0)
+                {
+                    for (byte i = 0; i < list.Count; i++)
+                    {
+                        cbb.Items.Add(list[i]);
+                    }
+                }
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public int InsExc(int dt,string tb, ref DataGridView dtv)
         {
             int rw = 0;

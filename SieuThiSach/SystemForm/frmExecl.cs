@@ -23,14 +23,14 @@ namespace SieuThiSach.AllForm
         public DataGridView datagoc;
         public static List<string> LiColName = new List<string>();
         DataLoading DatLoa = new DataLoading();
-
+        String _pMode = "";
         private void LayTenCotGoc()
         {
             LiColName.Clear();
-            int cols = datagoc.Columns.Count;
+            int cols = dataGridView1.Columns.Count;
             for (int c = 1; c <= cols; c++)
             {
-                string columnname = datagoc.Columns[c - 1].Name.ToString();
+                string columnname = dataGridView1.Columns[c - 1].HeaderText.ToString();
                 LiColName.Add(columnname);
             }
         }
@@ -44,7 +44,7 @@ namespace SieuThiSach.AllForm
                 ChuoiTesst = ChuoiTesst + datarow[1];
             }
             if (ChuoiTesst == "") check = true;
-            return check;    
+            return check;
         }
         private void LoadExcel(int sh, int colnam, int dat)
         {
@@ -56,13 +56,12 @@ namespace SieuThiSach.AllForm
                 Excel.Range range = sheet.UsedRange;//tham chiếu vùng dữ liệu
                 //đọc dữ liệu
                 int rows = range.Rows.Count;
-                //int cols = range.Columns.Count;
                 int cols = Math.Max(datagoc.Columns.Count, range.Columns.Count);
                 #region "Tên cột"
                 for (int c = 1; c <= cols; c++)
                 {
                     string columnname = "";
-                    if (c <= datagoc.Columns.Count) columnname = LiColName[c-1];
+                    if (c <= datagoc.Columns.Count) columnname = datagoc.Columns[c - 1].Name.ToString();
                     dataGridView1.Columns.Add("" + (c - 1), columnname);
                 }
                 #endregion
@@ -82,9 +81,9 @@ namespace SieuThiSach.AllForm
                     if (!DuLieuTrong(TenCotExcel))
                     {
                         dataGridView1.Rows.Add(dr);
-                        dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.LightGray;
+                        dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.LightSlateGray;
                         dataGridView1.Rows[0].DefaultCellStyle.Font = new Font(DataGridView.DefaultFont, FontStyle.Bold);
-                    }                  
+                    }
                 }
                 #endregion
 
@@ -113,20 +112,38 @@ namespace SieuThiSach.AllForm
             finally
             {
                 app.Quit();
-                wb = null;
+                //wb = null;
             }
             dataGridView1.ClearSelection();
         }
-        private void frmExecl_Load(object sender, EventArgs e)
+
+        private void ViewMode()
         {
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
-            LayTenCotGoc();
-            checkBtn();
-            LoadExcel(Convert.ToInt16(txtWS.Text), Convert.ToInt16(txtColNam.Text), Convert.ToInt16(txtDat.Text));
+            switch (_pMode)
+            {
+                case "SapXep":
+                    this.Height = 400;
+                    btnSapXep.Text = "Xong";
+                    break;
+                case "":
+                    this.Height = 370;
+                    btnSapXep.Text = "Sắp Xếp lại";
+                    break;
+            }
         }
 
-        private void checkBtn()
+        private void frmExecl_Load(object sender, EventArgs e)
+        {           
+            dataGridView1.Rows.Clear(); dataGridView1.Columns.Clear(); //Xóa data grid view            
+            checkbox(); //Check box Sheet, Tên cột, data 
+            LoadExcel(Convert.ToInt16(txtWS.Text), Convert.ToInt16(txtColNam.Text), Convert.ToInt16(txtDat.Text)); // Load dữ liệu lên 
+            LayTenCotGoc(); // Load Tên cột gốc vào List
+            DatLoa.loadCBBfromColNameNumber(ref dataGridView1, ref cbbTenCotCu);
+            DatLoa.loadCBBfromHeaderText(ref dataGridView1, ref cbbTenCotMoi);
+            ViewMode();
+        }
+
+        private void checkbox()
         {
             if (cbxWS.CheckState == CheckState.Checked) txtWS.Enabled = true;
             else { txtWS.Enabled = false; txtWS.Text = "1"; }
@@ -156,17 +173,17 @@ namespace SieuThiSach.AllForm
 
         private void cbxWS_CheckedChanged(object sender, EventArgs e)
         {
-            checkBtn();
+            checkbox();
         }
 
         private void cbxColNam_CheckedChanged(object sender, EventArgs e)
         {
-            checkBtn();
+            checkbox();
         }
 
         private void cbxDat_CheckedChanged(object sender, EventArgs e)
         {
-            checkBtn();
+            checkbox();
         }
 
         private void txtWS_TextChanged(object sender, EventArgs e)
@@ -182,6 +199,30 @@ namespace SieuThiSach.AllForm
         private void txtDat_TextChanged(object sender, EventArgs e)
         {
             frmExecl_Load(sender, e);
+        }
+
+        private void btnSapXep_Click(object sender, EventArgs e)
+        {
+            if (_pMode == "") _pMode = "SapXep"; else _pMode = "";
+            ViewMode();
+        }
+
+        private void cbbTenCotCu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbbTenCotMoi.Text = dataGridView1.Columns[Convert.ToInt16(cbbTenCotCu.Text) - 1].HeaderText.ToString();
+        }
+
+        private void cbbTenCotMoi_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (LiColName.Contains(cbbTenCotMoi.Text))
+            {
+                LiColName[LiColName.IndexOf(cbbTenCotMoi.Text)] = "";
+            }
+            LiColName[Convert.ToInt16(cbbTenCotCu.Text) - 1] = cbbTenCotMoi.Text;
+            for (int i = 0; i < LiColName.Count; i++)
+            {
+                dataGridView1.Columns[i].HeaderText = LiColName[i].ToString();
+            }
         }
     }
 }

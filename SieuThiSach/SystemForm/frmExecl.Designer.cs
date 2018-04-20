@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCommit = new System.Windows.Forms.Button();
@@ -38,6 +38,11 @@
             this.cbxWS = new System.Windows.Forms.CheckBox();
             this.cbxColNam = new System.Windows.Forms.CheckBox();
             this.cbxDat = new System.Windows.Forms.CheckBox();
+            this.btnSapXep = new System.Windows.Forms.Button();
+            this.cbbTenCotCu = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbbTenCotMoi = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,14 +53,14 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.Location = new System.Drawing.Point(11, 11);
@@ -93,25 +98,25 @@
             // 
             this.txtWS.Location = new System.Drawing.Point(94, 301);
             this.txtWS.Name = "txtWS";
-            this.txtWS.Size = new System.Drawing.Size(47, 20);
+            this.txtWS.Size = new System.Drawing.Size(30, 20);
             this.txtWS.TabIndex = 2;
             this.txtWS.Text = "1";
             this.txtWS.TextChanged += new System.EventHandler(this.txtWS_TextChanged);
             // 
             // txtColNam
             // 
-            this.txtColNam.Location = new System.Drawing.Point(229, 301);
+            this.txtColNam.Location = new System.Drawing.Point(199, 301);
             this.txtColNam.Name = "txtColNam";
-            this.txtColNam.Size = new System.Drawing.Size(47, 20);
+            this.txtColNam.Size = new System.Drawing.Size(30, 20);
             this.txtColNam.TabIndex = 4;
             this.txtColNam.Text = "1";
             this.txtColNam.TextChanged += new System.EventHandler(this.txtColNam_TextChanged);
             // 
             // txtDat
             // 
-            this.txtDat.Location = new System.Drawing.Point(360, 301);
+            this.txtDat.Location = new System.Drawing.Point(300, 301);
             this.txtDat.Name = "txtDat";
-            this.txtDat.Size = new System.Drawing.Size(47, 20);
+            this.txtDat.Size = new System.Drawing.Size(30, 20);
             this.txtDat.TabIndex = 6;
             this.txtDat.Text = "2";
             this.txtDat.TextChanged += new System.EventHandler(this.txtDat_TextChanged);
@@ -130,7 +135,7 @@
             // cbxColNam
             // 
             this.cbxColNam.AutoSize = true;
-            this.cbxColNam.Location = new System.Drawing.Point(159, 303);
+            this.cbxColNam.Location = new System.Drawing.Point(130, 303);
             this.cbxColNam.Name = "cbxColNam";
             this.cbxColNam.Size = new System.Drawing.Size(63, 17);
             this.cbxColNam.TabIndex = 10;
@@ -141,13 +146,61 @@
             // cbxDat
             // 
             this.cbxDat.AutoSize = true;
-            this.cbxDat.Location = new System.Drawing.Point(297, 303);
+            this.cbxDat.Location = new System.Drawing.Point(235, 303);
             this.cbxDat.Name = "cbxDat";
             this.cbxDat.Size = new System.Drawing.Size(59, 17);
             this.cbxDat.TabIndex = 11;
             this.cbxDat.Text = "Dữ liệu";
             this.cbxDat.UseVisualStyleBackColor = true;
             this.cbxDat.CheckedChanged += new System.EventHandler(this.cbxDat_CheckedChanged);
+            // 
+            // btnSapXep
+            // 
+            this.btnSapXep.Location = new System.Drawing.Point(370, 299);
+            this.btnSapXep.Name = "btnSapXep";
+            this.btnSapXep.Size = new System.Drawing.Size(75, 23);
+            this.btnSapXep.TabIndex = 12;
+            this.btnSapXep.Text = "Sắp xếp lại";
+            this.btnSapXep.UseVisualStyleBackColor = true;
+            this.btnSapXep.Click += new System.EventHandler(this.btnSapXep_Click);
+            // 
+            // cbbTenCotCu
+            // 
+            this.cbbTenCotCu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbTenCotCu.FormattingEnabled = true;
+            this.cbbTenCotCu.Location = new System.Drawing.Point(79, 331);
+            this.cbbTenCotCu.Name = "cbbTenCotCu";
+            this.cbbTenCotCu.Size = new System.Drawing.Size(100, 21);
+            this.cbbTenCotCu.TabIndex = 13;
+            this.cbbTenCotCu.SelectedIndexChanged += new System.EventHandler(this.cbbTenCotCu_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 334);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Tên Cột Cũ";
+            // 
+            // cbbTenCotMoi
+            // 
+            this.cbbTenCotMoi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbTenCotMoi.FormattingEnabled = true;
+            this.cbbTenCotMoi.Location = new System.Drawing.Point(256, 331);
+            this.cbbTenCotMoi.Name = "cbbTenCotMoi";
+            this.cbbTenCotMoi.Size = new System.Drawing.Size(100, 21);
+            this.cbbTenCotMoi.TabIndex = 13;
+            this.cbbTenCotMoi.SelectionChangeCommitted += new System.EventHandler(this.cbbTenCotMoi_SelectionChangeCommitted);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(185, 334);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Tên Cột Mới";
             // 
             // frmExecl
             // 
@@ -156,7 +209,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(617, 332);
+            this.ClientSize = new System.Drawing.Size(617, 361);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbbTenCotMoi);
+            this.Controls.Add(this.cbbTenCotCu);
+            this.Controls.Add(this.btnSapXep);
             this.Controls.Add(this.cbxDat);
             this.Controls.Add(this.cbxColNam);
             this.Controls.Add(this.cbxWS);
@@ -190,5 +248,10 @@
         private System.Windows.Forms.CheckBox cbxWS;
         private System.Windows.Forms.CheckBox cbxColNam;
         private System.Windows.Forms.CheckBox cbxDat;
+        private System.Windows.Forms.Button btnSapXep;
+        private System.Windows.Forms.ComboBox cbbTenCotCu;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbbTenCotMoi;
+        private System.Windows.Forms.Label label2;
     }
 }

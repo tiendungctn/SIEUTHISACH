@@ -97,9 +97,8 @@
             this.cbbLoai.Location = new System.Drawing.Point(465, 63);
             this.cbbLoai.Name = "cbbLoai";
             this.cbbLoai.Size = new System.Drawing.Size(47, 21);
-            this.cbbLoai.TabIndex = 15;
+            this.cbbLoai.TabIndex = 15;          
             this.cbbLoai.TextChanged += new System.EventHandler(this.cbbLoai_TextChanged);
-            this.cbbLoai.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbbLoai_KeyUp);
             // 
             // btnCancel
             // 

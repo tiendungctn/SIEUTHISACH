@@ -368,15 +368,7 @@ namespace SieuThiSach.AllForm
                 else btnCancel.PerformClick();
             }
         }
-
         private void cbbLoai_TextChanged(object sender, EventArgs e)
-        {
-            if (cbbLoai.Text == "CC") lblNameLoai.Text = "Nhà Cung Cấp";
-            else if (cbbLoai.Text == "KH") lblNameLoai.Text = "Khách Hàng";
-            else lblNameLoai.Text = "";
-        }
-
-        private void cbbLoai_KeyUp(object sender, KeyEventArgs e)
         {
             if (cbbLoai.Text == "CC") lblNameLoai.Text = "Nhà Cung Cấp";
             else if (cbbLoai.Text == "KH") lblNameLoai.Text = "Khách Hàng";
@@ -392,5 +384,7 @@ namespace SieuThiSach.AllForm
                 else return dataGridView1.CurrentRow.Cells["MA_KH"].Value.ToString();
             }
         }
+
+
     }
 }
