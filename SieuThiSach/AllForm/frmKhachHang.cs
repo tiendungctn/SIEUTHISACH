@@ -331,7 +331,7 @@ namespace SieuThiSach.AllForm
                                     {
                                         sheet.Cells[i + 2, j] = dataGridView1.Rows[i - 1].Cells[j - 1].Value.ToString();
                                         sheet.Cells[i + 2, j].Borders.weight = Excel.XlBorderWeight.xlThin;
-                                        if (j == 4)
+                                        if (j == 4) // tinh chỉnh cột 4
                                         {
                                             sheet.Cells[i + 2, j].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight; //căn lề phải
                                         }
@@ -347,7 +347,7 @@ namespace SieuThiSach.AllForm
                             finally
                             {
                                 app.Quit();
-                                wb = null;
+                                //wb = null;
                             }
                         }
                     }

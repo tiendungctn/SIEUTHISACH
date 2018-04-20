@@ -167,7 +167,6 @@ namespace SieuThiSach.AllForm
             else
             {
                 MessageBox.Show("Không có dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
             }
         }
 
