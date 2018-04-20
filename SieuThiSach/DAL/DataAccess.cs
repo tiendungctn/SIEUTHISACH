@@ -138,29 +138,42 @@ namespace SieuThiSach.DAL
             }
         }
 
-        public int ImportExcel(string table, ref DataGridView dt)
+        public int ImportExcel(int dtnumber, string table, ref DataGridView dt)
         {
             using (DbConnection cnn = oFactory.CreateConnection())
             {
                 int Iret = 0;
                 cnn.ConnectionString = this.ConnectionString;
-                cnn.Open();
-                DbTransaction transaction = cnn.BeginTransaction();              
+                DbTransaction transaction;
                 try
                 {
-                    for (int i = 0; i < dt.Rows.Count; i++)
+                    cnn.Open();
+                    transaction = cnn.BeginTransaction();
+                    for (int i = dtnumber; i < dt.Rows.Count; i++)
                     {
+                        string columns = "";
                         string value = "";
                         for (int j = 0; j < dt.Columns.Count; j++)
                         {
-                            if (j == 0) value = "N'" + dt.Rows[i].Cells[j].Value.ToString() + "'";
-                            else value = value + ",N'" + dt.Rows[i].Cells[j].Value.ToString() + "'";
+                            if (dt.Columns[j].HeaderText.ToString() != "")
+                            {
+                                if (j == 0)
+                                {
+                                    columns = dt.Columns[j].HeaderText.ToString();
+                                    value = "N'" + dt.Rows[i].Cells[j].Value.ToString() + "'";
+                                }
+                                else
+                                {
+                                    columns = columns + "," + dt.Columns[j].HeaderText.ToString();
+                                    value = value + ",N'" + dt.Rows[i].Cells[j].Value.ToString() + "'";
+                                }
+                            }
                         }
-                        string sSql = "insert into " + table + " values (" + value + ")";
+                        string sSql = "insert into " + table + " (" + columns + ") values (" + value + ")";
                         DbCommand cmd = oFactory.CreateCommand();
                         cmd.Connection = cnn;
                         cmd.CommandText = sSql;
-                        cmd.CommandType = CommandType.Text;                       
+                        cmd.CommandType = CommandType.Text;
                         cmd.Transaction = transaction;
                         Iret = Iret + cmd.ExecuteNonQuery();
                     }
@@ -170,11 +183,11 @@ namespace SieuThiSach.DAL
                 {
                     RowEr = Iret+1;
                     throw e;
-                    transaction.Rollback();                  
+                    transaction.Rollback();
                 }
                 finally
-                {                    
-                    cnn.Close();                  
+                {
+                    cnn.Close();
                 }
                 return Iret;
             }

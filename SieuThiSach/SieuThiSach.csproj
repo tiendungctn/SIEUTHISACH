@@ -79,6 +79,12 @@
     <Compile Include="DAL\DataAccess.cs" />
     <Compile Include="SO\PhanQuyen.cs" />
     <Compile Include="SO\UserInformation.cs" />
+    <Compile Include="SystemForm\frmHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemForm\frmHistory.Designer.cs">
+      <DependentUpon>frmHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemForm\frmImExQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SystemForm\frmHistory.resx">
+      <DependentUpon>frmHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SystemForm\frmImExQuestion.resx">
       <DependentUpon>frmImExQuestion.cs</DependentUpon>
     </EmbeddedResource>

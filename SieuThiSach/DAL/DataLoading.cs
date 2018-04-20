@@ -98,6 +98,7 @@ namespace SieuThiSach.DAL
 
         public void loadCBB(string sql, ref ComboBox cbb)
         {
+            cbb.Items.Clear();
             try
             {
                 ct = dbA.ExecuteAsDataSetSql(sql);
@@ -117,20 +118,40 @@ namespace SieuThiSach.DAL
             }
         }
 
-        public int InsExc(string tb, ref DataGridView dtv)
+        public void loadCBBfromList(List<string> TenCotExcel, ref ComboBox cbb)
         {
-            int ret = 0;
+            cbb.Items.Clear();
             try
             {
-                int rw = dbA.ImportExcel(tb, ref dtv);
-                MessageBox.Show("Đã nạp thành công " + rw + " dòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ret = 1;
+                if (TenCotExcel.Count > 0)
+                {
+                    cbb.Items.Add("");
+                    for (byte i = 0; i < TenCotExcel.Count; i++)
+                    {
+                        cbb.Items.Add(TenCotExcel[i]);
+                    }
+                }
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public int InsExc(int dt,string tb, ref DataGridView dtv)
+        {
+            int rw = 0;
+            try
+            {
+                rw = dbA.ImportExcel(dt-1,tb, ref dtv);
+                if (rw > 0) MessageBox.Show("Đã nạp thành công " + rw + " dòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show("Không có dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception es)
             {
                 MessageBox.Show("Lỗi tại dòng: " + dbA.RowEr + "\n" +es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return ret;
+            return rw;
         }
     }
 }

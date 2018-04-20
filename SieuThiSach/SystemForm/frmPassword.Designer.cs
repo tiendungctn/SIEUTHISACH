@@ -53,6 +53,7 @@
             // 
             // btnCommit
             // 
+            this.btnCommit.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCommit.Location = new System.Drawing.Point(244, 15);
             this.btnCommit.Name = "btnCommit";
             this.btnCommit.Size = new System.Drawing.Size(91, 23);

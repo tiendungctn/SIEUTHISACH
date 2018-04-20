@@ -48,6 +48,7 @@ namespace SieuThiSach.SystemForm
             int _ok = DatLoa.AddNew(sql);
             if (_ok >= 0)
             {
+                MyApp.MSSQLConnectionString = MyApp.GetLoginMSSQL(MyApp.gHostDB, MyApp.gServiceNameDB, MyApp.gUserDB, txtNEWpass.Text);
                 UserInformation.Pass = txtNEWpass.Text;
                 this.DialogResult = DialogResult.OK;
                 this.Close();

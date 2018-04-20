@@ -40,14 +40,14 @@ namespace SieuThiSach
         private void AddNew()
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
-            Char chkChangePWDLogon = chkUsingCheck.Checked ? 'Y' : 'N';
+            Char vchkChangePWDLogon = chkChangePWDLogon.Checked ? 'Y' : 'N';
             string sql = "USER_NHAP '" + TxtUserId.Text.Trim() +
                 "',N'" + TxtUserName.Text.Trim() +
                 "','" + dExpiredDate.Text.Trim() +
                 "','" + TxtStaffId.Text.Trim() +
                 "','" + txtBranchID.Text.Trim() +
                 "','" + vchkUsingCheck +
-                "','" + chkChangePWDLogon + "',1";
+                "','" + vchkChangePWDLogon + "',1";
 
             int _ok = DatLoa.AddNew(sql);
             if (_ok > 0)
@@ -63,14 +63,14 @@ namespace SieuThiSach
         private void EditData()
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
-            Char chkChangePWDLogon = chkUsingCheck.Checked ? 'Y' : 'N';
+            Char vchkChangePWDLogon = chkChangePWDLogon.Checked ? 'Y' : 'N';
             string sql = "USER_EDIT '" + TxtUserId.Text.Trim() +
                 "',N'" + TxtUserName.Text.Trim() +
                 "','" + dExpiredDate.Text.Trim() +
                 "','" + TxtStaffId.Text.Trim() +
                 "','" + txtBranchID.Text.Trim() +
                 "','" + vchkUsingCheck +
-                 "','" + chkChangePWDLogon + "',1";
+                 "','" + vchkChangePWDLogon + "',1";
             int _ok = DatLoa.AddNew(sql);
             if (_ok > 0)
             {
@@ -85,8 +85,8 @@ namespace SieuThiSach
         private void FindData()
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
-            Char chkChangePWDLogon = chkUsingCheck.Checked ? 'Y' : 'N';
-            string vFilter = "Where SDUNG = '" + vchkUsingCheck + "' and CHECK_PASS = '" + chkChangePWDLogon + "'";
+            Char vchkChangePWDLogon = chkChangePWDLogon.Checked ? 'Y' : 'N';
+            string vFilter = "Where SDUNG = '" + vchkUsingCheck + "' and CHECK_PASS = '" + vchkChangePWDLogon + "'";
             if (TxtUserId.Text != "")
             {
                 vFilter = vFilter + " and CODE like '%" + TxtUserId.Text.Trim() + "%'";
@@ -319,6 +319,16 @@ namespace SieuThiSach
                 if (dataGridView1.Rows.Count <= 0) return "";
                 else return dataGridView1.CurrentRow.Cells["MA_NHAN_VIEN"].Value.ToString();
             }
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Chức năng chưa được xây dựng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Chức năng chưa được xây dựng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

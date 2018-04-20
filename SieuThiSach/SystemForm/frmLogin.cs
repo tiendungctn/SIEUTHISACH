@@ -30,7 +30,7 @@ namespace SieuThiSach.SystemForm
                 MyApp.gConnected = true;
                 MyApp.gUserDB = txtUserName.Text;
                 frmMain.Current.ItemMnuLoginChange = "Đăng xuất";
-                #region "Members"
+                #region "Tham số Members"
                 UserInformation.Code = txtUserName.Text;
                 UserInformation.Pass = txtPassword.Text;
                 UserInformation.MaNV = UserInformation.vMaNV(UserInformation.Code);

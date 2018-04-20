@@ -216,7 +216,6 @@ namespace SieuThiSach.AllForm
                     dataGridView1.Rows[i].DefaultCellStyle.SelectionBackColor = Color.DarkBlue;
                 }
             }
-
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -287,6 +286,7 @@ namespace SieuThiSach.AllForm
                         {
                             using (frmExecl exc = new frmExecl()) //Mở form load Excel
                             {
+                                exc.datagoc = dataGridView1;
                                 exc.FilePath = ofd.FileName;
                                 exc.table = "TB_KHACH_HANG";
                                 if (exc.ShowDialog() == DialogResult.OK) frmKhachHang_Load(sender, e);
