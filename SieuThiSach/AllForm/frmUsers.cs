@@ -44,7 +44,6 @@ namespace SieuThiSach
             string sql = "USER_NHAP '" + TxtUserId.Text.Trim() +
                 "',N'" + TxtUserName.Text.Trim() +
                 "','" + dExpiredDate.Text.Trim() +
-                "','" + TxtStaffId.Text.Trim() +
                 "','" + txtBranchID.Text.Trim() +
                 "','" + vchkUsingCheck +
                 "','" + vchkChangePWDLogon + "',1";
@@ -129,7 +128,7 @@ namespace SieuThiSach
                     chkUsingCheck.Checked = true;
                     chkChangePWDLogon.Checked = true;
                     TxtUserId.Enabled = true;
-                    TxtStaffId.Enabled = true;
+                    TxtStaffId.Enabled = false;
                     txtBranchID.Enabled = true;
                     #endregion
                     TxtUserId.Focus();
