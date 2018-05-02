@@ -44,7 +44,7 @@ namespace SieuThiSach
             string sql = "USER_NHAP '" + TxtUserId.Text.Trim() +
                 "',N'" + TxtUserName.Text.Trim() +
                 "','" + dExpiredDate.Text.Trim() +
-                "','" + txtBranchID.Text.Trim() +
+                "','" + cbbBranchID.Text +
                 "','" + vchkUsingCheck +
                 "','" + vchkChangePWDLogon + "',1";
 
@@ -67,7 +67,7 @@ namespace SieuThiSach
                 "',N'" + TxtUserName.Text.Trim() +
                 "','" + dExpiredDate.Text.Trim() +
                 "','" + TxtStaffId.Text.Trim() +
-                "','" + txtBranchID.Text.Trim() +
+                "','" + cbbBranchID.Text +
                 "','" + vchkUsingCheck +
                  "','" + vchkChangePWDLogon + "',1";
             int _ok = DatLoa.AddNew(sql);
@@ -98,9 +98,9 @@ namespace SieuThiSach
             {
                 vFilter = vFilter + " and MA_NHAN_VIEN like '%" + TxtStaffId.Text.Trim() + "%'";
             }
-            if (txtBranchID.Text != "")
+            if (cbbBranchID.Text != "")
             {
-                vFilter = vFilter + " and MA_DVI like '%" + txtBranchID.Text.Trim() + "%'";
+                vFilter = vFilter + " and MA_DVI like '%" + cbbBranchID.Text + "%'";
             }
             loadData(vFilter);
             _pMode = "";
@@ -120,7 +120,7 @@ namespace SieuThiSach
                     DesFor.ColorChange(ref btnAdd);
                     #region "Load Text Box Clear"
                     TxtUserId.Text = "";
-                    txtBranchID.Text = "";
+                    cbbBranchID.Text = "";
                     lblNameBranch.Text = "";
                     TxtStaffId.Text = "";
                     TxtUserName.Text = "";
@@ -129,7 +129,7 @@ namespace SieuThiSach
                     chkChangePWDLogon.Checked = true;
                     TxtUserId.Enabled = true;
                     TxtStaffId.Enabled = false;
-                    txtBranchID.Enabled = true;
+                    cbbBranchID.Enabled = true;
                     #endregion
                     TxtUserId.Focus();
                     DesFor.AlignCenterToScreen();
@@ -141,7 +141,7 @@ namespace SieuThiSach
                     DesFor.ColorChange(ref btnFind);
                     #region "Load Text Box Clear"
                     TxtUserId.Text = "";
-                    txtBranchID.Text = "";
+                    cbbBranchID.Text = "";
                     lblNameBranch.Text = "";
                     TxtStaffId.Text = "";
                     TxtUserName.Text = "";
@@ -150,7 +150,7 @@ namespace SieuThiSach
                     chkChangePWDLogon.Checked = false;
                     TxtUserId.Enabled = true;
                     TxtStaffId.Enabled = true;
-                    txtBranchID.Enabled = true;
+                    cbbBranchID.Enabled = true;
                     #endregion
                     TxtUserId.Focus();
                     DesFor.AlignCenterToScreen();
@@ -162,7 +162,7 @@ namespace SieuThiSach
                     DesFor.ColorChange(ref btnEdit);
                     #region "Load Text Box"
                     TxtUserId.Text = dataGridView1.CurrentRow.Cells["CODE"].Value.ToString();
-                    txtBranchID.Text = dataGridView1.CurrentRow.Cells["MA_DVI"].Value.ToString();
+                    cbbBranchID.Text = dataGridView1.CurrentRow.Cells["MA_DVI"].Value.ToString();
                     lblNameBranch.Text = dataGridView1.CurrentRow.Cells["TEN_DVI"].Value.ToString();
                     TxtStaffId.Text = dataGridView1.CurrentRow.Cells["MA_NHAN_VIEN"].Value.ToString();
                     TxtUserName.Text = dataGridView1.CurrentRow.Cells["TEN_NHAN_VIEN"].Value.ToString();
@@ -171,7 +171,7 @@ namespace SieuThiSach
                     chkChangePWDLogon.Checked = dataGridView1.CurrentRow.Cells["CHECK_PASS"].Value.ToString() == "Y" ? true : false;
                     TxtUserId.Enabled = false;
                     TxtStaffId.Enabled = false;
-                    txtBranchID.Enabled = false;
+                    cbbBranchID.Enabled = false;
                     #endregion
                     TxtUserName.Focus();
                     DesFor.AlignCenterToScreen();
@@ -181,7 +181,7 @@ namespace SieuThiSach
                     dataGridView1.Enabled = true;
                     #region "Load Text Box Clear"
                     TxtUserId.Text = "";
-                    txtBranchID.Text = "";
+                    cbbBranchID.Text = "";
                     lblNameBranch.Text = "";
                     TxtStaffId.Text = "";
                     TxtUserName.Text = "";
@@ -190,7 +190,7 @@ namespace SieuThiSach
                     chkChangePWDLogon.Checked = false;
                     TxtUserId.Enabled = true;
                     TxtStaffId.Enabled = true;
-                    txtBranchID.Enabled = true;
+                    cbbBranchID.Enabled = true;
                     #endregion
                     this.Height = 336;
                     DesFor.AlignCenterToScreen();
@@ -206,6 +206,7 @@ namespace SieuThiSach
             DesignForm.vForm = this;
             ViewMode();
             loadData();
+            DatLoa.loadCBB("select distinct ma_dvi from TB_DVI", ref cbbBranchID);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -265,9 +266,9 @@ namespace SieuThiSach
 
         //Xử lý trên key trên form-----------------------------------------------------------
 
-        private void txtBranchID_Validated(object sender, EventArgs e)
+        private void cbbBranchID_TextChanged(object sender, EventArgs e)
         {
-            lblNameBranch.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtBranchID.Text + "'");
+            lblNameBranch.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + cbbBranchID.Text + "'");
         }
 
         private void frmUsers_KeyDown(object sender, KeyEventArgs e)
@@ -329,5 +330,7 @@ namespace SieuThiSach
         {
             MessageBox.Show("Chức năng chưa được xây dựng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+
     }
 }

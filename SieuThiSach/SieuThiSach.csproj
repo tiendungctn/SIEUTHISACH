@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllForm\frmNhomhang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllForm\frmNhomhang.Designer.cs">
+      <DependentUpon>frmNhomhang.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemForm\frmExecl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     <Compile Include="SystemForm\frmPassword.Designer.cs">
       <DependentUpon>frmPassword.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AllForm\frmNhomhang.resx">
+      <DependentUpon>frmNhomhang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SystemForm\frmExecl.resx">
       <DependentUpon>frmExecl.cs</DependentUpon>
     </EmbeddedResource>

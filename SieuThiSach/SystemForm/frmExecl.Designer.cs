@@ -43,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbbTenCotMoi = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -202,6 +203,17 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Tên Cột Mới";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label4.Location = new System.Drawing.Point(383, 334);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(221, 13);
+            this.label4.TabIndex = 51;
+            this.label4.Text = "*Không nhập dữ liệu lặp hoặc tính toán được";
+            // 
             // frmExecl
             // 
             this.AcceptButton = this.btnCommit;
@@ -211,6 +223,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(617, 361);
             this.ControlBox = false;
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbbTenCotMoi);
@@ -256,5 +269,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbbTenCotMoi;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
     }
 }

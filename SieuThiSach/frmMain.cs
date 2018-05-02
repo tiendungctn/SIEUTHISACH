@@ -29,6 +29,7 @@ namespace SieuThiSach
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+
             this.Show();
             foreach (Control ctrl in this.Controls)
             {
@@ -110,6 +111,12 @@ namespace SieuThiSach
         private void ItemMnuDanhMuc_KHACHHANG_Click(object sender, EventArgs e)
         {
             frmKhachHang callForm = new frmKhachHang();
+            callForm.ShowDialog();
+        }
+
+        private void ItemMnuDanhMuc_NHOMHANG_Click(object sender, EventArgs e)
+        {
+            frmNhomhang callForm = new frmNhomhang();
             callForm.ShowDialog();
         }
     }
