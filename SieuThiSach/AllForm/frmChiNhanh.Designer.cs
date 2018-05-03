@@ -1,6 +1,6 @@
 ﻿namespace SieuThiSach.AllForm
 {
-    partial class frmNhomhang
+    partial class frmChiNhanh
     {
         /// <summary>
         /// Required designer variable.
@@ -40,9 +40,10 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCommit = new System.Windows.Forms.Button();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.lblNameLoai = new System.Windows.Forms.Label();
             this.TxtID = new System.Windows.Forms.TextBox();
             this.grDetail = new System.Windows.Forms.GroupBox();
             this.lblUserID = new System.Windows.Forms.Label();
@@ -92,7 +93,6 @@
             this.btnExcel.TabIndex = 7;
             this.btnExcel.Text = "Excel";
             this.btnExcel.UseVisualStyleBackColor = false;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // btnHistory
             // 
@@ -138,7 +138,6 @@
             this.btnDel.TabIndex = 3;
             this.btnDel.Text = "Xóa";
             this.btnDel.UseVisualStyleBackColor = false;
-            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnEdit
             // 
@@ -188,50 +187,61 @@
             this.btnCommit.UseVisualStyleBackColor = false;
             this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
             // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiaChi.Location = new System.Drawing.Point(77, 57);
+            this.txtDiaChi.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(519, 23);
+            this.txtDiaChi.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 63);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Địa Chỉ:";
+            // 
             // TxtName
             // 
             this.TxtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtName.Location = new System.Drawing.Point(367, 41);
+            this.TxtName.Location = new System.Drawing.Point(266, 24);
             this.TxtName.Margin = new System.Windows.Forms.Padding(2);
             this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(221, 23);
+            this.TxtName.Size = new System.Drawing.Size(330, 23);
             this.TxtName.TabIndex = 10;
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(263, 47);
+            this.lblName.Location = new System.Drawing.Point(199, 31);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(84, 13);
+            this.lblName.Size = new System.Drawing.Size(63, 13);
             this.lblName.TabIndex = 2;
-            this.lblName.Text = "Tên Nhóm hàng";
-            // 
-            // lblNameLoai
-            // 
-            this.lblNameLoai.Location = new System.Drawing.Point(517, 67);
-            this.lblNameLoai.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblNameLoai.Name = "lblNameLoai";
-            this.lblNameLoai.Size = new System.Drawing.Size(84, 13);
-            this.lblNameLoai.TabIndex = 6;
-            this.lblNameLoai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblName.Text = "Tên Đơn vị:";
             // 
             // TxtID
             // 
             this.TxtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtID.Location = new System.Drawing.Point(118, 41);
+            this.TxtID.Location = new System.Drawing.Point(77, 24);
             this.TxtID.Margin = new System.Windows.Forms.Padding(2);
             this.TxtID.Name = "TxtID";
-            this.TxtID.Size = new System.Drawing.Size(114, 23);
+            this.TxtID.Size = new System.Drawing.Size(118, 23);
             this.TxtID.TabIndex = 9;
             // 
             // grDetail
             // 
             this.grDetail.Controls.Add(this.btnCancel);
             this.grDetail.Controls.Add(this.btnCommit);
+            this.grDetail.Controls.Add(this.txtDiaChi);
+            this.grDetail.Controls.Add(this.label2);
             this.grDetail.Controls.Add(this.TxtName);
             this.grDetail.Controls.Add(this.lblName);
-            this.grDetail.Controls.Add(this.lblNameLoai);
             this.grDetail.Controls.Add(this.TxtID);
             this.grDetail.Controls.Add(this.lblUserID);
             this.grDetail.Location = new System.Drawing.Point(11, 295);
@@ -246,12 +256,12 @@
             // lblUserID
             // 
             this.lblUserID.AutoSize = true;
-            this.lblUserID.Location = new System.Drawing.Point(30, 47);
+            this.lblUserID.Location = new System.Drawing.Point(14, 29);
             this.lblUserID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUserID.Name = "lblUserID";
-            this.lblUserID.Size = new System.Drawing.Size(83, 13);
+            this.lblUserID.Size = new System.Drawing.Size(59, 13);
             this.lblUserID.TabIndex = 0;
-            this.lblUserID.Text = "Mã Nhóm hàng:";
+            this.lblUserID.Text = "Mã Đơn vị:";
             // 
             // dataGridView1
             // 
@@ -259,7 +269,7 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -282,29 +292,28 @@
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
-            // frmNhomhang
+            // frmChiNhanh
             // 
             this.AcceptButton = this.btnCommit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(778, 401);
-            this.ControlBox = false;
             this.Controls.Add(this.grButton1);
             this.Controls.Add(this.grDetail);
             this.Controls.Add(this.dataGridView1);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmNhomhang";
+            this.Name = "frmChiNhanh";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nhóm hàng";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmNhomhang_FormClosed);
-            this.Load += new System.EventHandler(this.frmNhomhang_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNhomhang_KeyDown);
+            this.Text = "Danh sách Chi Nhánh";            
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmChiNhanh_FormClosed);
+            this.Load += new System.EventHandler(this.frmChiNhanh_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmChiNhanh_KeyDown);
             this.grButton1.ResumeLayout(false);
             this.grDetail.ResumeLayout(false);
             this.grDetail.PerformLayout();
@@ -326,9 +335,10 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCommit;
+        private System.Windows.Forms.TextBox txtDiaChi;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtName;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label lblNameLoai;
         private System.Windows.Forms.TextBox TxtID;
         private System.Windows.Forms.GroupBox grDetail;
         private System.Windows.Forms.Label lblUserID;

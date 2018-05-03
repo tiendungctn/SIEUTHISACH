@@ -188,6 +188,7 @@
             this.ItemMnuDanhMuc_DSHANGHOA.Name = "ItemMnuDanhMuc_DSHANGHOA";
             this.ItemMnuDanhMuc_DSHANGHOA.Size = new System.Drawing.Size(182, 22);
             this.ItemMnuDanhMuc_DSHANGHOA.Text = "Danh sách hàng hóa";
+            this.ItemMnuDanhMuc_DSHANGHOA.Click += new System.EventHandler(this.ItemMnuDanhMuc_DSHANGHOA_Click);
             // 
             // ItemMnuDanhMuc_THUE
             // 
@@ -212,6 +213,7 @@
             this.ItemMnuDanhMuc_CHINHANH.Name = "ItemMnuDanhMuc_CHINHANH";
             this.ItemMnuDanhMuc_CHINHANH.Size = new System.Drawing.Size(152, 22);
             this.ItemMnuDanhMuc_CHINHANH.Text = "Chi nhánh";
+            this.ItemMnuDanhMuc_CHINHANH.Click += new System.EventHandler(this.ItemMnuDanhMuc_CHINHANH_Click);
             // 
             // MnuHoaDon
             // 

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grButton1 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.grDetail = new System.Windows.Forms.GroupBox();
+            this.txtBranchID = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCommit = new System.Windows.Forms.Button();
             this.dExpiredDate = new System.Windows.Forms.DateTimePicker();
@@ -56,7 +57,6 @@
             this.TxtUserId = new System.Windows.Forms.TextBox();
             this.lblUserID = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cbbBranchID = new System.Windows.Forms.ComboBox();
             this.grButton1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grDetail.SuspendLayout();
@@ -182,14 +182,14 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.Location = new System.Drawing.Point(11, 11);
@@ -206,7 +206,7 @@
             // 
             // grDetail
             // 
-            this.grDetail.Controls.Add(this.cbbBranchID);
+            this.grDetail.Controls.Add(this.txtBranchID);
             this.grDetail.Controls.Add(this.btnCancel);
             this.grDetail.Controls.Add(this.btnCommit);
             this.grDetail.Controls.Add(this.dExpiredDate);
@@ -229,6 +229,17 @@
             this.grDetail.TabIndex = 4;
             this.grDetail.TabStop = false;
             this.grDetail.Text = "Thông tin chi tiết";
+            // 
+            // txtBranchID
+            // 
+            this.txtBranchID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBranchID.Location = new System.Drawing.Point(229, 63);
+            this.txtBranchID.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBranchID.Name = "txtBranchID";
+            this.txtBranchID.Size = new System.Drawing.Size(50, 23);
+            this.txtBranchID.TabIndex = 17;
+            this.txtBranchID.TextChanged += new System.EventHandler(this.txtBranchID_TextChanged);
+            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
             // btnCancel
             // 
@@ -317,10 +328,10 @@
             // 
             // lblNameBranch
             // 
-            this.lblNameBranch.Location = new System.Drawing.Point(285, 67);
+            this.lblNameBranch.Location = new System.Drawing.Point(283, 67);
             this.lblNameBranch.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNameBranch.Name = "lblNameBranch";
-            this.lblNameBranch.Size = new System.Drawing.Size(91, 13);
+            this.lblNameBranch.Size = new System.Drawing.Size(93, 13);
             this.lblNameBranch.TabIndex = 6;
             this.lblNameBranch.Text = "Trụ Sở Chính";
             this.lblNameBranch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -375,18 +386,6 @@
             this.lblUserID.TabIndex = 0;
             this.lblUserID.Text = "User ID";
             // 
-            // cbbBranchID
-            // 
-            this.cbbBranchID.BackColor = System.Drawing.SystemColors.Window;
-            this.cbbBranchID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbBranchID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.cbbBranchID.FormattingEnabled = true;
-            this.cbbBranchID.Location = new System.Drawing.Point(230, 61);
-            this.cbbBranchID.Name = "cbbBranchID";
-            this.cbbBranchID.Size = new System.Drawing.Size(50, 25);
-            this.cbbBranchID.TabIndex = 17;
-            this.cbbBranchID.TextChanged += new System.EventHandler(this.cbbBranchID_TextChanged);
-            // 
             // frmUsers
             // 
             this.AcceptButton = this.btnCommit;
@@ -406,7 +405,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tài khoản người sử dụng";
-            this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmUsers_FormClosed);
             this.Load += new System.EventHandler(this.frmUsers_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmUsers_KeyDown);
             this.grButton1.ResumeLayout(false);
@@ -445,6 +444,6 @@
         private System.Windows.Forms.Label lblNameBranch;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnExcel;
-        private System.Windows.Forms.ComboBox cbbBranchID;
+        private System.Windows.Forms.TextBox txtBranchID;
     }
 }

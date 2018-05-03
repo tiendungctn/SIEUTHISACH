@@ -97,7 +97,7 @@
             this.cbbLoai.Location = new System.Drawing.Point(465, 63);
             this.cbbLoai.Name = "cbbLoai";
             this.cbbLoai.Size = new System.Drawing.Size(47, 21);
-            this.cbbLoai.TabIndex = 15;          
+            this.cbbLoai.TabIndex = 15;
             this.cbbLoai.TextChanged += new System.EventHandler(this.cbbLoai_TextChanged);
             // 
             // btnCancel
@@ -419,6 +419,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh Mục Khách Hàng";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmKhachHang_FormClosed);
             this.Load += new System.EventHandler(this.frmKhachHang_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmKhachHang_KeyDown);
             this.grDetail.ResumeLayout(false);

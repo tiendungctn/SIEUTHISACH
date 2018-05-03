@@ -386,5 +386,9 @@ namespace SieuThiSach.AllForm
             }
         }
 
+        private void frmKhachHang_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

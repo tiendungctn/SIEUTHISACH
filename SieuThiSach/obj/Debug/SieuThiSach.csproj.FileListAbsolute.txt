@@ -16,3 +16,5 @@ D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.exe
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.pdb
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.csprojResolveAssemblyReference.cache
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmNhomhang.resources
+D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmMatHang.resources
+D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmChiNhanh.resources

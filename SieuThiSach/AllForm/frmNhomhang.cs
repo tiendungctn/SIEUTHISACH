@@ -24,10 +24,11 @@ namespace SieuThiSach.AllForm
         DesignForm DesFor = new DesignForm();
         private void loadData(string _Filter = " where SDUNG = 'C'")
         {
-            DatLoa.loadData("*", "V_NHOM_HANG " + _Filter, ref dataGridView1);
+            //DatLoa.loadData("*", "V_NHOM_HANG " + _Filter, ref dataGridView1);
+            DatLoa.loadData("*", "TB_NHOM_HANG " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_NHOM_HANG", true, "Mã Nhóm hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_NHOM_HANG", true, "Tên Nhóm hàng");
-            DesFor.EditCollum(ref dataGridView1, "SO_MAT_HANG", true, "Số Mặt hàng");
+            //DesFor.EditCollum(ref dataGridView1, "SO_MAT_HANG", true, "Số Mặt hàng");
             DesFor.EditCollum(ref dataGridView1, "SDUNG", false, "Using");
         }
 
@@ -309,5 +310,9 @@ namespace SieuThiSach.AllForm
             }
         }
 
+        private void frmNhomhang_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

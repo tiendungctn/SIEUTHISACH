@@ -1,4 +1,5 @@
-﻿using SieuThiSach.DAL;
+﻿using SieuThiSach.AllForm;
+using SieuThiSach.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,7 +45,7 @@ namespace SieuThiSach
             string sql = "USER_NHAP '" + TxtUserId.Text.Trim() +
                 "',N'" + TxtUserName.Text.Trim() +
                 "','" + dExpiredDate.Text.Trim() +
-                "','" + cbbBranchID.Text +
+                "','" + txtBranchID.Text.Trim() +
                 "','" + vchkUsingCheck +
                 "','" + vchkChangePWDLogon + "',1";
 
@@ -67,7 +68,7 @@ namespace SieuThiSach
                 "',N'" + TxtUserName.Text.Trim() +
                 "','" + dExpiredDate.Text.Trim() +
                 "','" + TxtStaffId.Text.Trim() +
-                "','" + cbbBranchID.Text +
+                "','" + txtBranchID.Text.Trim() +
                 "','" + vchkUsingCheck +
                  "','" + vchkChangePWDLogon + "',1";
             int _ok = DatLoa.AddNew(sql);
@@ -98,9 +99,9 @@ namespace SieuThiSach
             {
                 vFilter = vFilter + " and MA_NHAN_VIEN like '%" + TxtStaffId.Text.Trim() + "%'";
             }
-            if (cbbBranchID.Text != "")
+            if (txtBranchID.Text != "")
             {
-                vFilter = vFilter + " and MA_DVI like '%" + cbbBranchID.Text + "%'";
+                vFilter = vFilter + " and MA_DVI like '%" + txtBranchID.Text + "%'";
             }
             loadData(vFilter);
             _pMode = "";
@@ -120,7 +121,7 @@ namespace SieuThiSach
                     DesFor.ColorChange(ref btnAdd);
                     #region "Load Text Box Clear"
                     TxtUserId.Text = "";
-                    cbbBranchID.Text = "";
+                    txtBranchID.Text = "";
                     lblNameBranch.Text = "";
                     TxtStaffId.Text = "";
                     TxtUserName.Text = "";
@@ -129,7 +130,7 @@ namespace SieuThiSach
                     chkChangePWDLogon.Checked = true;
                     TxtUserId.Enabled = true;
                     TxtStaffId.Enabled = false;
-                    cbbBranchID.Enabled = true;
+                    txtBranchID.Enabled = true;
                     #endregion
                     TxtUserId.Focus();
                     DesFor.AlignCenterToScreen();
@@ -141,7 +142,7 @@ namespace SieuThiSach
                     DesFor.ColorChange(ref btnFind);
                     #region "Load Text Box Clear"
                     TxtUserId.Text = "";
-                    cbbBranchID.Text = "";
+                    txtBranchID.Text = "";
                     lblNameBranch.Text = "";
                     TxtStaffId.Text = "";
                     TxtUserName.Text = "";
@@ -150,7 +151,7 @@ namespace SieuThiSach
                     chkChangePWDLogon.Checked = false;
                     TxtUserId.Enabled = true;
                     TxtStaffId.Enabled = true;
-                    cbbBranchID.Enabled = true;
+                    txtBranchID.Enabled = true;
                     #endregion
                     TxtUserId.Focus();
                     DesFor.AlignCenterToScreen();
@@ -162,7 +163,7 @@ namespace SieuThiSach
                     DesFor.ColorChange(ref btnEdit);
                     #region "Load Text Box"
                     TxtUserId.Text = dataGridView1.CurrentRow.Cells["CODE"].Value.ToString();
-                    cbbBranchID.Text = dataGridView1.CurrentRow.Cells["MA_DVI"].Value.ToString();
+                    txtBranchID.Text = dataGridView1.CurrentRow.Cells["MA_DVI"].Value.ToString();
                     lblNameBranch.Text = dataGridView1.CurrentRow.Cells["TEN_DVI"].Value.ToString();
                     TxtStaffId.Text = dataGridView1.CurrentRow.Cells["MA_NHAN_VIEN"].Value.ToString();
                     TxtUserName.Text = dataGridView1.CurrentRow.Cells["TEN_NHAN_VIEN"].Value.ToString();
@@ -171,7 +172,7 @@ namespace SieuThiSach
                     chkChangePWDLogon.Checked = dataGridView1.CurrentRow.Cells["CHECK_PASS"].Value.ToString() == "Y" ? true : false;
                     TxtUserId.Enabled = false;
                     TxtStaffId.Enabled = false;
-                    cbbBranchID.Enabled = false;
+                    txtBranchID.Enabled = false;
                     #endregion
                     TxtUserName.Focus();
                     DesFor.AlignCenterToScreen();
@@ -181,7 +182,7 @@ namespace SieuThiSach
                     dataGridView1.Enabled = true;
                     #region "Load Text Box Clear"
                     TxtUserId.Text = "";
-                    cbbBranchID.Text = "";
+                    txtBranchID.Text = "";
                     lblNameBranch.Text = "";
                     TxtStaffId.Text = "";
                     TxtUserName.Text = "";
@@ -190,7 +191,7 @@ namespace SieuThiSach
                     chkChangePWDLogon.Checked = false;
                     TxtUserId.Enabled = true;
                     TxtStaffId.Enabled = true;
-                    cbbBranchID.Enabled = true;
+                    txtBranchID.Enabled = true;
                     #endregion
                     this.Height = 336;
                     DesFor.AlignCenterToScreen();
@@ -206,7 +207,7 @@ namespace SieuThiSach
             DesignForm.vForm = this;
             ViewMode();
             loadData();
-            DatLoa.loadCBB("select distinct ma_dvi from TB_DVI", ref cbbBranchID);
+            //DatLoa.loadCBB("select distinct ma_dvi from TB_DVI", ref cbbBranchID);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -264,11 +265,20 @@ namespace SieuThiSach
             btnEdit_Click(sender, e);
         }
 
-        //Xử lý trên key trên form-----------------------------------------------------------
-
-        private void cbbBranchID_TextChanged(object sender, EventArgs e)
+        private void btnExcel_Click(object sender, EventArgs e)
         {
-            lblNameBranch.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + cbbBranchID.Text + "'");
+            MessageBox.Show("Chức năng chưa được xây dựng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Chức năng chưa được xây dựng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        //Xử lý trên key trên form-----------------------------------------------------------
+        private void txtBranchID_TextChanged(object sender, EventArgs e)
+        {
+            lblNameBranch.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtBranchID.Text + "'");
         }
 
         private void frmUsers_KeyDown(object sender, KeyEventArgs e)
@@ -302,12 +312,30 @@ namespace SieuThiSach
             //}
         }
 
+        private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F2:
+                    e.SuppressKeyPress = true;
+                    using (frmChiNhanh f = new frmChiNhanh())
+                    {
+                        if (f.ShowDialog() == DialogResult.OK)
+                        {
+                            txtBranchID.Text = f.DVI_ID;
+                        }
+                        DesignForm.vForm = this;
+                    }
+                    break;
+            }
+        }
+
         //Trả giá trị về 
         public string BranchID
         {
             get
             {
-                if (dataGridView1.Rows.Count <=0) return "";
+                if (dataGridView1.Rows.Count <= 0) return "";
                 else return dataGridView1.CurrentRow.Cells["MA_DVI"].Value.ToString();
             }
         }
@@ -321,16 +349,9 @@ namespace SieuThiSach
             }
         }
 
-        private void btnExcel_Click(object sender, EventArgs e)
+        private void frmUsers_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MessageBox.Show("Chức năng chưa được xây dựng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.DialogResult = DialogResult.OK;
         }
-
-        private void btnHistory_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Chức năng chưa được xây dựng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-
     }
 }
