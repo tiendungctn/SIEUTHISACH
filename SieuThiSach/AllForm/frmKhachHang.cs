@@ -23,7 +23,8 @@ namespace SieuThiSach.AllForm
         string _pMode = "";
         DataLoading DatLoa = new DataLoading();
         DesignForm DesFor = new DesignForm();
-        private void loadData(string _Filter = " where MA_KH != 'KH00000'")
+        public string _Filter = " where MA_KH != 'KH00000'";
+        private void loadData()
         {
             DatLoa.loadData("*", "TB_KHACH_HANG " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_KH", true, "Mã khách hàng");
@@ -105,7 +106,8 @@ namespace SieuThiSach.AllForm
             {
                 vFilter = vFilter + " and TTHAI like '%" + txtTThai.Text.Trim() + "%'";
             }
-            loadData(vFilter);
+            _Filter = vFilter;
+            loadData();
             _pMode = "";
             ViewMode();
             DesFor.ColorChange(ref DesFor.BtnChange);

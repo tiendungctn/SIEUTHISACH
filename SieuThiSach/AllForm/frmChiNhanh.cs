@@ -20,12 +20,13 @@ namespace SieuThiSach.AllForm
         string _pMode = "";
         DataLoading DatLoa = new DataLoading();
         DesignForm DesFor = new DesignForm();
-        private void loadData(string _Filter = "")
+        private void loadData(string _Filter = " Where SDUNG = 'C'")
         {
             DatLoa.loadData("*", "TB_DVI " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "TEN_DVI", true, "Tên đơn vị");
             DesFor.EditCollum(ref dataGridView1, "DIA_CHI", true, "Địa chỉ");
+            DesFor.EditCollum(ref dataGridView1, "SDUNG", false, "SDUNG");
         }
 
         private void AddNew()
@@ -62,7 +63,7 @@ namespace SieuThiSach.AllForm
 
         private void FindData()
         {
-            string vFilter = " Where(1=1) ";
+            string vFilter = " Where SDUNG = 'C' ";
             if (TxtID.Text != "")
             {
                 vFilter = vFilter + " and MA_DVI like '%" + TxtID.Text.Trim() + "%'";
@@ -202,6 +203,12 @@ namespace SieuThiSach.AllForm
             btnEdit_Click(sender, e);
         }
 
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (DatLoa.DelData("DVI_EDIT_SDUNG", ref dataGridView1, "MA_DVI", "TEN_DVI", "SDUNG") > 0)
+                loadData();
+        }
+
         //Xử lý trên key trên form-----------------------------------------------------------
 
         private void frmChiNhanh_KeyDown(object sender, KeyEventArgs e)
@@ -231,5 +238,6 @@ namespace SieuThiSach.AllForm
         {
             this.DialogResult = DialogResult.OK;
         }
+
     }
 }

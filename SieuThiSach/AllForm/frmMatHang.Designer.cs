@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grButton1 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
@@ -50,12 +50,12 @@
             this.lblStaffID = new System.Windows.Forms.Label();
             this.TxtID = new System.Windows.Forms.TextBox();
             this.grDetail = new System.Windows.Forms.GroupBox();
+            this.TxtNhaCC = new System.Windows.Forms.TextBox();
+            this.TxtNhomHang = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNhomHang = new System.Windows.Forms.Label();
             this.lblUserID = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.TxtNhomHang = new System.Windows.Forms.TextBox();
-            this.TxtNhaCC = new System.Windows.Forms.TextBox();
             this.grButton1.SuspendLayout();
             this.grDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -306,6 +306,28 @@
             this.grDetail.TabStop = false;
             this.grDetail.Text = "Thông tin chi tiết";
             // 
+            // TxtNhaCC
+            // 
+            this.TxtNhaCC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNhaCC.Location = new System.Drawing.Point(98, 58);
+            this.TxtNhaCC.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtNhaCC.Name = "TxtNhaCC";
+            this.TxtNhaCC.Size = new System.Drawing.Size(57, 23);
+            this.TxtNhaCC.TabIndex = 18;
+            this.TxtNhaCC.TextChanged += new System.EventHandler(this.TxtNhaCC_TextChanged);
+            this.TxtNhaCC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNhaCC_KeyDown);
+            // 
+            // TxtNhomHang
+            // 
+            this.TxtNhomHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNhomHang.Location = new System.Drawing.Point(461, 24);
+            this.TxtNhomHang.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtNhomHang.Name = "TxtNhomHang";
+            this.TxtNhomHang.Size = new System.Drawing.Size(48, 23);
+            this.TxtNhomHang.TabIndex = 17;
+            this.TxtNhomHang.TextChanged += new System.EventHandler(this.TxtNhomHang_TextChanged);
+            this.TxtNhomHang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNhomHang_KeyDown);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -342,14 +364,14 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.Location = new System.Drawing.Point(11, 11);
@@ -363,28 +385,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(596, 280);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
-            // 
-            // TxtNhomHang
-            // 
-            this.TxtNhomHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNhomHang.Location = new System.Drawing.Point(461, 24);
-            this.TxtNhomHang.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtNhomHang.Name = "TxtNhomHang";
-            this.TxtNhomHang.Size = new System.Drawing.Size(48, 23);
-            this.TxtNhomHang.TabIndex = 17;
-            this.TxtNhomHang.TextChanged += new System.EventHandler(this.TxtNhomHang_TextChanged);
-            this.TxtNhomHang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNhomHang_KeyDown);
-            // 
-            // TxtNhaCC
-            // 
-            this.TxtNhaCC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNhaCC.Location = new System.Drawing.Point(98, 58);
-            this.TxtNhaCC.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtNhaCC.Name = "TxtNhaCC";
-            this.TxtNhaCC.Size = new System.Drawing.Size(57, 23);
-            this.TxtNhaCC.TabIndex = 18;
-            this.TxtNhaCC.TextChanged += new System.EventHandler(this.TxtNhaCC_TextChanged);
-            this.TxtNhaCC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNhaCC_KeyDown);
             // 
             // frmMatHang
             // 

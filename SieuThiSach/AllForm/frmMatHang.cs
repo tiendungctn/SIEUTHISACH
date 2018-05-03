@@ -274,6 +274,7 @@ namespace SieuThiSach.AllForm
                     e.SuppressKeyPress = true;
                     using (frmKhachHang f = new frmKhachHang())
                     {
+                        f._Filter = " where MA_KH like '%CC%'";
                         if (f.ShowDialog() == DialogResult.OK)
                         {
                             TxtNhaCC.Text = f.KH_ID;
@@ -297,6 +298,5 @@ namespace SieuThiSach.AllForm
         {
             this.DialogResult = DialogResult.OK;
         }
-        
     }
 }

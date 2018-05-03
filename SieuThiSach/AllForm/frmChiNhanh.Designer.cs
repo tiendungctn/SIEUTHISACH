@@ -138,6 +138,7 @@
             this.btnDel.TabIndex = 3;
             this.btnDel.Text = "Xóa";
             this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnEdit
             // 
@@ -310,7 +311,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Danh sách Chi Nhánh";            
+            this.Text = "Danh sách Chi Nhánh";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmChiNhanh_FormClosed);
             this.Load += new System.EventHandler(this.frmChiNhanh_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmChiNhanh_KeyDown);
