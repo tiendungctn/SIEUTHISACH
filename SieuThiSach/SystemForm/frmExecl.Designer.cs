@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCommit = new System.Windows.Forms.Button();
@@ -44,6 +44,7 @@
             this.cbbTenCotMoi = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblColumnsName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,17 +55,17 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 11);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 25);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -72,7 +73,7 @@
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(596, 280);
+            this.dataGridView1.Size = new System.Drawing.Size(596, 266);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnCancel
@@ -103,6 +104,7 @@
             this.txtWS.TabIndex = 2;
             this.txtWS.Text = "1";
             this.txtWS.TextChanged += new System.EventHandler(this.txtWS_TextChanged);
+            this.txtWS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWS_KeyPress);
             // 
             // txtColNam
             // 
@@ -112,6 +114,7 @@
             this.txtColNam.TabIndex = 4;
             this.txtColNam.Text = "1";
             this.txtColNam.TextChanged += new System.EventHandler(this.txtColNam_TextChanged);
+            this.txtColNam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtColNam_KeyPress);
             // 
             // txtDat
             // 
@@ -121,6 +124,7 @@
             this.txtDat.TabIndex = 6;
             this.txtDat.Text = "2";
             this.txtDat.TextChanged += new System.EventHandler(this.txtDat_TextChanged);
+            this.txtDat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDat_KeyPress);
             // 
             // cbxWS
             // 
@@ -214,6 +218,17 @@
             this.label4.TabIndex = 51;
             this.label4.Text = "*Không nhập dữ liệu lặp hoặc tính toán được";
             // 
+            // lblColumnsName
+            // 
+            this.lblColumnsName.AutoSize = true;
+            this.lblColumnsName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnsName.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblColumnsName.Location = new System.Drawing.Point(12, 6);
+            this.lblColumnsName.Name = "lblColumnsName";
+            this.lblColumnsName.Size = new System.Drawing.Size(96, 13);
+            this.lblColumnsName.TabIndex = 52;
+            this.lblColumnsName.Text = "Tên Cột Bảng Gốc";
+            // 
             // frmExecl
             // 
             this.AcceptButton = this.btnCommit;
@@ -223,6 +238,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(617, 361);
             this.ControlBox = false;
+            this.Controls.Add(this.lblColumnsName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -270,5 +286,6 @@
         private System.Windows.Forms.ComboBox cbbTenCotMoi;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblColumnsName;
     }
 }

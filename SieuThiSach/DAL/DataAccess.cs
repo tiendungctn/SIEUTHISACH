@@ -138,6 +138,7 @@ namespace SieuThiSach.DAL
             }
         }
 
+        #region "Load data từ Excel"
         public int ImportExcel(int dtnumber, string table, ref DataGridView dt)
         {
             using (DbConnection cnn = oFactory.CreateConnection())
@@ -192,8 +193,9 @@ namespace SieuThiSach.DAL
                 return Iret;
             }
         }
-
         public int RowEr;
+        #endregion
+
 
         /// <summary>
         /// Thực thi câu lệnh sql

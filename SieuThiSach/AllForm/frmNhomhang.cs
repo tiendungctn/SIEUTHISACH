@@ -248,16 +248,16 @@ namespace SieuThiSach.AllForm
                                     sheet.Cells[2, i].Borders.Weight = Excel.XlBorderWeight.xlThin;
                                 }
                                 //Sinh dữ liệu
-                                Cells = sheet.Columns[4]; Cells.NumberFormat = "@";
+                                //Cells = sheet.Columns[4]; Cells.NumberFormat = "@";//Chuyển về dạng text
                                 for (int i = 1; i <= dataGridView1.Rows.Count; i++)
                                 {
                                     for (int j = 1; j <= dataGridView1.Columns.Count; j++)
                                     {
                                         sheet.Cells[i + 2, j] = dataGridView1.Rows[i - 1].Cells[j - 1].Value.ToString();
                                         sheet.Cells[i + 2, j].Borders.weight = Excel.XlBorderWeight.xlThin;
-                                        if (j == 4) // tinh chỉnh cột 4
+                                        if (j == 3) // tinh chỉnh cột 3
                                         {
-                                            sheet.Cells[i + 2, j].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight; //căn lề phải
+                                            sheet.Cells[i + 2, j].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter; //căn lề phải
                                         }
                                     }
                                 }

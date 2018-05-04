@@ -1,4 +1,6 @@
 ﻿using SieuThiSach.DAL;
+using SieuThiSach.SO;
+using SieuThiSach.SystemForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SieuThiSach.AllForm
 {
@@ -20,7 +23,8 @@ namespace SieuThiSach.AllForm
         string _pMode = "";
         DataLoading DatLoa = new DataLoading();
         DesignForm DesFor = new DesignForm();
-        private void loadData(string _Filter = " where SDUNG = 'C'")
+        public string _Filter = " where MA_DVI = '" + UserInformation.MaDV + "' and SDUNG = 'C' ";
+        private void loadData()
         {
             DatLoa.loadData("*", "V_MAT_HANG " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", false, "Mã đơn vị");
@@ -37,7 +41,8 @@ namespace SieuThiSach.AllForm
 
         private void AddNew()
         {
-            string sql = "MAT_HANG_NHAP N'" + TxtID.Text.Trim() +
+            string sql = "MAT_HANG_NHAP '" + UserInformation.MaDV +
+                "',N'" + TxtID.Text.Trim() +
                 "',N'" + TxtName.Text.Trim() +
                 "','" + TxtNhomHang.Text +
                 "','" + TxtNhaCC.Text +
@@ -57,7 +62,8 @@ namespace SieuThiSach.AllForm
 
         private void EditData()
         {
-            string sql = "MAT_HANG_EDIT '" + TxtID.Text.Trim() +
+            string sql = "MAT_HANG_EDIT '" + UserInformation.MaDV +
+                "',N'" + TxtID.Text.Trim() +
                 "',N'" + TxtName.Text.Trim() +
                 "','" + TxtNhomHang.Text +
                 "','" + TxtNhaCC.Text +
@@ -76,7 +82,7 @@ namespace SieuThiSach.AllForm
 
         private void FindData()
         {
-            string vFilter = " where SDUNG = 'C'";
+            string vFilter = " where MA_DVI = '" + UserInformation.MaDV + "' and SDUNG = 'C' ";
             if (TxtID.Text != "")
             {
                 vFilter = vFilter + " and MA_HANG like '%" + TxtID.Text.Trim() + "%'";
@@ -101,8 +107,8 @@ namespace SieuThiSach.AllForm
             {
                 vFilter = vFilter + " and GIA_BAN like " + TxtGiaBan.Text.Trim();
             }
-
-            loadData(vFilter);
+            _Filter = vFilter;
+            loadData();
             _pMode = "";
             ViewMode();
             DesFor.ColorChange(ref DesFor.BtnChange);
@@ -224,6 +230,116 @@ namespace SieuThiSach.AllForm
             btnEdit_Click(sender, e);
         }
 
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (DatLoa.DelData2key("MAT_HANG_EDIT_SDUNG", ref dataGridView1, "MA_HANG", "TEN_HANG", "SDUNG") > 0)
+                loadData();
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            using (frmImExQuestion excQ = new frmImExQuestion())
+            {
+                DialogResult dlr = excQ.ShowDialog();
+                if (dlr == DialogResult.Yes)
+                {
+                    using (OpenFileDialog ofd = new OpenFileDialog()) //Mở form chọn file (form hệ thống)
+                    {
+                        ofd.Filter = "Các tệp excel|*.xlsx|Tất cả các tệp|*.*"; //Lọc file .excel
+                        if (ofd.ShowDialog() == DialogResult.OK) //Kiểm tra tệp có được chọn không ?
+                        {
+                            using (frmExecl exc = new frmExecl()) //Mở form load Excel
+                            {
+                                exc.datagoc = dataGridView1;
+                                exc.FilePath = ofd.FileName;
+                                exc.table = "TB_MAT_HANG";
+                                if (exc.ShowDialog() == DialogResult.OK) frmMatHang_Load(sender, e);
+                            }
+                        }
+                    }
+                }
+                else if (dlr == DialogResult.No)
+                {
+                    using (SaveFileDialog sfd = new SaveFileDialog())
+                    {
+                        sfd.Filter = "Các tệp excel|*.xlsx|Tất cả các tệp|*.*"; //Lọc file .excel
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            Excel.Application app = new Excel.Application();//Tạo excel app                        
+                            Excel.Workbook wb = app.Workbooks.Add(Type.Missing);//tạo workbook                       
+                            Excel.Worksheet sheet = null;//tạo sheet
+                            //Excel.Range Cells;
+                            try
+                            {
+                                //đọc dữ liệu từ dtg ra excel
+                                sheet = wb.ActiveSheet;
+                                sheet.Name = "Dữ liệu xuất";
+                                sheet.Range[sheet.Cells[1, 2], sheet.Cells[1, dataGridView1.Columns.Count]].Merge();
+                                sheet.Cells[1, 2].Value = "Danh sách Mặt hàng của " + DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI='" + UserInformation.MaDV + "'");
+                                sheet.Cells[1, 2].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter; //căn giữa
+                                sheet.Cells[1, 2].Font.Size = 20; //Cỡ chữ
+                                sheet.Cells[1, 2].Borders.Weight = Excel.XlBorderWeight.xlThin;
+                                //Sinh cột
+                                for (int i = 1; i <= dataGridView1.Columns.Count; i++)
+                                {
+                                    sheet.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
+                                    sheet.Cells[2, i].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                                    sheet.Cells[2, i].Font.Bold = true;
+                                    sheet.Cells[2, i].Borders.Weight = Excel.XlBorderWeight.xlThin;
+
+                                }
+                                //Sinh dữ liệu
+                                //sheet.Columns[4].NumberFormat = "@";//chuyển về dạng text
+                                for (int i = 1; i <= dataGridView1.Rows.Count; i++)
+                                {
+                                    for (int j = 1; j <= dataGridView1.Columns.Count; j++)
+                                    {
+                                        sheet.Cells[i + 2, j] = dataGridView1.Rows[i - 1].Cells[j - 1].Value.ToString();
+                                        sheet.Cells[i + 2, j].Borders.weight = Excel.XlBorderWeight.xlThin;
+                                        if (j == 10) // tinh chỉnh cột 4
+                                        {
+                                            sheet.Cells[i + 2, j].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter; //căn lề phải
+                                        }
+                                    }
+                                }
+                                sheet.Columns[6].Delete(); sheet.Columns[4].Delete(); sheet.Columns[1].Delete();
+                                wb.SaveAs(sfd.FileName);
+                                MessageBox.Show("Lưu tập tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Lỗi lưu tệp tin\n" + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            finally
+                            {
+                                app.Quit();
+                                //wb = null;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnCommit_Click(object sender, EventArgs e)
+        {
+            switch (_pMode)
+            {
+                case "ADD":
+                    AddNew();
+                    break;
+                case "EDIT":
+                    EditData();
+                    break;
+                case "FIND":
+                    FindData();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
         //Xử lý trên key trên form-----------------------------------------------------------
         private void frmMatHang_KeyDown(object sender, KeyEventArgs e)
         {
@@ -255,7 +371,7 @@ namespace SieuThiSach.AllForm
                 case Keys.F2:
                     e.SuppressKeyPress = true;
                     using (frmNhomhang f = new frmNhomhang())
-                    {                        
+                    {
                         if (f.ShowDialog() == DialogResult.OK)
                         {
                             TxtNhomHang.Text = f.NH_ID;
@@ -284,7 +400,20 @@ namespace SieuThiSach.AllForm
                     break;
             }
         }
-        //Trả giá trị về 
+
+        private void TxtGiaNhap_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void TxtGiaBan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        //Trả giá trị về -----------------------------------------------------------
         public string BranchID
         {
             get

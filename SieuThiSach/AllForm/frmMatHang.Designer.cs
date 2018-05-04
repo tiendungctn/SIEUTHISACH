@@ -101,6 +101,7 @@
             this.btnExcel.TabIndex = 7;
             this.btnExcel.Text = "Excel";
             this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // btnHistory
             // 
@@ -146,6 +147,7 @@
             this.btnDel.TabIndex = 3;
             this.btnDel.Text = "Xóa";
             this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnEdit
             // 
@@ -193,6 +195,7 @@
             this.btnCommit.TabIndex = 15;
             this.btnCommit.Text = "Xác nhận";
             this.btnCommit.UseVisualStyleBackColor = false;
+            this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
             // 
             // TxtGiaBan
             // 
@@ -202,6 +205,7 @@
             this.TxtGiaBan.Name = "TxtGiaBan";
             this.TxtGiaBan.Size = new System.Drawing.Size(83, 23);
             this.TxtGiaBan.TabIndex = 14;
+            this.TxtGiaBan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGiaBan_KeyPress);
             // 
             // label3
             // 
@@ -240,6 +244,7 @@
             this.TxtGiaNhap.Name = "TxtGiaNhap";
             this.TxtGiaNhap.Size = new System.Drawing.Size(83, 23);
             this.TxtGiaNhap.TabIndex = 13;
+            this.TxtGiaNhap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGiaNhap_KeyPress);
             // 
             // lblNhaCC
             // 
@@ -313,7 +318,7 @@
             this.TxtNhaCC.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNhaCC.Name = "TxtNhaCC";
             this.TxtNhaCC.Size = new System.Drawing.Size(57, 23);
-            this.TxtNhaCC.TabIndex = 18;
+            this.TxtNhaCC.TabIndex = 12;
             this.TxtNhaCC.TextChanged += new System.EventHandler(this.TxtNhaCC_TextChanged);
             this.TxtNhaCC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNhaCC_KeyDown);
             // 
@@ -324,7 +329,7 @@
             this.TxtNhomHang.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNhomHang.Name = "TxtNhomHang";
             this.TxtNhomHang.Size = new System.Drawing.Size(48, 23);
-            this.TxtNhomHang.TabIndex = 17;
+            this.TxtNhomHang.TabIndex = 11;
             this.TxtNhomHang.TextChanged += new System.EventHandler(this.TxtNhomHang_TextChanged);
             this.TxtNhomHang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNhomHang_KeyDown);
             // 

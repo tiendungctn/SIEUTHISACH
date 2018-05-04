@@ -133,14 +133,15 @@ namespace SieuThiSach.AllForm
         }
 
         private void frmExecl_Load(object sender, EventArgs e)
-        {           
+        {
             dataGridView1.Rows.Clear(); dataGridView1.Columns.Clear(); //Xóa data grid view            
-            checkbox(); //Check box Sheet, Tên cột, data 
+            checkbox(); //Check box Sheet, Tên cột, data
             LoadExcel(Convert.ToInt16(txtWS.Text), Convert.ToInt16(txtColNam.Text), Convert.ToInt16(txtDat.Text)); // Load dữ liệu lên 
             LayTenCotGoc(); // Load Tên cột gốc vào List
             DatLoa.loadCBBfromColNameNumber(ref dataGridView1, ref cbbTenCotCu);
             DatLoa.loadCBBfromHeaderText(ref dataGridView1, ref cbbTenCotMoi);
             ViewMode();
+            lblColumnsName.Text = "Các cột gồm: " + DatLoa.ListColumnsName(table);
         }
 
         private void checkbox()
@@ -185,19 +186,26 @@ namespace SieuThiSach.AllForm
             checkbox();
         }
 
+        //A & B >> A sai vẫn tiếp tục kiểm tra B
+        //A && B >> A sai thì nghỉ luôn khỏi kiểm tra B
+        //A | B >> A đúng vẫn tiép tục kiểm tra B
+        //A || B >> A đúng thì nghỉ kiểm tra B
         private void txtWS_TextChanged(object sender, EventArgs e)
         {
-            frmExecl_Load(sender, e);
+            if (txtWS.Text != "" && txtWS.Text != "0")
+                frmExecl_Load(sender, e);
         }
 
         private void txtColNam_TextChanged(object sender, EventArgs e)
         {
-            frmExecl_Load(sender, e);
+            if (txtColNam.Text != "" && txtColNam.Text != "0")
+                frmExecl_Load(sender, e);
         }
 
         private void txtDat_TextChanged(object sender, EventArgs e)
         {
-            frmExecl_Load(sender, e);
+            if (txtDat.Text != "" && txtDat.Text != "0")
+                frmExecl_Load(sender, e);
         }
 
         private void btnSapXep_Click(object sender, EventArgs e)
@@ -222,6 +230,24 @@ namespace SieuThiSach.AllForm
             {
                 dataGridView1.Columns[i].HeaderText = LiColName[i].ToString();
             }
+        }
+
+        private void txtWS_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void txtColNam_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void txtDat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
         }
     }
 }

@@ -151,6 +151,7 @@
             this.txtTThai.Name = "txtTThai";
             this.txtTThai.Size = new System.Drawing.Size(47, 23);
             this.txtTThai.TabIndex = 14;
+            this.txtTThai.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTThai_KeyPress);
             // 
             // label4
             // 

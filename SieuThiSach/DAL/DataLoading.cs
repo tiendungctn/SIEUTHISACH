@@ -32,6 +32,29 @@ namespace SieuThiSach.DAL
             return Name;
         }
 
+        public string ListColumnsName(string tb)
+        {
+            string ColumnsName = "";
+            string sql = "select name from sys.all_columns where object_id = (select object_id from sys.objects where type='u' and name ='" + tb + "')";
+            try
+            {
+                ct = dbA.ExecuteAsDataSetSql(sql);
+                if (ct.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ct.Tables[0].Rows.Count; i++)
+                    {
+                        if (i==0) ColumnsName = ct.Tables[0].Rows[i][0].ToString();
+                        else ColumnsName = ColumnsName + "; " + ct.Tables[0].Rows[i][0].ToString();
+                    }
+                }
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Có lỗi " + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return ColumnsName;
+        }
+
         public void loadData(string columns, string table, ref DataGridView dt)
         {
             //DataSet ct = new DataSet();
@@ -83,6 +106,37 @@ namespace SieuThiSach.DAL
                     if (MessageBox.Show("Có chắc chắn xóa/ngưng sử dụng '" + _code + " - " + _name + "' không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         string sql = "EXEC " + PROC + " '" + _code + "','" + _sdung + "'";
+                        try
+                        {
+                            _ok = dbA.vExecuteData(sql);
+                        }
+                        catch (Exception es)
+                        {
+                            MessageBox.Show("Có lỗi " + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            return _ok;
+        }
+
+        public int DelData2key
+            (string PROC, ref DataGridView table, string code, string name, string sdung)
+        {
+            int _ok = 0;
+            if (table.Rows.Count <= 0)
+            {
+                MessageBox.Show("Không có dữ liệu!", "Thông báo", MessageBoxButtons.OK);
+            }
+            else
+                foreach (System.Windows.Forms.DataGridViewRow dgvUsersrows in table.SelectedRows)
+                {
+                    string _code = dgvUsersrows.Cells[code].Value.ToString().Trim();
+                    string _name = dgvUsersrows.Cells[name].Value.ToString().Trim();
+                    string _sdung = dgvUsersrows.Cells[sdung].Value.ToString().Trim();
+
+                    if (MessageBox.Show("Có chắc chắn xóa/ngưng sử dụng '" + _code + " - " + _name + "' không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        string sql = "EXEC " + PROC + " '" + UserInformation.MaDV + "','" + _code + "','" + _sdung + "'";
                         try
                         {
                             _ok = dbA.vExecuteData(sql);

@@ -237,7 +237,7 @@
             this.txtBranchID.Margin = new System.Windows.Forms.Padding(2);
             this.txtBranchID.Name = "txtBranchID";
             this.txtBranchID.Size = new System.Drawing.Size(50, 23);
-            this.txtBranchID.TabIndex = 17;
+            this.txtBranchID.TabIndex = 12;
             this.txtBranchID.TextChanged += new System.EventHandler(this.txtBranchID_TextChanged);
             this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
