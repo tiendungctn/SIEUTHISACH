@@ -330,6 +330,22 @@ namespace SieuThiSach
             }
         }
 
+        private void TxtUserId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.Parse(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void TxtStaffId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.Parse(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void txtBranchID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
         //Trả giá trị về 
         public string BranchID
         {

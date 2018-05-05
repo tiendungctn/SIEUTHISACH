@@ -349,7 +349,24 @@ namespace SieuThiSach.AllForm
         private void btnHistory_Click(object sender, EventArgs e)
         {
             frmHistory htr = new frmHistory();
-            frmHistory.TB_History = "TB_MAT_HANG_HISTORY";
+            frmHistory.TB_History = "TB_MAT_HANG_HISTORY ";
+            #region "Load Tên Cột HISTORY"
+            htr.namecolumns.Add("Mã Đơn Vị");
+            htr.namecolumns.Add("Mã Hàng");
+            htr.namecolumns.Add("Tên Hàng");
+            htr.namecolumns.Add("Nhóm Hàng");
+            htr.namecolumns.Add("Nhà Cung Cấp");
+            htr.namecolumns.Add("Giá Nhập");
+            htr.namecolumns.Add("Giá bán");
+            htr.namecolumns.Add("Sử dụng");
+            htr.namecolumns.Add("Thời gian sửa");
+            htr.namecolumns.Add("Người sửa");
+            htr.namecolumns.Add("Ghi chú");
+            #endregion
+            #region "LOAD ID FIND"
+            htr.ID1 = "MA_DVI";
+            htr.ID2 = "MA_HANG";
+            #endregion
             htr.ShowDialog();
         }
 
@@ -427,6 +444,26 @@ namespace SieuThiSach.AllForm
                 e.Handled = true;
         }
 
+        private void TxtID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.Parse(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void TxtNhomHang_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.Parse(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void TxtNhaCC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.Parse(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void TxtGiaNhap_Validated(object sender, EventArgs e)
+        {
+            TxtGiaBan.Text = Convert.ToString(Convert.ToInt64(TxtGiaNhap.Text) + Convert.ToInt64(TxtGiaNhap.Text) / 10);
+        }
+
         //Trả giá trị về -----------------------------------------------------------
         public string BranchID
         {
@@ -441,7 +478,6 @@ namespace SieuThiSach.AllForm
         {
             this.DialogResult = DialogResult.OK;
         }
-
 
     }
 }

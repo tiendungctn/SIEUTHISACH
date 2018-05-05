@@ -224,6 +224,7 @@
             this.TxtID.Name = "TxtID";
             this.TxtID.Size = new System.Drawing.Size(114, 23);
             this.TxtID.TabIndex = 9;
+            this.TxtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtID_KeyPress);
             // 
             // grDetail
             // 

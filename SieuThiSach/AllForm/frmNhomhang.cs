@@ -300,6 +300,11 @@ namespace SieuThiSach.AllForm
             }
         }
 
+        private void TxtID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.Parse(e.KeyChar.ToString().ToUpper());
+        }
+
         //Trả giá trị về 
         public string NH_ID
         {
@@ -314,5 +319,6 @@ namespace SieuThiSach.AllForm
         {
             this.DialogResult = DialogResult.OK;
         }
+
     }
 }

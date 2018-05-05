@@ -392,6 +392,17 @@ namespace SieuThiSach.AllForm
                 e.Handled = true;
         }
 
+        private void TxtSDT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void TxtID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.Parse(e.KeyChar.ToString().ToUpper());
+        }
+
         //Trả giá trị về 
         public string KH_ID
         {

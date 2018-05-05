@@ -105,13 +105,6 @@ namespace SieuThiSach.DAL
                     }
                     ls.Items.Add(item);
                 }
-                ls.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                ls.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-                for (int i = 0; i < ls.Columns.Count; i++)
-                {
-                    if (ls.Columns[i].Width > 200)
-                        ls.Columns[i].Width = 200;
-                }
             }
             catch (Exception es)
             {

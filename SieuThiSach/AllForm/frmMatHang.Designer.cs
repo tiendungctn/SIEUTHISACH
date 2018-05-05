@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grButton1 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
@@ -246,6 +246,7 @@
             this.TxtGiaNhap.Size = new System.Drawing.Size(83, 23);
             this.TxtGiaNhap.TabIndex = 13;
             this.TxtGiaNhap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGiaNhap_KeyPress);
+            this.TxtGiaNhap.Validated += new System.EventHandler(this.TxtGiaNhap_Validated);
             // 
             // lblNhaCC
             // 
@@ -284,6 +285,7 @@
             this.TxtID.Name = "TxtID";
             this.TxtID.Size = new System.Drawing.Size(83, 23);
             this.TxtID.TabIndex = 9;
+            this.TxtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtID_KeyPress);
             // 
             // grDetail
             // 
@@ -322,6 +324,7 @@
             this.TxtNhaCC.TabIndex = 12;
             this.TxtNhaCC.TextChanged += new System.EventHandler(this.TxtNhaCC_TextChanged);
             this.TxtNhaCC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNhaCC_KeyDown);
+            this.TxtNhaCC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNhaCC_KeyPress);
             // 
             // TxtNhomHang
             // 
@@ -333,6 +336,7 @@
             this.TxtNhomHang.TabIndex = 11;
             this.TxtNhomHang.TextChanged += new System.EventHandler(this.TxtNhomHang_TextChanged);
             this.TxtNhomHang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNhomHang_KeyDown);
+            this.TxtNhomHang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNhomHang_KeyPress);
             // 
             // label2
             // 
@@ -370,14 +374,14 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.Location = new System.Drawing.Point(11, 11);
