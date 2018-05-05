@@ -28,38 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.dStartDate = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnFind = new System.Windows.Forms.Button();
+            this.lstHistory = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
-            // listView1
+            // btnExit
             // 
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(13, 13);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(593, 421);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(531, 440);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Thoát";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnExit.Location = new System.Drawing.Point(670, 478);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 1;
+            this.btnExit.Text = "Thoát";
+            this.btnExit.UseVisualStyleBackColor = true;
             // 
             // dStartDate
             // 
             this.dStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dStartDate.Location = new System.Drawing.Point(57, 442);
+            this.dStartDate.Location = new System.Drawing.Point(58, 480);
             this.dStartDate.Name = "dStartDate";
             this.dStartDate.Size = new System.Drawing.Size(101, 20);
             this.dStartDate.TabIndex = 2;
@@ -67,7 +57,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(220, 443);
+            this.dateTimePicker1.Location = new System.Drawing.Point(221, 481);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(101, 20);
             this.dateTimePicker1.TabIndex = 2;
@@ -75,7 +65,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 445);
+            this.label1.Location = new System.Drawing.Point(17, 483);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 3;
@@ -84,48 +74,70 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(179, 445);
+            this.label2.Location = new System.Drawing.Point(180, 483);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "To";
             // 
-            // button2
+            // btnFind
             // 
-            this.button2.Location = new System.Drawing.Point(450, 440);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Lọc";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnFind.Location = new System.Drawing.Point(589, 478);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(75, 23);
+            this.btnFind.TabIndex = 4;
+            this.btnFind.Text = "Lọc";
+            this.btnFind.UseVisualStyleBackColor = true;
+            // 
+            // lstHistory
+            // 
+            this.lstHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstHistory.FullRowSelect = true;
+            this.lstHistory.GridLines = true;
+            this.lstHistory.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lstHistory.Location = new System.Drawing.Point(12, 12);
+            this.lstHistory.Name = "lstHistory";
+            this.lstHistory.Size = new System.Drawing.Size(732, 460);
+            this.lstHistory.TabIndex = 5;
+            this.lstHistory.UseCompatibleStateImageBehavior = false;
+            this.lstHistory.View = System.Windows.Forms.View.Details;
             // 
             // frmHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 472);
-            this.Controls.Add(this.button2);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(756, 513);
+            this.Controls.Add(this.lstHistory);
+            this.Controls.Add(this.btnFind);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dStartDate);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.btnExit);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmHistory";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lịch sử";
+            this.Load += new System.EventHandler(this.frmHistory_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.DateTimePicker dStartDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnFind;
+        private System.Windows.Forms.ListView lstHistory;
     }
 }

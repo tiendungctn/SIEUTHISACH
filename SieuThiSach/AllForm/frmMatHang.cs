@@ -271,15 +271,18 @@ namespace SieuThiSach.AllForm
                             //Excel.Range Cells;
                             try
                             {
-                                //đọc dữ liệu từ dtg ra excel
+                                //đọc dữ liệu từ dtg ra excel                                
                                 sheet = wb.ActiveSheet;
                                 sheet.Name = "Dữ liệu xuất";
+                                #region Sinh Tiêu đề
                                 sheet.Range[sheet.Cells[1, 2], sheet.Cells[1, dataGridView1.Columns.Count]].Merge();
                                 sheet.Cells[1, 2].Value = "Danh sách Mặt hàng của " + DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI='" + UserInformation.MaDV + "'");
                                 sheet.Cells[1, 2].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter; //căn giữa
                                 sheet.Cells[1, 2].Font.Size = 20; //Cỡ chữ
                                 sheet.Cells[1, 2].Borders.Weight = Excel.XlBorderWeight.xlThin;
-                                //Sinh cột
+                                #endregion
+
+                                #region Sinh cột
                                 for (int i = 1; i <= dataGridView1.Columns.Count; i++)
                                 {
                                     sheet.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
@@ -288,7 +291,9 @@ namespace SieuThiSach.AllForm
                                     sheet.Cells[2, i].Borders.Weight = Excel.XlBorderWeight.xlThin;
 
                                 }
-                                //Sinh dữ liệu
+                                #endregion
+
+                                #region Sinh dữ liệu
                                 //sheet.Columns[4].NumberFormat = "@";//chuyển về dạng text
                                 for (int i = 1; i <= dataGridView1.Rows.Count; i++)
                                 {
@@ -303,6 +308,8 @@ namespace SieuThiSach.AllForm
                                     }
                                 }
                                 sheet.Columns[6].Delete(); sheet.Columns[4].Delete(); sheet.Columns[1].Delete();
+                                #endregion
+
                                 wb.SaveAs(sfd.FileName);
                                 MessageBox.Show("Lưu tập tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
@@ -337,6 +344,13 @@ namespace SieuThiSach.AllForm
                 default:
                     break;
             }
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            frmHistory htr = new frmHistory();
+            frmHistory.TB_History = "TB_MAT_HANG_HISTORY";
+            htr.ShowDialog();
         }
 
 
@@ -427,5 +441,7 @@ namespace SieuThiSach.AllForm
         {
             this.DialogResult = DialogResult.OK;
         }
+
+
     }
 }

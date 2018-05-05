@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SieuThiSach.DAL;
+using SieuThiSach.SO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,20 @@ namespace SieuThiSach.SystemForm
         public frmHistory()
         {
             InitializeComponent();
+        }
+        DesignForm DesFor = new DesignForm();
+        DataLoading DatLoa = new DataLoading();
+        public static string TB_History = "";
+        string _Filter ;
+        private void loadData()
+        {
+            DatLoa.loadDataToListView("*", _Filter, ref lstHistory);
+        }
+
+        private void frmHistory_Load(object sender, EventArgs e)
+        {
+            _Filter = TB_History + " order by NGAY_SUA desc";
+            loadData();
         }
     }
 }

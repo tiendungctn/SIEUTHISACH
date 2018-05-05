@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,6 +67,51 @@ namespace SieuThiSach.DAL
                 BindingSource gdSource = new BindingSource();
                 gdSource.DataSource = ct.Tables[0];
                 dt.DataSource = gdSource;
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void loadDataToListView(string columns, string table, ref ListView ls)
+        {
+            string sql = "SELECT " + columns + " FROM " + table;
+            try
+            {
+                ct = dbA.ExecuteAsDataSetSql(sql);
+                BindingSource gdSource = new BindingSource();
+                gdSource.DataSource = ct.Tables[0];
+                DataTable tb = new DataTable();
+                tb = ct.Tables[0];
+                //Tạo cột list view
+                for (int i = 0; i < tb.Columns.Count; i++)
+                {
+                    string columnname = tb.Columns[i].ColumnName.ToString();
+                    ColumnHeader col = new ColumnHeader();
+                    col.Text = columnname;
+                    ls.Columns.Add(col);
+                }
+                //add dữ liệu
+                for (int i = 0; i < tb.Rows.Count; i++)
+                {
+                    ListViewItem item = new ListViewItem();
+                    for (int j = 0; j < tb.Columns.Count; j++)
+                    {
+                        if (j == 0)
+                            item.Text = tb.Rows[i][j].ToString();
+                        else
+                            item.SubItems.Add(tb.Rows[i][j].ToString());
+                    }
+                    ls.Items.Add(item);
+                }
+                ls.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                ls.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                for (int i = 0; i < ls.Columns.Count; i++)
+                {
+                    if (ls.Columns[i].Width > 200)
+                        ls.Columns[i].Width = 200;
+                }
             }
             catch (Exception es)
             {
@@ -231,6 +277,7 @@ namespace SieuThiSach.DAL
                 MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         public int InsExc(int dt,string tb, ref DataGridView dtv)
         {
             int rw = 0;

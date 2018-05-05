@@ -113,6 +113,7 @@
             this.btnHistory.TabIndex = 6;
             this.btnHistory.Text = "Lịch Sử";
             this.btnHistory.UseVisualStyleBackColor = false;
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
             // 
             // btnPrint
             // 

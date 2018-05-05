@@ -228,7 +228,7 @@ namespace SieuThiSach.AllForm
                             Excel.Application app = new Excel.Application();//Tạo excel app                        
                             Excel.Workbook wb = app.Workbooks.Add(Type.Missing);//tạo workbook                       
                             Excel.Worksheet sheet = null;//tạo sheet
-                            Excel.Range Cells;
+                            //Excel.Range Cells;
                             try
                             {
                                 //đọc dữ liệu từ dtg ra excel
@@ -248,7 +248,7 @@ namespace SieuThiSach.AllForm
                                     sheet.Cells[2, i].Borders.Weight = Excel.XlBorderWeight.xlThin;
                                 }
                                 //Sinh dữ liệu
-                                //Cells = sheet.Columns[4]; Cells.NumberFormat = "@";//Chuyển về dạng text
+                                //sheet.Columns[4].NumberFormat = "@";//Chuyển về dạng text
                                 for (int i = 1; i <= dataGridView1.Rows.Count; i++)
                                 {
                                     for (int j = 1; j <= dataGridView1.Columns.Count; j++)
