@@ -349,7 +349,7 @@ namespace SieuThiSach.AllForm
         private void btnHistory_Click(object sender, EventArgs e)
         {
             frmHistory htr = new frmHistory();
-            frmHistory.TB_History = "TB_MAT_HANG_HISTORY ";
+            htr.TB_History = "TB_MAT_HANG_HISTORY ";
             #region "Load Tên Cột HISTORY"
             htr.namecolumns.Add("Mã Đơn Vị");
             htr.namecolumns.Add("Mã Hàng");
@@ -464,6 +464,36 @@ namespace SieuThiSach.AllForm
             TxtGiaBan.Text = Convert.ToString(Convert.ToInt64(TxtGiaNhap.Text) + Convert.ToInt64(TxtGiaNhap.Text) / 10);
         }
 
+        private void test1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnEdit.PerformClick();
+        }
+
+        private void test2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmHistory htr = new frmHistory();
+            htr.TB_History = "TB_MAT_HANG_HISTORY ";
+            htr._Filter = " where MA_HANG = '"+ dataGridView1.CurrentRow.Cells["MA_HANG"].Value.ToString() +"'";
+            #region "Load Tên Cột HISTORY"
+            htr.namecolumns.Add("Mã Đơn Vị");
+            htr.namecolumns.Add("Mã Hàng");
+            htr.namecolumns.Add("Tên Hàng");
+            htr.namecolumns.Add("Nhóm Hàng");
+            htr.namecolumns.Add("Nhà Cung Cấp");
+            htr.namecolumns.Add("Giá Nhập");
+            htr.namecolumns.Add("Giá bán");
+            htr.namecolumns.Add("Sử dụng");
+            htr.namecolumns.Add("Thời gian sửa");
+            htr.namecolumns.Add("Người sửa");
+            htr.namecolumns.Add("Ghi chú");
+            #endregion
+            #region "LOAD ID FIND"
+            htr.ID1 = "MA_DVI";
+            htr.ID2 = "MA_HANG";
+            htr.txtID2.Text = dataGridView1.CurrentRow.Cells["MA_HANG"].Value.ToString();
+            #endregion
+            htr.ShowDialog();
+        }
         //Trả giá trị về -----------------------------------------------------------
         public string BranchID
         {

@@ -20,9 +20,9 @@ namespace SieuThiSach.SystemForm
         }
         DesignForm DesFor = new DesignForm();
         DataLoading DatLoa = new DataLoading();
-        public static string TB_History = "";
+        public string TB_History = "";
         public List<string> namecolumns = new List<string>();
-        string _Filter = "";
+        public string _Filter = "";
         public string ID1;
         public string ID2;
         private void loadData()

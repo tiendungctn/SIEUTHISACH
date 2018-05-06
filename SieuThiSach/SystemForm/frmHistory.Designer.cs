@@ -186,7 +186,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnFind;
         public System.Windows.Forms.ListView lstHistory;
-        private System.Windows.Forms.TextBox txtID2;
+        public System.Windows.Forms.TextBox txtID2;
         private System.Windows.Forms.TextBox txtID1;
         private System.Windows.Forms.Label lblID1;
         private System.Windows.Forms.Label lblID2;
