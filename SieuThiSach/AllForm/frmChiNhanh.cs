@@ -1,4 +1,5 @@
 ﻿using SieuThiSach.DAL;
+using SieuThiSach.SO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +32,8 @@ namespace SieuThiSach.AllForm
 
         private void AddNew()
         {
-            string sql = "DVI_NHAP N'" + TxtName.Text.Trim() +
+            string sql = "DVI_NHAP N'" + UserInformation.PQ +
+                "','" + TxtName.Text.Trim() +
                 "',N'" + txtDiaChi.Text.Trim() + "'";
 
             int _ok = DatLoa.AddNew(sql);
@@ -47,7 +49,8 @@ namespace SieuThiSach.AllForm
 
         private void EditData()
         {
-            string sql = "DVI_EDIT '" + TxtID.Text.Trim() +
+            string sql = "DVI_EDIT '" + UserInformation.PQ +
+                "','" + TxtID.Text.Trim() +
                 "',N'" + TxtName.Text.Trim() +
                 "',N'" + txtDiaChi.Text.Trim() + "'";
             int _ok = DatLoa.AddNew(sql);

@@ -37,6 +37,7 @@ namespace SieuThiSach.SystemForm
                 UserInformation.MaDV = UserInformation.vMaDV(UserInformation.Code);
                 UserInformation.Name = UserInformation.vName(UserInformation.MaNV, UserInformation.MaDV);
                 UserInformation.CheckPass = UserInformation.vCheckPass(UserInformation.Code);
+                UserInformation.PQ = UserInformation.vPQ(UserInformation.Code);
                 #endregion
                 //Gọi đổi mật khẩu nếu như đây là lần đăng nhập đầu tiên
                 if (UserInformation.CheckPass == "Y")
@@ -66,6 +67,11 @@ namespace SieuThiSach.SystemForm
                 mMessage = string.Format("Đăng nhập vào {0} không thành công. Bạn hãy kiểm tra lại các thông tin đăng nhập.\r\n{1}", MyApp.gHostDB, loginApp);
                 MessageBox.Show(mMessage);
             }
+        }
+
+        private void txtUserName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.Parse(e.KeyChar.ToString().ToUpper());
         }
     }
 }

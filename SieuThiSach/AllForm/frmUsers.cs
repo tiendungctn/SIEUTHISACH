@@ -1,5 +1,6 @@
 ﻿using SieuThiSach.AllForm;
 using SieuThiSach.DAL;
+using SieuThiSach.SO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,12 +43,13 @@ namespace SieuThiSach
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
             Char vchkChangePWDLogon = chkChangePWDLogon.Checked ? 'Y' : 'N';
-            string sql = "USER_NHAP '" + TxtUserId.Text.Trim() +
+            string sql = "USER_NHAP '" + UserInformation.PQ +
+                "','" + TxtUserId.Text.Trim() +
                 "',N'" + TxtUserName.Text.Trim() +
                 "','" + dExpiredDate.Text.Trim() +
                 "','" + txtBranchID.Text.Trim() +
                 "','" + vchkUsingCheck +
-                "','" + vchkChangePWDLogon + "',1";
+                "','" + vchkChangePWDLogon + "'";
 
             int _ok = DatLoa.AddNew(sql);
             if (_ok > 0)
@@ -64,7 +66,8 @@ namespace SieuThiSach
         {
             Char vchkUsingCheck = chkUsingCheck.Checked ? 'C' : 'K';
             Char vchkChangePWDLogon = chkChangePWDLogon.Checked ? 'Y' : 'N';
-            string sql = "USER_EDIT '" + TxtUserId.Text.Trim() +
+            string sql = "USER_EDIT '" + UserInformation.PQ +
+                "','" + TxtUserId.Text.Trim() +
                 "',N'" + TxtUserName.Text.Trim() +
                 "','" + dExpiredDate.Text.Trim() +
                 "','" + TxtStaffId.Text.Trim() +
@@ -218,8 +221,11 @@ namespace SieuThiSach
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            _pMode = "EDIT";
-            ViewMode();
+            if (dataGridView1.Rows.Count > 0)
+            {
+                _pMode = "EDIT";
+                ViewMode();
+            }
         }
 
         private void btnFind_Click(object sender, EventArgs e)

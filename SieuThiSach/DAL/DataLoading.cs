@@ -144,7 +144,7 @@ namespace SieuThiSach.DAL
 
                     if (MessageBox.Show("Có chắc chắn xóa/ngưng sử dụng '" + _code + " - " + _name + "' không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        string sql = "EXEC " + PROC + " '" + _code + "','" + _sdung + "'";
+                        string sql = "EXEC " + PROC + " '" + UserInformation.PQ + "','" + _code + "','" + _sdung + "'";
                         try
                         {
                             _ok = dbA.vExecuteData(sql);
@@ -175,7 +175,7 @@ namespace SieuThiSach.DAL
 
                     if (MessageBox.Show("Có chắc chắn xóa/ngưng sử dụng '" + _code + " - " + _name + "' không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        string sql = "EXEC " + PROC + " '" + UserInformation.MaDV + "','" + _code + "','" + _sdung + "'";
+                        string sql = "EXEC " + PROC + " '" + UserInformation.PQ + "','" + UserInformation.MaDV + "','" + _code + "','" + _sdung + "'";
                         try
                         {
                             _ok = dbA.vExecuteData(sql);

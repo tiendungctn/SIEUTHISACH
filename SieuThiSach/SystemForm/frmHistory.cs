@@ -24,7 +24,7 @@ namespace SieuThiSach.SystemForm
         public List<string> namecolumns = new List<string>();
         public string _Filter = "";
         public string ID1;
-        public string ID2;
+        public string ID2;        
         private void loadData()
         {
             DatLoa.loadDataToListView("*", _Filter, ref lstHistory);

@@ -41,7 +41,8 @@ namespace SieuThiSach.AllForm
 
         private void AddNew()
         {
-            string sql = "MAT_HANG_NHAP '" + UserInformation.MaDV +
+            string sql = "MAT_HANG_NHAP '" + UserInformation.PQ +
+                "','" + UserInformation.MaDV +
                 "',N'" + TxtID.Text.Trim() +
                 "',N'" + TxtName.Text.Trim() +
                 "','" + TxtNhomHang.Text +
@@ -62,7 +63,8 @@ namespace SieuThiSach.AllForm
 
         private void EditData()
         {
-            string sql = "MAT_HANG_EDIT '" + UserInformation.MaDV +
+            string sql = "MAT_HANG_EDIT '" + UserInformation.PQ +
+                "','" + UserInformation.MaDV +
                 "',N'" + TxtID.Text.Trim() +
                 "',N'" + TxtName.Text.Trim() +
                 "','" + TxtNhomHang.Text +

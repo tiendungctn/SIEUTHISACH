@@ -1,4 +1,5 @@
 ﻿using SieuThiSach.DAL;
+using SieuThiSach.SO;
 using SieuThiSach.SystemForm;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,8 @@ namespace SieuThiSach.AllForm
 
         private void AddNew()
         {
-            string sql = "NHOM_HANG_NHAP N'" + TxtName.Text.Trim() + "'";
+            string sql = "NHOM_HANG_NHAP N'" + UserInformation.PQ +
+                "','" + TxtName.Text.Trim() + "'";
 
             int _ok = DatLoa.AddNew(sql);
             if (_ok > 0)
@@ -49,7 +51,8 @@ namespace SieuThiSach.AllForm
 
         private void EditData()
         {
-            string sql = "NHOM_HANG_EDIT '" + TxtID.Text.Trim() +
+            string sql = "NHOM_HANG_EDIT '" + UserInformation.PQ +
+                "','" + TxtID.Text.Trim() +
                 "',N'" + TxtName.Text.Trim() + "'";
             int _ok = DatLoa.AddNew(sql);
             if (_ok > 0)

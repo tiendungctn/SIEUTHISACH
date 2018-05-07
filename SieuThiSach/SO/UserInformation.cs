@@ -33,11 +33,17 @@ namespace SieuThiSach.SO
             DataLoading DL = new DataLoading();
             return DL.NameReturn("CHECK_PASS", "[USER]", "CODE = '" + code + "'");
         }
+        public static string vPQ(string code)
+        {
+            DataLoading DL = new DataLoading();
+            return DL.NameReturn("PQUYEN", "[USER]", "CODE = '" + code + "'");
+        }
 
         public static string MaNV = vMaNV(Code);
         public static string MaDV = vMaDV(Code);
         public static string CheckPass = vCheckPass(Code);
         public static string Name = vName(MaNV, MaDV);
+        public static string PQ = vPQ(Code);
         #endregion
     }
 }
