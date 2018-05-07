@@ -44,7 +44,7 @@ namespace SieuThiSach.DAL
                 {
                     for (int i = 0; i < ct.Tables[0].Rows.Count; i++)
                     {
-                        if (i==0) ColumnsName = ct.Tables[0].Rows[i][0].ToString();
+                        if (i == 0) ColumnsName = ct.Tables[0].Rows[i][0].ToString();
                         else ColumnsName = ColumnsName + "; " + ct.Tables[0].Rows[i][0].ToString();
                     }
                 }
@@ -74,42 +74,50 @@ namespace SieuThiSach.DAL
             }
         }
 
-        public void loadDataToListView(string columns, string table, ref ListView ls)
+        public int loadDataToListView(string columns, string table, int page, ref ListView ls)
         {
+            int check = 0;
             string sql = "SELECT " + columns + " FROM " + table;
             try
             {
                 ct = dbA.ExecuteAsDataSetSql(sql);
                 BindingSource gdSource = new BindingSource();
                 gdSource.DataSource = ct.Tables[0];
-                DataTable tb = new DataTable();
-                tb = ct.Tables[0];
                 //Tạo cột list view
-                for (int i = 0; i < tb.Columns.Count; i++)
+                for (int i = 0; i < ct.Tables[0].Columns.Count; i++)
                 {
-                    string columnname = tb.Columns[i].ColumnName.ToString();
+                    string columnname = ct.Tables[0].Columns[i].ColumnName.ToString();
                     ColumnHeader col = new ColumnHeader();
                     col.Text = columnname;
                     ls.Columns.Add(col);
                 }
                 //add dữ liệu
-                for (int i = 0; i < tb.Rows.Count; i++)
+                int last_rows = (page - 1) * 50 + 50 - 1;
+                if (last_rows > ct.Tables[0].Rows.Count)
+                {
+                    last_rows = ct.Tables[0].Rows.Count;
+                    check = 1;
+                }
+
+                for (int i = (page - 1) * 50; i < last_rows; i++)
                 {
                     ListViewItem item = new ListViewItem();
-                    for (int j = 0; j < tb.Columns.Count; j++)
+                    for (int j = 0; j < ct.Tables[0].Columns.Count; j++)
                     {
                         if (j == 0)
-                            item.Text = tb.Rows[i][j].ToString();
+                            item.Text = ct.Tables[0].Rows[i][j].ToString();
                         else
-                            item.SubItems.Add(tb.Rows[i][j].ToString());
+                            item.SubItems.Add(ct.Tables[0].Rows[i][j].ToString());
                     }
                     ls.Items.Add(item);
-                }
+                }               
             }
             catch (Exception es)
             {
                 MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
+            return check;
         }
 
         public int AddNew(string PROC)
@@ -242,7 +250,7 @@ namespace SieuThiSach.DAL
                 {
                     for (byte i = 0; i < dgv.Columns.Count; i++)
                     {
-                        cbb.Items.Add((Convert.ToInt16(dgv.Columns[i].Name)+1).ToString());
+                        cbb.Items.Add((Convert.ToInt16(dgv.Columns[i].Name) + 1).ToString());
                     }
                 }
             }
@@ -271,18 +279,18 @@ namespace SieuThiSach.DAL
             }
         }
 
-        public int InsExc(int dt,string tb, ref DataGridView dtv)
+        public int InsExc(int dt, string tb, ref DataGridView dtv)
         {
             int rw = 0;
             try
             {
-                rw = dbA.ImportExcel(dt-1,tb, ref dtv);
+                rw = dbA.ImportExcel(dt - 1, tb, ref dtv);
                 if (rw > 0) MessageBox.Show("Đã nạp thành công " + rw + " dòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else MessageBox.Show("Không có dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi tại dòng: " + dbA.RowEr + "\n" +es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi tại dòng: " + dbA.RowEr + "\n" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return rw;
         }

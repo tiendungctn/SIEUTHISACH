@@ -39,12 +39,16 @@
             this.txtID1 = new System.Windows.Forms.TextBox();
             this.lblID1 = new System.Windows.Forms.Label();
             this.lblID2 = new System.Windows.Forms.Label();
+            this.txtTest = new System.Windows.Forms.TextBox();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(670, 478);
+            this.btnExit.Location = new System.Drawing.Point(670, 479);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 1;
@@ -54,7 +58,7 @@
             // dStartDate
             // 
             this.dStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dStartDate.Location = new System.Drawing.Point(50, 480);
+            this.dStartDate.Location = new System.Drawing.Point(50, 481);
             this.dStartDate.Name = "dStartDate";
             this.dStartDate.Size = new System.Drawing.Size(101, 20);
             this.dStartDate.TabIndex = 2;
@@ -62,7 +66,7 @@
             // dEndDate
             // 
             this.dEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dEndDate.Location = new System.Drawing.Point(183, 480);
+            this.dEndDate.Location = new System.Drawing.Point(183, 481);
             this.dEndDate.Name = "dEndDate";
             this.dEndDate.Size = new System.Drawing.Size(101, 20);
             this.dEndDate.TabIndex = 2;
@@ -70,7 +74,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 483);
+            this.label1.Location = new System.Drawing.Point(17, 484);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 3;
@@ -79,7 +83,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(157, 483);
+            this.label2.Location = new System.Drawing.Point(157, 484);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 3;
@@ -87,7 +91,7 @@
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(589, 478);
+            this.btnFind.Location = new System.Drawing.Point(589, 479);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(75, 23);
             this.btnFind.TabIndex = 4;
@@ -112,7 +116,7 @@
             // 
             // txtID2
             // 
-            this.txtID2.Location = new System.Drawing.Point(499, 480);
+            this.txtID2.Location = new System.Drawing.Point(499, 481);
             this.txtID2.Name = "txtID2";
             this.txtID2.Size = new System.Drawing.Size(84, 20);
             this.txtID2.TabIndex = 6;
@@ -120,7 +124,7 @@
             // 
             // txtID1
             // 
-            this.txtID1.Location = new System.Drawing.Point(351, 480);
+            this.txtID1.Location = new System.Drawing.Point(351, 481);
             this.txtID1.Name = "txtID1";
             this.txtID1.Size = new System.Drawing.Size(84, 20);
             this.txtID1.TabIndex = 7;
@@ -128,7 +132,7 @@
             // lblID1
             // 
             this.lblID1.AutoSize = true;
-            this.lblID1.Location = new System.Drawing.Point(290, 483);
+            this.lblID1.Location = new System.Drawing.Point(290, 484);
             this.lblID1.Name = "lblID1";
             this.lblID1.Size = new System.Drawing.Size(24, 13);
             this.lblID1.TabIndex = 8;
@@ -137,11 +141,51 @@
             // lblID2
             // 
             this.lblID2.AutoSize = true;
-            this.lblID2.Location = new System.Drawing.Point(441, 483);
+            this.lblID2.Location = new System.Drawing.Point(441, 484);
             this.lblID2.Name = "lblID2";
             this.lblID2.Size = new System.Drawing.Size(24, 13);
             this.lblID2.TabIndex = 9;
             this.lblID2.Text = "ID2";
+            // 
+            // txtTest
+            // 
+            this.txtTest.Location = new System.Drawing.Point(547, 510);
+            this.txtTest.Name = "txtTest";
+            this.txtTest.ReadOnly = true;
+            this.txtTest.Size = new System.Drawing.Size(18, 20);
+            this.txtTest.TabIndex = 10;
+            this.txtTest.Text = "1";
+            this.txtTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTest.TextChanged += new System.EventHandler(this.txtTest_TextChanged);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(670, 508);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.TabIndex = 11;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(425, 508);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 11;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(506, 513);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Trang:";
             // 
             // frmHistory
             // 
@@ -150,8 +194,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(756, 513);
+            this.ClientSize = new System.Drawing.Size(756, 538);
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.txtTest);
             this.Controls.Add(this.lblID2);
             this.Controls.Add(this.lblID1);
             this.Controls.Add(this.txtID1);
@@ -190,5 +238,9 @@
         private System.Windows.Forms.TextBox txtID1;
         private System.Windows.Forms.Label lblID1;
         private System.Windows.Forms.Label lblID2;
+        private System.Windows.Forms.TextBox txtTest;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -24,10 +24,11 @@ namespace SieuThiSach.SystemForm
         public List<string> namecolumns = new List<string>();
         public string _Filter = "";
         public string ID1;
-        public string ID2;        
+        public string ID2;
+        int vCheck;
         private void loadData()
         {
-            DatLoa.loadDataToListView("*", _Filter, ref lstHistory);
+            vCheck = DatLoa.loadDataToListView("*", _Filter, Convert.ToInt16(txtTest.Text), ref lstHistory);
             LoadColName();
             lstHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             lstHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
@@ -48,7 +49,7 @@ namespace SieuThiSach.SystemForm
 
         private void FindData()
         {
-            string vFilter = " where NGAY_SUA >= '" + dStartDate.Text + "' and DATEADD(DD,-1, NGAY_SUA) <= '" +  dEndDate.Text + "' ";
+            string vFilter = " where NGAY_SUA >= '" + dStartDate.Text + "' and DATEADD(DD,-1, NGAY_SUA) <= '" + dEndDate.Text + "' ";
             if (txtID1.Text != "")
             {
                 vFilter = vFilter + " and " + ID1 + " like '%" + txtID1.Text.Trim() + "%'";
@@ -63,9 +64,13 @@ namespace SieuThiSach.SystemForm
 
         private void frmHistory_Load(object sender, EventArgs e)
         {
+            btnBack.Enabled = false;       
             lstHistory.Clear();
             _Filter = TB_History + _Filter + " order by NGAY_SUA desc";
             loadData();
+            if (vCheck == 1)//Có load Next không ?
+                btnNext.Enabled = false;
+            else btnNext.Enabled = true;
             dStartDate.Text = DatLoa.NameReturn("min(ngay_sua)", TB_History, "(1=1)");
             lblID1.Text = lstHistory.Columns[0].Text;
             lblID2.Text = lstHistory.Columns[1].Text;
@@ -76,15 +81,53 @@ namespace SieuThiSach.SystemForm
             namecolumns.Clear();
         }
 
+        private bool Find = false;
         private void btnFind_Click(object sender, EventArgs e)
         {
+            Find = true;
+            txtTest.Text = "1"; page = 1;
             FindData();
             frmHistory_Load(sender, e);
+            Find = false;
         }
 
         private void txtID2_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = char.Parse(e.KeyChar.ToString().ToUpper());
+        }
+
+        int page = 1;
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            page = page + 1;
+            txtTest.Text = page.ToString();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            page = page - 1;
+            txtTest.Text = page.ToString();
+        }
+
+        private void txtTest_TextChanged(object sender, EventArgs e)
+        {
+            if (!Find)
+            {
+                #region "Load Data"
+                lstHistory.Clear();
+                loadData();
+                dStartDate.Text = DatLoa.NameReturn("min(ngay_sua)", TB_History, "(1=1)");
+                lblID1.Text = lstHistory.Columns[0].Text;
+                lblID2.Text = lstHistory.Columns[1].Text;
+                #endregion
+                if (vCheck == 1)
+                    btnNext.Enabled = false;
+                else btnNext.Enabled = true;
+                if (page == 1)
+                    btnBack.Enabled = false;
+                else btnBack.Enabled = true;
+            }
+            
         }
     }
 }
