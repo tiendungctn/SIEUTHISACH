@@ -182,7 +182,7 @@ namespace SieuThiSach.DAL
                 }
                 catch (Exception e)
                 {
-                    RowEr = Iret+1;
+                    RowEr = Iret + 1;
                     throw e;
                     transaction.Rollback();
                 }
@@ -195,6 +195,53 @@ namespace SieuThiSach.DAL
         }
         public int RowEr;
         #endregion
+
+        public int EditDataGridView(string clupdate, string table, ref DataGridView dt)
+        {
+            using (DbConnection cnn = oFactory.CreateConnection())
+            {
+                int Iret = 0;
+                cnn.ConnectionString = this.ConnectionString;
+                DbTransaction transaction;
+                try
+                {
+                    cnn.Open();
+                    transaction = cnn.BeginTransaction();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string columns = "";
+                        string value = "";
+                        string sSql = "update " + table + " set ";
+                        columns = dt.Columns[clupdate].Name.ToString();
+                        value = "N'" + dt.Rows[i].Cells[clupdate].Value.ToString() + "'";
+                        sSql = sSql + columns + " = " + value;//Lấy giá trị
+                        string columnsdk = "";
+                        string valuedk = "";
+                        columnsdk = dt.Columns[0].Name.ToString();
+                        valuedk = "'" + dt.Rows[i].Cells[0].Value.ToString() + "'";
+                        sSql = sSql + " where "+ columnsdk + " = " + valuedk;//đặt điều kiện
+                        DbCommand cmd = oFactory.CreateCommand();
+                        cmd.Connection = cnn;
+                        cmd.CommandText = sSql;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Transaction = transaction;
+                        Iret = Iret + cmd.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    RowEr = Iret + 1;
+                    throw e;
+                    transaction.Rollback();
+                }
+                finally
+                {
+                    cnn.Close();
+                }
+                return Iret;
+            }
+        }
 
 
         /// <summary>

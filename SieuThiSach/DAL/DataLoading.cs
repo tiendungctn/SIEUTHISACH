@@ -294,5 +294,21 @@ namespace SieuThiSach.DAL
             }
             return rw;
         }
+
+        public int InsDgv(string clu, string tb, ref DataGridView dtv)
+        {
+            int rw = 0;
+            try
+            {
+                rw = dbA.EditDataGridView(clu, tb, ref dtv);
+                if (rw > 0) MessageBox.Show("Thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show("Không có dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Lỗi tại dòng: " + dbA.RowEr + "\n" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return rw;
+        }
     }
 }

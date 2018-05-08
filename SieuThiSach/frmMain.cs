@@ -132,5 +132,11 @@ namespace SieuThiSach
             frmChiNhanh callForm = new frmChiNhanh();
             callForm.ShowDialog();
         }
+
+        private void phânQuyềnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPhanQuyen callForm = new frmPhanQuyen();
+            callForm.ShowDialog();
+        }
     }
 }
