@@ -19,3 +19,4 @@ D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmNhomhang.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmMatHang.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmChiNhanh.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmPhanQuyen.resources
+D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmHD.resources

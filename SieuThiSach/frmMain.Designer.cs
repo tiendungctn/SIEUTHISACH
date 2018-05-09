@@ -238,6 +238,7 @@
             this.ItemMnuHoaDon_XUATHANG.Name = "ItemMnuHoaDon_XUATHANG";
             this.ItemMnuHoaDon_XUATHANG.Size = new System.Drawing.Size(163, 22);
             this.ItemMnuHoaDon_XUATHANG.Text = "Xuất hàng";
+            this.ItemMnuHoaDon_XUATHANG.Click += new System.EventHandler(this.ItemMnuHoaDon_XUATHANG_Click);
             // 
             // toolStripMenuItem6
             // 

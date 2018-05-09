@@ -52,6 +52,12 @@
     <Compile Include="AllForm\frmChiNhanh.Designer.cs">
       <DependentUpon>frmChiNhanh.cs</DependentUpon>
     </Compile>
+    <Compile Include="AllForm\frmHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllForm\frmHD.Designer.cs">
+      <DependentUpon>frmHD.cs</DependentUpon>
+    </Compile>
     <Compile Include="AllForm\frmMatHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="AllForm\frmChiNhanh.resx">
       <DependentUpon>frmChiNhanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllForm\frmHD.resx">
+      <DependentUpon>frmHD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AllForm\frmMatHang.resx">
       <DependentUpon>frmMatHang.cs</DependentUpon>

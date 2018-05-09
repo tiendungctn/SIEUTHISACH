@@ -138,5 +138,11 @@ namespace SieuThiSach
             frmPhanQuyen callForm = new frmPhanQuyen();
             callForm.ShowDialog();
         }
+
+        private void ItemMnuHoaDon_XUATHANG_Click(object sender, EventArgs e)
+        {
+            frmHD callForm = new frmHD();
+            callForm.ShowDialog();
+        }
     }
 }

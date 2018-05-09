@@ -33,6 +33,23 @@ namespace SieuThiSach.DAL
             return Name;
         }
 
+        public string CreatMAHD(string PROC, string LoaiHD)
+        {
+            String Name = "";
+            string sql = "exec " + PROC + " " + UserInformation.PQ + ",'" + UserInformation.MaDV + "','" + UserInformation.MaNV + "','" + LoaiHD + "'";
+            try
+            {
+                ct = dbA.ExecuteAsDataSetSql(sql);
+                if (ct.Tables[0].Rows.Count > 0)
+                    Name = ct.Tables[0].Rows[0][0].ToString();
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return Name;
+        }
+
         public string ListColumnsName(string tb)
         {
             string ColumnsName = "";
