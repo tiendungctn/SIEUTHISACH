@@ -497,7 +497,7 @@ namespace SieuThiSach.AllForm
             htr.ShowDialog();
         }
         //Trả giá trị về -----------------------------------------------------------
-        public string BranchID
+        public string MH_ID
         {
             get
             {
