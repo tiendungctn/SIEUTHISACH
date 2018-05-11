@@ -76,6 +76,7 @@
     <Compile Include="AllForm\frmPhanQuyen.Designer.cs">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Function\DocSoTien.cs" />
     <Compile Include="SystemForm\frmExecl.cs">
       <SubType>Form</SubType>
     </Compile>

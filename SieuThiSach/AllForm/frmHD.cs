@@ -1,4 +1,5 @@
 ﻿using SieuThiSach.DAL;
+using SieuThiSach.Function;
 using SieuThiSach.SO;
 using System;
 using System.Collections.Generic;
@@ -21,25 +22,33 @@ namespace SieuThiSach.AllForm
         string _pMode = "";
         DataLoading DatLoa = new DataLoading();
         DesignForm DesFor = new DesignForm();
+        DocSoTien doctien = new DocSoTien();
+        public string LOAI = "";
+
         private void ViewMode()
         {
             switch (_pMode)
             {
                 case "":
+                    txtMaKH.Text = "";
                     txtMaMH.Text = "";
                     txtDongiaMH.Enabled = false; txtDongiaMH.Text = "";
                     txtSoluongMH.Enabled = false; txtSoluongMH.Text = "";
                     txtTyleChietKhauMH.Enabled = false; txtTyleChietKhauMH.Text = "0";
                     txtTienChietkhauMH.Enabled = false; txtTienChietkhauMH.Text = "0";
                     txtTamtinhHD.Text = "0";
-                    txtTienChieuKhauHD.Text = "0";
-                    txtKhachtra.Text = "";
+                    txtTyleChietKhauHD.Enabled = false;
+                    txtTienChieuKhauHD.Enabled = false; txtTienChieuKhauHD.Text = "0";
+                    txtKhachtra.Enabled = false; txtKhachtra.Text = "";
+                    txtTongtienHD.Text = "0"; txtConlai.Text = "";
 
+                    if (LOAI == "X") lblTenPhieu.Text = "Phiếu Bán Hàng";
+                    else if (LOAI == "N") lblTenPhieu.Text = "Phiếu Nhập Hàng";
 
                     lblNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
                     lblTenNV.Text = DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'");
                     lblDv.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + UserInformation.MaDV + "'");
-                    lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", "N");
+                    lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
                     break;
                 case "ADD_MH":
                     txtMaMH.Text = "";
@@ -47,20 +56,14 @@ namespace SieuThiSach.AllForm
                     txtSoluongMH.Enabled = false; txtSoluongMH.Text = "";
                     txtTyleChietKhauMH.Enabled = false; txtTyleChietKhauMH.Text = "0";
                     txtTienChietkhauMH.Enabled = false; txtTienChietkhauMH.Text = "0";
-
-                    //lblNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                    //lblTenNV.Text = DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'");
-                    //lblDv.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + UserInformation.MaDV + "'");
                     break;
                 case "EDIT_MH":
                     txtMaMH.Text = dataGridView1.CurrentRow.Cells["MA_HANG"].Value.ToString();
-                    txtDongiaMH.Text = dataGridView1.CurrentRow.Cells["GIA_XUAT"].Value.ToString();
+                    if (LOAI == "X") txtDongiaMH.Text = dataGridView1.CurrentRow.Cells["GIA_XUAT"].Value.ToString();
+                    else if (LOAI == "N") txtDongiaMH.Text = dataGridView1.CurrentRow.Cells["GIA_NHAP"].Value.ToString();
+
                     txtSoluongMH.Text = dataGridView1.CurrentRow.Cells["SO_LUONG"].Value.ToString();
                     txtTienChietkhauMH.Text = dataGridView1.CurrentRow.Cells["CHIET_KHAU"].Value.ToString();
-
-                    //lblNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                    //lblTenNV.Text = DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'");
-                    //lblDv.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + UserInformation.MaDV + "'");
                     break;
                 default:
                     break;
@@ -69,6 +72,9 @@ namespace SieuThiSach.AllForm
 
         private void loadData()
         {
+            bool LoaiX = false; bool LoaiN = false;
+            if (LOAI == "X") LoaiX = true;
+            else if (LOAI == "N") LoaiN = true;
             string _Filter = "where MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "' and SDUNG = 'C'";
             DatLoa.loadData("*", "V_CT_HD " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", false, "Mã DVI");
@@ -76,8 +82,8 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã Hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_HANG", true, "Tên Hàng");
             DesFor.EditCollum(ref dataGridView1, "SO_LUONG", true, "Số lượng");
-            DesFor.EditCollum(ref dataGridView1, "GIA_NHAP", false, "Đơn giá");
-            DesFor.EditCollum(ref dataGridView1, "GIA_XUAT", true, "Đơn giá");
+            DesFor.EditCollum(ref dataGridView1, "GIA_NHAP", LoaiN, "Đơn giá");
+            DesFor.EditCollum(ref dataGridView1, "GIA_XUAT", LoaiX, "Đơn giá");
             DesFor.EditCollum(ref dataGridView1, "CHIET_KHAU", true, "Triết Khấu");
             DesFor.EditCollum(ref dataGridView1, "TAM_TINH", true, "Tạm Tính");
             DesFor.EditCollum(ref dataGridView1, "SDUNG", false, "SDUNG");
@@ -85,7 +91,10 @@ namespace SieuThiSach.AllForm
 
         private void AddNewMH()
         {
-            string sql = "MAT_HANG_HD_NHAP '" + UserInformation.PQ +
+            string ham = "";
+            if (LOAI == "X") ham = "MAT_HANG_HDX_NHAP ";
+            else if (LOAI == "N") ham = "MAT_HANG_HDN_NHAP ";
+            string sql = ham + " '" + UserInformation.PQ +
                 "','" + UserInformation.MaDV +
                 "','" + lblMaHD.Text +
                 "','" + txtMaMH.Text.Trim() +
@@ -105,8 +114,12 @@ namespace SieuThiSach.AllForm
         private void DeleteMH()
         {
             string sql;
-            if (txtMaMH.Text != "")
-                sql = "MAT_HANG_HD_NHAP '" + UserInformation.PQ +
+            string ham = "";
+            if (LOAI == "X") ham = "MAT_HANG_HDX_NHAP ";
+            else if (LOAI == "N") ham = "MAT_HANG_HDN_NHAP ";
+
+            if (DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaMH.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") != "")
+                sql = ham + " '" + UserInformation.PQ +
                 "','" + UserInformation.MaDV +
                 "','" + lblMaHD.Text +
                 "','" + txtMaMH.Text.Trim() +
@@ -116,7 +129,7 @@ namespace SieuThiSach.AllForm
             else
             {
                 if (dataGridView1.Rows.Count > 0)
-                    sql = "MAT_HANG_HD_NHAP '" + UserInformation.PQ +
+                    sql = ham+ " '" + UserInformation.PQ +
                     "','" + UserInformation.MaDV +
                     "','" + lblMaHD.Text +
                     "','" + dataGridView1.CurrentRow.Cells["MA_HANG"].Value.ToString() +
@@ -163,10 +176,131 @@ namespace SieuThiSach.AllForm
             DatLoa.AddNew(sql);
         }
 
+        //Bắt sự kiện KICK-------------------------------------------------------------------
+
         private void frmHD_Load(object sender, EventArgs e)
         {
             ViewMode();
             loadData();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(txtTongtienMH.Text) > 0) AddNewMH();
+            else
+                MessageBox.Show("Có lỗi nhập mặt hàng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnThanhToan_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(txtTongtienHD.Text) > 0) AddNewHD();
+            else
+                MessageBox.Show("Có lỗi nhập hóa đơn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnNhapLai_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                _pMode = "EDIT_MH";
+                ViewMode();
+            }
+            else MessageBox.Show("Không có dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnTralai_Click(object sender, EventArgs e)
+        {
+            DeleteMH();
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            DeleteHD();
+            _pMode = "";
+            ViewMode();
+            loadData();
+        }
+
+        private void frmHD_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DeleteHD();
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            btnNhapLai.PerformClick();
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                int tongtien = 0;
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    tongtien = tongtien + Convert.ToInt32(dataGridView1.Rows[i].Cells["TAM_TINH"].Value.ToString());
+                }
+                txtTamtinhHD.Text = tongtien.ToString();
+            }
+
+        }
+
+        //Bắt sự kiện KEY---------------------------------------------------------------------
+
+        private bool TyleChietKhauHDCheck = false;
+        private void txtTyleChietKhauHD_TextChanged(object sender, EventArgs e)
+        {
+            TyleChietKhauHDCheck = true;
+            if (txtTyleChietKhauHD.Text == "") txtTyleChietKhauHD.Text = "0";
+            if (!TienChietkhauHDCheck)
+                txtTienChieuKhauHD.Text = Convert.ToString(Convert.ToInt64(txtTongtienHD.Text) *
+                                            Convert.ToInt64(txtTyleChietKhauHD.Text) / 100);
+            TyleChietKhauHDCheck = false;
+        }
+        private bool TienChietkhauHDCheck = false;
+        private void txtTienChieuKhauHD_TextChanged(object sender, EventArgs e)
+        {
+            TienChietkhauHDCheck = true;
+            if (txtTienChieuKhauHD.Text == "") txtTienChieuKhauHD.Text = "0";
+            txtTongtienHD.Text = Convert.ToString(Convert.ToInt64(txtTamtinhHD.Text) -
+                                    Convert.ToInt64(txtTienChieuKhauHD.Text));
+            if (!TyleChietKhauHDCheck & txtTongtienHD.Text != "0")
+                txtTyleChietKhauHD.Text = Convert.ToString(Convert.ToInt64(txtTienChieuKhauHD.Text) * 100 /
+                                            Convert.ToInt64(txtTongtienHD.Text));
+            TienChietkhauHDCheck = false;
+        }
+
+        private void txtKhachtra_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTongtienHD.Text == "") txtTongtienHD.Text = "0";
+            if (txtKhachtra.Text == "") txtKhachtra.Text = "0";
+            txtConlai.Text = Convert.ToString(Convert.ToInt64(txtKhachtra.Text) -
+                                Convert.ToInt64(txtTongtienHD.Text));
+        }
+
+        private void txtTamtinhHD_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTamtinhHD.Text == "") txtTamtinhHD.Text = "0";
+            if (txtTienChieuKhauHD.Text == "") txtTienChieuKhauHD.Text = "0";
+            if (txtTamtinhHD.Text != "0")
+            {
+                txtTyleChietKhauHD.Enabled = true;
+                txtTienChieuKhauHD.Enabled = true;
+                txtKhachtra.Enabled = true;
+                txtTongtienHD.Text = Convert.ToString(Convert.ToInt64(txtTamtinhHD.Text) -
+                                            Convert.ToInt64(txtTienChieuKhauHD.Text));
+            }            
+        }
+
+        private void txtTongtienHD_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTongtienHD.Text == "") txtTongtienHD.Text = "0";
+            if (txtKhachtra.Text == "") txtKhachtra.Text = "0";
+            txtConlai.Text = Convert.ToString(Convert.ToInt64(txtKhachtra.Text) - 
+                                Convert.ToInt64(txtTongtienHD.Text));
+            if (txtTongtienHD.Text != "" & txtTongtienHD.Text != "0")
+                lblTienThanhChu.Text = doctien.ChuyenSo(txtTongtienHD.Text);
+            else lblTienThanhChu.Text = "";
         }
 
         private void txtMaKH_KeyDown(object sender, KeyEventArgs e)
@@ -177,7 +311,9 @@ namespace SieuThiSach.AllForm
                     e.SuppressKeyPress = true;
                     using (frmKhachHang f = new frmKhachHang())
                     {
-                        f._Filter = " where MA_KH != 'KH00000' and MA_KH like '%KH%'";
+                        if (LOAI == "X") f._Filter = " where MA_KH != 'KH00000' and MA_KH like '%KH%'";
+                        else if (LOAI == "N") f._Filter = " where MA_KH != 'KH00000' and MA_KH like '%CC%'";
+
                         if (f.ShowDialog() == DialogResult.OK)
                         {
                             txtMaKH.Text = f.KH_ID;
@@ -220,11 +356,23 @@ namespace SieuThiSach.AllForm
 
             if (DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaMH.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") != "")
             {
-                txtDongiaMH.Text = DatLoa.NameReturn("GIA_BAN", "TB_MAT_HANG", "MA_HANG = '" + txtMaMH.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
                 txtDongiaMH.Enabled = true;
                 txtSoluongMH.Enabled = true;
                 txtTyleChietKhauMH.Enabled = true;
                 txtTienChietkhauMH.Enabled = true;
+
+                if (DatLoa.NameReturn("GIA_XUAT", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "" &&
+                    DatLoa.NameReturn("GIA_NHAP", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "")
+                {
+                    //chưa có mặt hàng trong HĐ hiện tại, lấy giá từ bảng mặt hàng
+                    if (LOAI == "X") txtDongiaMH.Text = DatLoa.NameReturn("GIA_BAN", "TB_MAT_HANG", "MA_HANG = '" + txtMaMH.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+                    else if (LOAI == "N") txtDongiaMH.Text = DatLoa.NameReturn("GIA_NHAP", "TB_MAT_HANG", "MA_HANG = '" + txtMaMH.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+                }
+                else
+                {
+                    if (LOAI == "X") txtDongiaMH.Text = DatLoa.NameReturn("GIA_XUAT", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+                    else if (LOAI == "N") txtDongiaMH.Text = DatLoa.NameReturn("GIA_NHAP", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+                }
 
                 if (DatLoa.NameReturn("SO_LUONG", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "")
                     txtSoluongMH.Text = "1";
@@ -233,6 +381,13 @@ namespace SieuThiSach.AllForm
                 if (DatLoa.NameReturn("CHIET_KHAU", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "")
                     txtTienChietkhauMH.Text = "0";
                 else txtTienChietkhauMH.Text = DatLoa.NameReturn("CHIET_KHAU", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+            }
+            else
+            {
+                txtDongiaMH.Enabled = false; txtDongiaMH.Text = "";
+                txtSoluongMH.Enabled = false; txtSoluongMH.Text = "";
+                txtTyleChietKhauMH.Enabled = false; txtTyleChietKhauMH.Text = "0";
+                txtTienChietkhauMH.Enabled = false; txtTienChietkhauMH.Text = "0";
             }
         }
 
@@ -253,6 +408,7 @@ namespace SieuThiSach.AllForm
                                     Convert.ToInt64(txtSoluongMH.Text) -
                                     Convert.ToInt64(txtTienChietkhauMH.Text));
         }
+
         private bool TienChietkhauMHCheck = false;
         private void txtTienChietkhauMH_TextChanged(object sender, EventArgs e)
         {
@@ -311,108 +467,6 @@ namespace SieuThiSach.AllForm
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            AddNewMH();
-        }
-
-        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            if (dataGridView1.Rows.Count > 0)
-            {
-                int tongtien = 0;
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    tongtien = tongtien + Convert.ToInt32(dataGridView1.Rows[i].Cells["TAM_TINH"].Value.ToString());
-                }
-                txtTamtinhHD.Text = tongtien.ToString();
-            }
-
-        }
-        private bool TyleChietKhauHDCheck = false;
-        private void txtTyleChietKhauHD_TextChanged(object sender, EventArgs e)
-        {
-            TyleChietKhauHDCheck = true;
-            if (txtTyleChietKhauHD.Text == "") txtTyleChietKhauHD.Text = "0";
-            if (!TienChietkhauHDCheck)
-                txtTienChieuKhauHD.Text = Convert.ToString(Convert.ToInt64(txtTongtienHD.Text) *
-                                            Convert.ToInt64(txtTyleChietKhauHD.Text) / 100);
-            TyleChietKhauHDCheck = false;
-        }
-        private bool TienChietkhauHDCheck = false;
-        private void txtTienChieuKhauHD_TextChanged(object sender, EventArgs e)
-        {
-            TienChietkhauHDCheck = true;
-            if (txtTienChieuKhauHD.Text == "") txtTienChieuKhauHD.Text = "0";
-            txtTongtienHD.Text = Convert.ToString(Convert.ToInt64(txtTamtinhHD.Text) -
-                                    Convert.ToInt64(txtTienChieuKhauHD.Text));
-            if (!TyleChietKhauHDCheck & txtTongtienHD.Text != "0")
-                txtTyleChietKhauHD.Text = Convert.ToString(Convert.ToInt64(txtTienChieuKhauHD.Text) * 100 /
-                                            Convert.ToInt64(txtTongtienHD.Text));
-            TienChietkhauHDCheck = false;
-        }
-
-        private void txtTamtinhHD_TextChanged(object sender, EventArgs e)
-        {
-            if (txtTamtinhHD.Text == "") txtTamtinhHD.Text = "0";
-            if (txtTienChieuKhauHD.Text == "") txtTienChieuKhauHD.Text = "0";
-            txtTongtienHD.Text = Convert.ToString(Convert.ToInt64(txtTamtinhHD.Text) -
-                                        Convert.ToInt64(txtTienChieuKhauHD.Text));
-        }
-
-        private void txtTongtienHD_TextChanged(object sender, EventArgs e)
-        {
-            if (txtTongtienHD.Text == "") txtTongtienHD.Text = "0";
-            if (txtKhachtra.Text == "") txtKhachtra.Text = "0";
-            txtConlai.Text = Convert.ToString(Convert.ToInt64(txtTongtienHD.Text) -
-                                        Convert.ToInt64(txtKhachtra.Text));
-        }
-
-        private void btnThanhToan_Click(object sender, EventArgs e)
-        {
-            AddNewHD();
-        }
-
-        private void txtKhachtra_TextChanged(object sender, EventArgs e)
-        {
-            if (txtTongtienHD.Text == "") txtTongtienHD.Text = "0";
-            if (txtKhachtra.Text == "") txtKhachtra.Text = "0";
-            txtConlai.Text = Convert.ToString(Convert.ToInt64(txtTongtienHD.Text) -
-                                        Convert.ToInt64(txtKhachtra.Text));
-        }
-
-        private void btnNhapLai_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.Rows.Count > 0)
-            {
-                _pMode = "EDIT_MH";
-                ViewMode();
-            }
-        }
-
-        private void btnTralai_Click(object sender, EventArgs e)
-        {
-            DeleteMH();
-        }
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            DeleteHD();
-            _pMode = "";
-            ViewMode();
-            loadData();
-        }
-
-        private void frmHD_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DeleteHD();
-        }
-
-        private void dataGridView1_DoubleClick(object sender, EventArgs e)
-        {
-            btnNhapLai.PerformClick();
-        }
-
         private void txtDongiaMH_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
@@ -439,7 +493,7 @@ namespace SieuThiSach.AllForm
 
         private void txtTyleChietKhauHD_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) || txtTyleChietKhauHD.Text.Length > 1)
                 e.Handled = true;
         }
 
@@ -453,6 +507,36 @@ namespace SieuThiSach.AllForm
         {
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
                 e.Handled = true;
+        }
+
+        private void frmHD_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.N) btnHuy.PerformClick();
+            else if (e.Control && e.KeyCode == Keys.E) btnNhapLai.PerformClick();
+            else if (e.Control && e.KeyCode == Keys.F)
+                using (frmMatHang f = new frmMatHang())
+                {
+                    if (f.ShowDialog() == DialogResult.OK)
+                    {
+                        txtMaMH.Text = f.MH_ID;
+                    }
+                    DesignForm.vForm = this;
+                }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                if (txtMaMH.Text != "") btnTralai.PerformClick();
+                else
+                {
+                    if (dataGridView1.Rows.Count > 0) btnHuy.PerformClick();
+                    else btnExit.PerformClick();
+                }
+                    
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                if (txtMaMH.Text != "") btnAdd.PerformClick();
+                else btnThanhToan.PerformClick();
+            }
         }
     }
 }

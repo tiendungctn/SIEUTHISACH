@@ -232,6 +232,7 @@
             this.ItemMnuHoaDon_NHAPHANG.Name = "ItemMnuHoaDon_NHAPHANG";
             this.ItemMnuHoaDon_NHAPHANG.Size = new System.Drawing.Size(163, 22);
             this.ItemMnuHoaDon_NHAPHANG.Text = "Nhập hàng";
+            this.ItemMnuHoaDon_NHAPHANG.Click += new System.EventHandler(this.ItemMnuHoaDon_NHAPHANG_Click);
             // 
             // ItemMnuHoaDon_XUATHANG
             // 
@@ -263,13 +264,13 @@
             // ItemMnuKho_TonKho
             // 
             this.ItemMnuKho_TonKho.Name = "ItemMnuKho_TonKho";
-            this.ItemMnuKho_TonKho.Size = new System.Drawing.Size(138, 22);
+            this.ItemMnuKho_TonKho.Size = new System.Drawing.Size(152, 22);
             this.ItemMnuKho_TonKho.Text = "Tồn kho";
             // 
             // ItemMnuKho_ChuyenKho
             // 
             this.ItemMnuKho_ChuyenKho.Name = "ItemMnuKho_ChuyenKho";
-            this.ItemMnuKho_ChuyenKho.Size = new System.Drawing.Size(138, 22);
+            this.ItemMnuKho_ChuyenKho.Size = new System.Drawing.Size(152, 22);
             this.ItemMnuKho_ChuyenKho.Text = "Chuyển kho";
             // 
             // MnuBC

@@ -142,6 +142,14 @@ namespace SieuThiSach
         private void ItemMnuHoaDon_XUATHANG_Click(object sender, EventArgs e)
         {
             frmHD callForm = new frmHD();
+            callForm.LOAI = "X";
+            callForm.ShowDialog();
+        }
+
+        private void ItemMnuHoaDon_NHAPHANG_Click(object sender, EventArgs e)
+        {
+            frmHD callForm = new frmHD();
+            callForm.LOAI = "N";
             callForm.ShowDialog();
         }
     }
