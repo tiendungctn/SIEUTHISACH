@@ -59,10 +59,10 @@ namespace SieuThiSach.AllForm
                     break;
                 case "EDIT_MH":
                     txtMaMH.Text = dataGridView1.CurrentRow.Cells["MA_HANG"].Value.ToString();
-                    if (LOAI == "X") txtDongiaMH.Text = dataGridView1.CurrentRow.Cells["GIA_XUAT"].Value.ToString();
-                    else if (LOAI == "N") txtDongiaMH.Text = dataGridView1.CurrentRow.Cells["GIA_NHAP"].Value.ToString();
+                    if (LOAI == "X") txtSoluongMH.Text = dataGridView1.CurrentRow.Cells["SL_XUAT"].Value.ToString();
+                    else if (LOAI == "N") txtSoluongMH.Text = dataGridView1.CurrentRow.Cells["SL_NHAP"].Value.ToString();
 
-                    txtSoluongMH.Text = dataGridView1.CurrentRow.Cells["SO_LUONG"].Value.ToString();
+                    txtDongiaMH.Text = dataGridView1.CurrentRow.Cells["DON_GIA"].Value.ToString();
                     txtTienChietkhauMH.Text = dataGridView1.CurrentRow.Cells["CHIET_KHAU"].Value.ToString();
                     break;
                 default:
@@ -81,9 +81,9 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "MA_HD", false, "Mã HD");
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã Hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_HANG", true, "Tên Hàng");
-            DesFor.EditCollum(ref dataGridView1, "SO_LUONG", true, "Số lượng");
-            DesFor.EditCollum(ref dataGridView1, "GIA_NHAP", LoaiN, "Đơn giá");
-            DesFor.EditCollum(ref dataGridView1, "GIA_XUAT", LoaiX, "Đơn giá");
+            DesFor.EditCollum(ref dataGridView1, "SL_NHAP", LoaiN, "Số lượng");
+            DesFor.EditCollum(ref dataGridView1, "SL_XUAT", LoaiX, "Số lượng");
+            DesFor.EditCollum(ref dataGridView1, "DON_GIA", true, "Đơn giá");
             DesFor.EditCollum(ref dataGridView1, "CHIET_KHAU", true, "Triết Khấu");
             DesFor.EditCollum(ref dataGridView1, "TAM_TINH", true, "Tạm Tính");
             DesFor.EditCollum(ref dataGridView1, "SDUNG", false, "SDUNG");
@@ -118,6 +118,10 @@ namespace SieuThiSach.AllForm
             if (LOAI == "X") ham = "MAT_HANG_HDX_NHAP ";
             else if (LOAI == "N") ham = "MAT_HANG_HDN_NHAP ";
 
+            string sl = "";
+            if (LOAI == "X") sl = "SL_XUAT";
+            else if (LOAI == "N") sl = "SL_NHAP";
+
             if (DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaMH.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") != "")
                 sql = ham + " '" + UserInformation.PQ +
                 "','" + UserInformation.MaDV +
@@ -133,8 +137,8 @@ namespace SieuThiSach.AllForm
                     "','" + UserInformation.MaDV +
                     "','" + lblMaHD.Text +
                     "','" + dataGridView1.CurrentRow.Cells["MA_HANG"].Value.ToString() +
-                    "','" + dataGridView1.CurrentRow.Cells["GIA_XUAT"].Value.ToString() +
-                    "','" + dataGridView1.CurrentRow.Cells["SO_LUONG"].Value.ToString() +
+                    "','" + dataGridView1.CurrentRow.Cells["DON_GIA"].Value.ToString() +
+                    "','" + dataGridView1.CurrentRow.Cells[sl].Value.ToString() +
                     "','" + dataGridView1.CurrentRow.Cells["CHIET_KHAU"].Value.ToString() + "', 'K'";
                 else return;
             }
@@ -215,15 +219,21 @@ namespace SieuThiSach.AllForm
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            DeleteHD();
-            _pMode = "";
-            ViewMode();
-            loadData();
+            DialogResult dialog = MessageBox.Show("Bạn có muốn hủy không?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialog == DialogResult.Yes)
+            {
+                DeleteHD();
+                _pMode = "";
+                ViewMode();
+                loadData();
+            }      
         }
 
         private void frmHD_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DeleteHD();
+            DialogResult dialog = MessageBox.Show("Bạn có muốn hủy & thoát không?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialog == DialogResult.No) e.Cancel = true;
+            else DeleteHD();
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
@@ -361,8 +371,7 @@ namespace SieuThiSach.AllForm
                 txtTyleChietKhauMH.Enabled = true;
                 txtTienChietkhauMH.Enabled = true;
 
-                if (DatLoa.NameReturn("GIA_XUAT", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "" &&
-                    DatLoa.NameReturn("GIA_NHAP", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "")
+                if (DatLoa.NameReturn("DON_GIA", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "")
                 {
                     //chưa có mặt hàng trong HĐ hiện tại, lấy giá từ bảng mặt hàng
                     if (LOAI == "X") txtDongiaMH.Text = DatLoa.NameReturn("GIA_BAN", "TB_MAT_HANG", "MA_HANG = '" + txtMaMH.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
@@ -370,13 +379,19 @@ namespace SieuThiSach.AllForm
                 }
                 else
                 {
-                    if (LOAI == "X") txtDongiaMH.Text = DatLoa.NameReturn("GIA_XUAT", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
-                    else if (LOAI == "N") txtDongiaMH.Text = DatLoa.NameReturn("GIA_NHAP", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+                    //Lấy từ đơn giá đã có
+                    txtDongiaMH.Text = DatLoa.NameReturn("DON_GIA", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
                 }
 
-                if (DatLoa.NameReturn("SO_LUONG", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "")
+                if (DatLoa.NameReturn("SL_NHAP", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "" &&
+                    DatLoa.NameReturn("SL_XUAT", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "")
                     txtSoluongMH.Text = "1";
-                else txtSoluongMH.Text = DatLoa.NameReturn("SO_LUONG", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+                else
+                {
+                    if (LOAI == "X") txtSoluongMH.Text = DatLoa.NameReturn("SL_XUAT", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+                    else if (LOAI == "N") txtSoluongMH.Text = DatLoa.NameReturn("XL_NHAP", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+
+                }
 
                 if (DatLoa.NameReturn("CHIET_KHAU", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'") == "")
                     txtTienChietkhauMH.Text = "0";

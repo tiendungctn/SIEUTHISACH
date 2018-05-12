@@ -291,12 +291,17 @@ namespace SieuThiSach
         {
             if (e.Control && e.KeyCode == Keys.N) btnAdd.PerformClick();
             else if (e.Control && e.KeyCode == Keys.E) btnEdit.PerformClick();
-            else if (e.Control && e.KeyCode == Keys.F) btnFind.PerformClick();
+            else if (e.Control && e.KeyCode == Keys.F) btnFind.PerformClick();        
+            else if (e.Control && e.KeyCode == Keys.H) btnHistory.PerformClick();
+            else if (e.Control && e.KeyCode == Keys.L) btnExcel.PerformClick();
+            else if (e.KeyCode == Keys.Delete) btnDel.PerformClick();
             else if (e.KeyCode == Keys.Escape)
             {
                 if (_pMode == "") this.Close();
                 else btnCancel.PerformClick();
             }
+
+
             //switch (e.KeyData)
             //{
             //    case (Keys.Control | Keys.N):

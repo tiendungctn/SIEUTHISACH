@@ -251,6 +251,7 @@
             this.ItemMnuHoaDon_LICHSU.Name = "ItemMnuHoaDon_LICHSU";
             this.ItemMnuHoaDon_LICHSU.Size = new System.Drawing.Size(163, 22);
             this.ItemMnuHoaDon_LICHSU.Text = "Lịch sử giao dịch";
+            this.ItemMnuHoaDon_LICHSU.Click += new System.EventHandler(this.ItemMnuHoaDon_LICHSU_Click);
             // 
             // MnuKho
             // 
@@ -266,6 +267,7 @@
             this.ItemMnuKho_TonKho.Name = "ItemMnuKho_TonKho";
             this.ItemMnuKho_TonKho.Size = new System.Drawing.Size(152, 22);
             this.ItemMnuKho_TonKho.Text = "Tồn kho";
+            this.ItemMnuKho_TonKho.Click += new System.EventHandler(this.ItemMnuKho_TonKho_Click);
             // 
             // ItemMnuKho_ChuyenKho
             // 

@@ -91,6 +91,25 @@ namespace SieuThiSach.DAL
             }
         }
 
+        public void loadDataPROC(string PROC, ref DataGridView dt)
+        {
+            //DataSet ct = new DataSet();
+            string sql = "EXEC " + PROC;
+            //string sql = "EXEC " + ts;
+            try
+            {
+                ct = dbA.ExecuteAsDataSetSql(sql);
+                BindingSource gdSource = new BindingSource();
+                gdSource.DataSource = ct.Tables[0];
+                dt.DataSource = gdSource;
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Có lỗi" + es.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         public int loadDataToListView(string columns, string table, int page, ref ListView ls)
         {
             int check = 0;

@@ -26,10 +26,11 @@ namespace SieuThiSach.AllForm
         public string _Filter = " where MA_DVI = '" + UserInformation.MaDV + "' and SDUNG = 'C' ";
         private void loadData()
         {
-            DatLoa.loadData("*", "V_MAT_HANG " + _Filter, ref dataGridView1);
+            DatLoa.loadData("MA_DVI,MA_HANG,TEN_HANG,TON_KHO,NHOM_HANG,TEN_NHOM_HANG,NHA_CC,TEN_KH,GIA_NHAP,GIA_BAN,SDUNG", "V_TON_KHO " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", false, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_HANG", true, "Tên hàng");
+            DesFor.EditCollum(ref dataGridView1, "TON_KHO", true, "Tồn kho");
             DesFor.EditCollum(ref dataGridView1, "NHOM_HANG", false, "Nhóm");
             DesFor.EditCollum(ref dataGridView1, "TEN_NHOM_HANG", true, "Nhóm");
             DesFor.EditCollum(ref dataGridView1, "NHA_CC", false, "Nhà cung cấp");
@@ -379,7 +380,9 @@ namespace SieuThiSach.AllForm
             if (e.Control && e.KeyCode == Keys.N) btnAdd.PerformClick();
             else if (e.Control && e.KeyCode == Keys.E) btnEdit.PerformClick();
             else if (e.Control && e.KeyCode == Keys.F) btnFind.PerformClick();
+            else if (e.Control && e.KeyCode == Keys.H) btnHistory.PerformClick();
             else if (e.Control && e.KeyCode == Keys.L) btnExcel.PerformClick();
+            else if (e.KeyCode == Keys.Delete) btnDel.PerformClick();
             else if (e.KeyCode == Keys.Escape)
             {
                 if (_pMode == "") this.Close();

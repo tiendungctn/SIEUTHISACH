@@ -152,5 +152,34 @@ namespace SieuThiSach
             callForm.LOAI = "N";
             callForm.ShowDialog();
         }
+
+        private void ItemMnuHoaDon_LICHSU_Click(object sender, EventArgs e)
+        {
+            frmHistory htr = new frmHistory();
+            htr.TB_History = "V_DS_Hoa_Don ";
+            #region "Load Tên Cột HISTORY"
+            htr.namecolumns.Add("Mã Đơn Vị");
+            htr.namecolumns.Add("Mã Hóa Đơn");
+            htr.namecolumns.Add("Ngày tạo");
+            htr.namecolumns.Add("Mã nhân viên");
+            htr.namecolumns.Add("Tên nhân viên");
+            htr.namecolumns.Add("Mã khách hàng");
+            htr.namecolumns.Add("Tên khách hàng");
+            htr.namecolumns.Add("Chiết khấu");
+            htr.namecolumns.Add("Trạng thái");
+            htr.namecolumns.Add("Loại HĐ");
+            #endregion
+            #region "LOAD ID FIND"
+            htr.ID1 = "MA_DVI";
+            htr.ID2 = "MA_HD";
+            #endregion
+            htr.ShowDialog();
+        }
+
+        private void ItemMnuKho_TonKho_Click(object sender, EventArgs e)
+        {
+            frmTonkho callForm = new frmTonkho();
+            callForm.ShowDialog();
+        }
     }
 }

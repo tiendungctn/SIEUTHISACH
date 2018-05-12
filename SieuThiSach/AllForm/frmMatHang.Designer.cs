@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grButton1 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
@@ -60,6 +60,7 @@
             this.cmsMENU = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.test1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.test2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.grButton1.SuspendLayout();
             this.grDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -105,6 +106,7 @@
             this.btnExcel.Size = new System.Drawing.Size(122, 28);
             this.btnExcel.TabIndex = 7;
             this.btnExcel.Text = "Excel";
+            this.toolTip1.SetToolTip(this.btnExcel, "(CTRL + L)");
             this.btnExcel.UseVisualStyleBackColor = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
@@ -117,6 +119,7 @@
             this.btnHistory.Size = new System.Drawing.Size(122, 28);
             this.btnHistory.TabIndex = 6;
             this.btnHistory.Text = "Lịch Sử";
+            this.toolTip1.SetToolTip(this.btnHistory, "(CTRL + H)");
             this.btnHistory.UseVisualStyleBackColor = false;
             this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
             // 
@@ -140,6 +143,7 @@
             this.btnFind.Size = new System.Drawing.Size(122, 28);
             this.btnFind.TabIndex = 4;
             this.btnFind.Text = "Tìm kiếm";
+            this.toolTip1.SetToolTip(this.btnFind, "(CTRL + F)");
             this.btnFind.UseVisualStyleBackColor = false;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
@@ -152,6 +156,7 @@
             this.btnDel.Size = new System.Drawing.Size(122, 28);
             this.btnDel.TabIndex = 3;
             this.btnDel.Text = "Xóa";
+            this.toolTip1.SetToolTip(this.btnDel, "(DELETE)");
             this.btnDel.UseVisualStyleBackColor = false;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
@@ -164,6 +169,7 @@
             this.btnEdit.Size = new System.Drawing.Size(122, 28);
             this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "Sửa";
+            this.toolTip1.SetToolTip(this.btnEdit, "(CTRL + E)");
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -176,6 +182,7 @@
             this.btnAdd.Size = new System.Drawing.Size(122, 28);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Thêm mới";
+            this.toolTip1.SetToolTip(this.btnAdd, "(CTRL + N)");
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -188,6 +195,7 @@
             this.btnCancel.Size = new System.Drawing.Size(122, 28);
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "Hủy bỏ";
+            this.toolTip1.SetToolTip(this.btnCancel, "(ESCAPE)");
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -200,6 +208,7 @@
             this.btnCommit.Size = new System.Drawing.Size(122, 28);
             this.btnCommit.TabIndex = 15;
             this.btnCommit.Text = "Xác nhận";
+            this.toolTip1.SetToolTip(this.btnCommit, "(ENTER)");
             this.btnCommit.UseVisualStyleBackColor = false;
             this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
             // 
@@ -379,14 +388,14 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.ContextMenuStrip = this.cmsMENU;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
@@ -408,19 +417,19 @@
             this.test1ToolStripMenuItem,
             this.test2ToolStripMenuItem});
             this.cmsMENU.Name = "cmsMENU";
-            this.cmsMENU.Size = new System.Drawing.Size(153, 70);
+            this.cmsMENU.Size = new System.Drawing.Size(112, 48);
             // 
             // test1ToolStripMenuItem
             // 
             this.test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
-            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.test1ToolStripMenuItem.Text = "Sửa";
             this.test1ToolStripMenuItem.Click += new System.EventHandler(this.test1ToolStripMenuItem_Click);
             // 
             // test2ToolStripMenuItem
             // 
             this.test2ToolStripMenuItem.Name = "test2ToolStripMenuItem";
-            this.test2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.test2ToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.test2ToolStripMenuItem.Text = "Lịch sử";
             this.test2ToolStripMenuItem.Click += new System.EventHandler(this.test2ToolStripMenuItem_Click);
             // 
@@ -486,5 +495,6 @@
         private System.Windows.Forms.ContextMenuStrip cmsMENU;
         private System.Windows.Forms.ToolStripMenuItem test1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem test2ToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -76,6 +76,12 @@
     <Compile Include="AllForm\frmPhanQuyen.Designer.cs">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="AllForm\frmTonkho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllForm\frmTonkho.Designer.cs">
+      <DependentUpon>frmTonkho.cs</DependentUpon>
+    </Compile>
     <Compile Include="Function\DocSoTien.cs" />
     <Compile Include="SystemForm\frmExecl.cs">
       <SubType>Form</SubType>
@@ -148,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AllForm\frmPhanQuyen.resx">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllForm\frmTonkho.resx">
+      <DependentUpon>frmTonkho.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemForm\frmExecl.resx">
       <DependentUpon>frmExecl.cs</DependentUpon>

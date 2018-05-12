@@ -66,7 +66,7 @@
             // dEndDate
             // 
             this.dEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dEndDate.Location = new System.Drawing.Point(183, 481);
+            this.dEndDate.Location = new System.Drawing.Point(177, 481);
             this.dEndDate.Name = "dEndDate";
             this.dEndDate.Size = new System.Drawing.Size(101, 20);
             this.dEndDate.TabIndex = 2;
@@ -83,7 +83,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(157, 484);
+            this.label2.Location = new System.Drawing.Point(154, 484);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 3;
@@ -124,7 +124,7 @@
             // 
             // txtID1
             // 
-            this.txtID1.Location = new System.Drawing.Point(351, 481);
+            this.txtID1.Location = new System.Drawing.Point(343, 481);
             this.txtID1.Name = "txtID1";
             this.txtID1.Size = new System.Drawing.Size(84, 20);
             this.txtID1.TabIndex = 7;
@@ -132,7 +132,7 @@
             // lblID1
             // 
             this.lblID1.AutoSize = true;
-            this.lblID1.Location = new System.Drawing.Point(290, 484);
+            this.lblID1.Location = new System.Drawing.Point(283, 484);
             this.lblID1.Name = "lblID1";
             this.lblID1.Size = new System.Drawing.Size(24, 13);
             this.lblID1.TabIndex = 8;
@@ -141,7 +141,7 @@
             // lblID2
             // 
             this.lblID2.AutoSize = true;
-            this.lblID2.Location = new System.Drawing.Point(441, 484);
+            this.lblID2.Location = new System.Drawing.Point(431, 484);
             this.lblID2.Name = "lblID2";
             this.lblID2.Size = new System.Drawing.Size(24, 13);
             this.lblID2.TabIndex = 9;
