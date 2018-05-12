@@ -85,5 +85,59 @@ namespace SieuThiSach.AllForm
         {
             loadData();
         }
+
+        private void txtDvi_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F2:
+                    e.SuppressKeyPress = true;
+                    using (frmChiNhanh f = new frmChiNhanh())
+                    {
+                        if (f.ShowDialog() == DialogResult.OK)
+                        {
+                            txtDvi.Text = f.DVI_ID;
+                        }
+                        DesignForm.vForm = this;
+                    }
+                    break;
+            }
+        }
+
+        private void txtMaHang_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F2:
+                    e.SuppressKeyPress = true;
+                    using (frmMatHang f = new frmMatHang())
+                    {
+                        if (f.ShowDialog() == DialogResult.OK)
+                        {
+                            txtMaHang.Text = f.MH_ID;
+                        }
+                        DesignForm.vForm = this;
+                    }
+                    break;
+            }
+        }
+
+        private void txtNhom_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F2:
+                    e.SuppressKeyPress = true;
+                    using (frmNhomhang f = new frmNhomhang())
+                    {
+                        if (f.ShowDialog() == DialogResult.OK)
+                        {
+                            txtNhom.Text = f.NH_ID;
+                        }
+                        DesignForm.vForm = this;
+                    }
+                    break;
+            }
+        }
     }
 }
