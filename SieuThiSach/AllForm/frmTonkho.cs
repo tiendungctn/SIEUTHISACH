@@ -1,4 +1,5 @@
 ﻿using SieuThiSach.DAL;
+using SieuThiSach.SystemForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -138,6 +139,33 @@ namespace SieuThiSach.AllForm
                     }
                     break;
             }
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            frmHistory htr = new frmHistory();
+            htr.TB_History = "V_CT_HD_MH_HISTORY ";
+            htr._Filter = " where MA_HANG = '" + dataGridView1.CurrentRow.Cells["MA_HANG"].Value.ToString() + "'";
+            #region "Load Tên Cột HISTORY"
+            htr.namecolumns.Add("Mã Đơn Vị");
+            htr.namecolumns.Add("Mã Hóa Đơn");
+            htr.namecolumns.Add("Ngày tạo");
+            htr.namecolumns.Add("Mã hàng");
+            htr.namecolumns.Add("Tên hàng");
+            htr.namecolumns.Add("Mã khách hàng");
+            htr.namecolumns.Add("Tên khách hàng");
+            htr.namecolumns.Add("Số lượng");
+            htr.namecolumns.Add("Đơn giá");
+            htr.namecolumns.Add("Chiết khấu");
+            htr.namecolumns.Add("Tạm tính");
+            htr.namecolumns.Add("Loại");
+            htr.namecolumns.Add("Trạng thái");
+            #endregion
+            #region "LOAD ID FIND"
+            htr.ID1 = "MA_DVI";
+            htr.ID2 = "MA_HD";
+            #endregion
+            htr.ShowDialog();
         }
     }
 }

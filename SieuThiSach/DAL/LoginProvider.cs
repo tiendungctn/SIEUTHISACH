@@ -19,7 +19,7 @@ namespace SieuThiSach.DAL
             string result = "Lỗi đăng nhập.";
             DataAccess dbA = new DataAccess();
             MyApp.MSSQLConnectionString = MyApp.GetLoginMSSQL(host, servicename, userdb, pwddb);
-            //dbA.ConnectionString = MyApp.MSSQLConnectionString;
+            dbA.ConnectionString = MyApp.MSSQLConnectionString;
             string sql = "SELECT code From [User] WHERE code='" + username + "' and SDUNG = 'C'";
             List<KeyValuePair<string, object>> ParaMeterCollection = new List<KeyValuePair<string, object>>();
             try

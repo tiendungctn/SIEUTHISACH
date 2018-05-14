@@ -1,4 +1,5 @@
-﻿using SieuThiSach.DAL;
+﻿using SieuThiSach.AllForm;
+using SieuThiSach.DAL;
 using SieuThiSach.SO;
 using System;
 using System.Collections.Generic;
@@ -128,6 +129,27 @@ namespace SieuThiSach.SystemForm
                 else btnBack.Enabled = true;
             }
             
+        }
+
+        private void lstHistory_DoubleClick(object sender, EventArgs e)
+        {
+            if (TB_History == "V_DS_Hoa_Don " || TB_History == "V_CT_HD_MH_HISTORY ")
+            {
+                string MA_HD = "";
+                string MA_DVI = "";
+                string LOAI = "";
+                foreach (ListViewItem items in lstHistory.SelectedItems)
+                {
+                    MA_HD = items.SubItems[1].Text;
+                    MA_DVI = items.SubItems[0].Text;
+                    LOAI = items.SubItems[11].Text;
+                }
+                frmHD callForm = new frmHD();
+                callForm.MA_HD = MA_HD;
+                callForm.MA_DVI = MA_DVI;
+                callForm.LOAI = LOAI;
+                callForm.ShowDialog();
+            }
         }
     }
 }

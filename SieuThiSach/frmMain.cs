@@ -165,9 +165,11 @@ namespace SieuThiSach
             htr.namecolumns.Add("Tên nhân viên");
             htr.namecolumns.Add("Mã khách hàng");
             htr.namecolumns.Add("Tên khách hàng");
+            htr.namecolumns.Add("Tạm tính");
             htr.namecolumns.Add("Chiết khấu");
+            htr.namecolumns.Add("Thành tiền");
             htr.namecolumns.Add("Trạng thái");
-            htr.namecolumns.Add("Loại HĐ");
+            htr.namecolumns.Add("Loại");
             #endregion
             #region "LOAD ID FIND"
             htr.ID1 = "MA_DVI";

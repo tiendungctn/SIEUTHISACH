@@ -716,6 +716,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(720, 552);
+            this.ControlBox = false;
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblDiaChi);
             this.Controls.Add(this.lblSDT);

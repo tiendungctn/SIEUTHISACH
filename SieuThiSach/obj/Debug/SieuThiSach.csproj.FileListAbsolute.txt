@@ -21,3 +21,4 @@ D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.csproj.GenerateResource.Cache
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.exe
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.pdb
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmTonkho.resources
+D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmBaoCao.resources

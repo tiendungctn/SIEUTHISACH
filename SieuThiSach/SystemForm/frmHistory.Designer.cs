@@ -113,6 +113,7 @@
             this.lstHistory.TabIndex = 5;
             this.lstHistory.UseCompatibleStateImageBehavior = false;
             this.lstHistory.View = System.Windows.Forms.View.Details;
+            this.lstHistory.DoubleClick += new System.EventHandler(this.lstHistory_DoubleClick);
             // 
             // txtID2
             // 
@@ -164,7 +165,7 @@
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 23);
             this.btnNext.TabIndex = 11;
-            this.btnNext.Text = "Next";
+            this.btnNext.Text = "Next >>";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
@@ -174,7 +175,7 @@
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 11;
-            this.btnBack.Text = "Back";
+            this.btnBack.Text = "<< Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 

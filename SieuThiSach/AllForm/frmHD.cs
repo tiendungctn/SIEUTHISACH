@@ -24,6 +24,8 @@ namespace SieuThiSach.AllForm
         DesignForm DesFor = new DesignForm();
         DocSoTien doctien = new DocSoTien();
         public string LOAI = "";
+        public string MA_HD = "";
+        public string MA_DVI = "";
 
         private void ViewMode()
         {
@@ -48,7 +50,6 @@ namespace SieuThiSach.AllForm
                     lblNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
                     lblTenNV.Text = DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'");
                     lblDv.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + UserInformation.MaDV + "'");
-                    lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
                     break;
                 case "ADD_MH":
                     txtMaMH.Text = "";
@@ -59,11 +60,10 @@ namespace SieuThiSach.AllForm
                     break;
                 case "EDIT_MH":
                     txtMaMH.Text = dataGridView1.CurrentRow.Cells["MA_HANG"].Value.ToString();
-                    if (LOAI == "X") txtSoluongMH.Text = dataGridView1.CurrentRow.Cells["SL_XUAT"].Value.ToString();
-                    else if (LOAI == "N") txtSoluongMH.Text = dataGridView1.CurrentRow.Cells["SL_NHAP"].Value.ToString();
-
-                    txtDongiaMH.Text = dataGridView1.CurrentRow.Cells["DON_GIA"].Value.ToString();
-                    txtTienChietkhauMH.Text = dataGridView1.CurrentRow.Cells["CHIET_KHAU"].Value.ToString();
+                    //if (LOAI == "X") txtSoluongMH.Text = dataGridView1.CurrentRow.Cells["SL_XUAT"].Value.ToString();
+                    //else if (LOAI == "N") txtSoluongMH.Text = dataGridView1.CurrentRow.Cells["SL_NHAP"].Value.ToString();
+                    //txtDongiaMH.Text = dataGridView1.CurrentRow.Cells["DON_GIA"].Value.ToString();
+                    //txtTienChietkhauMH.Text = dataGridView1.CurrentRow.Cells["CHIET_KHAU"].Value.ToString();
                     break;
                 default:
                     break;
@@ -75,17 +75,20 @@ namespace SieuThiSach.AllForm
             bool LoaiX = false; bool LoaiN = false;
             if (LOAI == "X") LoaiX = true;
             else if (LOAI == "N") LoaiN = true;
-            string _Filter = "where MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "' and SDUNG = 'C'";
+            string _Filter = "where MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + MA_DVI + "' and SDUNG = 'C'";
             DatLoa.loadData("*", "V_CT_HD " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", false, "Mã DVI");
             DesFor.EditCollum(ref dataGridView1, "MA_HD", false, "Mã HD");
+            DesFor.EditCollum(ref dataGridView1, "NGAY_VIET_HD", false, "Ngày");
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã Hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_HANG", true, "Tên Hàng");
             DesFor.EditCollum(ref dataGridView1, "SL_NHAP", LoaiN, "Số lượng");
             DesFor.EditCollum(ref dataGridView1, "SL_XUAT", LoaiX, "Số lượng");
             DesFor.EditCollum(ref dataGridView1, "DON_GIA", true, "Đơn giá");
+            DesFor.EditCollum(ref dataGridView1, "TAM_TINH_O", false, "Số Tiền Gốc");
             DesFor.EditCollum(ref dataGridView1, "CHIET_KHAU", true, "Triết Khấu");
             DesFor.EditCollum(ref dataGridView1, "TAM_TINH", true, "Tạm Tính");
+            DesFor.EditCollum(ref dataGridView1, "LOAI", false, "Loại");
             DesFor.EditCollum(ref dataGridView1, "SDUNG", false, "SDUNG");
         }
 
@@ -164,8 +167,13 @@ namespace SieuThiSach.AllForm
             if (_ok > 0)
             {
                 _pMode = "";
-                ViewMode();
-                loadData();
+                if (MA_HD == "")
+                {
+                    lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
+                    ViewMode();
+                    loadData();
+                }
+                else lblMaHD.Text = MA_HD;
             }
         }
 
@@ -185,12 +193,16 @@ namespace SieuThiSach.AllForm
         private void frmHD_Load(object sender, EventArgs e)
         {
             ViewMode();
+            if (MA_HD == "") lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
+            else lblMaHD.Text = MA_HD;
+            if (MA_DVI == "") MA_DVI = UserInformation.MaDV;
+            txtMaKH.Text =  DatLoa.NameReturn("KHACH_HANG", "TB_HOA_DON", "MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + MA_DVI + "'");
             loadData();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txtTongtienMH.Text) > 0) AddNewMH();
+            if (txtTongtienMH.Text != "" && Convert.ToInt32(txtTongtienMH.Text) > 0) AddNewMH();
             else
                 MessageBox.Show("Có lỗi nhập mặt hàng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -224,8 +236,13 @@ namespace SieuThiSach.AllForm
             {
                 DeleteHD();
                 _pMode = "";
-                ViewMode();
-                loadData();
+                if (MA_HD == "")
+                {
+                    lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
+                    ViewMode();
+                    loadData();
+                }
+                else lblMaHD.Text = MA_HD;
             }      
         }
 
@@ -389,7 +406,7 @@ namespace SieuThiSach.AllForm
                 else
                 {
                     if (LOAI == "X") txtSoluongMH.Text = DatLoa.NameReturn("SL_XUAT", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
-                    else if (LOAI == "N") txtSoluongMH.Text = DatLoa.NameReturn("XL_NHAP", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
+                    else if (LOAI == "N") txtSoluongMH.Text = DatLoa.NameReturn("SL_NHAP", "TB_CT_HOA_DON", "MA_HANG = '" + txtMaMH.Text + "' and MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + UserInformation.MaDV + "'");
 
                 }
 
