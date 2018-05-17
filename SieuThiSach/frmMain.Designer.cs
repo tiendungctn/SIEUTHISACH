@@ -55,6 +55,7 @@
             this.MnuKho = new System.Windows.Forms.ToolStripMenuItem();
             this.ItemMnuKho_TonKho = new System.Windows.Forms.ToolStripMenuItem();
             this.ItemMnuKho_ChuyenKho = new System.Windows.Forms.ToolStripMenuItem();
+            this.thanhLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuBC = new System.Windows.Forms.ToolStripMenuItem();
             this.ItemMnuBC_KQKinhDoanh = new System.Windows.Forms.ToolStripMenuItem();
             this.ItemMnuBC_BXH = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,6 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.phiênBảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nhữngNgườiPhátTriểnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thanhLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -267,15 +267,21 @@
             // ItemMnuKho_TonKho
             // 
             this.ItemMnuKho_TonKho.Name = "ItemMnuKho_TonKho";
-            this.ItemMnuKho_TonKho.Size = new System.Drawing.Size(152, 22);
+            this.ItemMnuKho_TonKho.Size = new System.Drawing.Size(138, 22);
             this.ItemMnuKho_TonKho.Text = "Tồn kho";
             this.ItemMnuKho_TonKho.Click += new System.EventHandler(this.ItemMnuKho_TonKho_Click);
             // 
             // ItemMnuKho_ChuyenKho
             // 
             this.ItemMnuKho_ChuyenKho.Name = "ItemMnuKho_ChuyenKho";
-            this.ItemMnuKho_ChuyenKho.Size = new System.Drawing.Size(152, 22);
+            this.ItemMnuKho_ChuyenKho.Size = new System.Drawing.Size(138, 22);
             this.ItemMnuKho_ChuyenKho.Text = "Chuyển kho";
+            // 
+            // thanhLýToolStripMenuItem
+            // 
+            this.thanhLýToolStripMenuItem.Name = "thanhLýToolStripMenuItem";
+            this.thanhLýToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.thanhLýToolStripMenuItem.Text = "Thanh lý";
             // 
             // MnuBC
             // 
@@ -291,6 +297,7 @@
             this.ItemMnuBC_KQKinhDoanh.Name = "ItemMnuBC_KQKinhDoanh";
             this.ItemMnuBC_KQKinhDoanh.Size = new System.Drawing.Size(221, 22);
             this.ItemMnuBC_KQKinhDoanh.Text = "Báo cáo kết quả kinh doanh";
+            this.ItemMnuBC_KQKinhDoanh.Click += new System.EventHandler(this.ItemMnuBC_KQKinhDoanh_Click);
             // 
             // ItemMnuBC_BXH
             // 
@@ -346,12 +353,6 @@
             this.nhữngNgườiPhátTriểnToolStripMenuItem.Name = "nhữngNgườiPhátTriểnToolStripMenuItem";
             this.nhữngNgườiPhátTriểnToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.nhữngNgườiPhátTriểnToolStripMenuItem.Text = "Những người phát triển";
-            // 
-            // thanhLýToolStripMenuItem
-            // 
-            this.thanhLýToolStripMenuItem.Name = "thanhLýToolStripMenuItem";
-            this.thanhLýToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.thanhLýToolStripMenuItem.Text = "Thanh lý";
             // 
             // frmMain
             // 

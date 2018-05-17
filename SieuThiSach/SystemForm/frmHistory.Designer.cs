@@ -39,7 +39,7 @@
             this.txtID1 = new System.Windows.Forms.TextBox();
             this.lblID1 = new System.Windows.Forms.Label();
             this.lblID2 = new System.Windows.Forms.Label();
-            this.txtTest = new System.Windows.Forms.TextBox();
+            this.txtPage = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -148,16 +148,16 @@
             this.lblID2.TabIndex = 9;
             this.lblID2.Text = "ID2";
             // 
-            // txtTest
+            // txtPage
             // 
-            this.txtTest.Location = new System.Drawing.Point(547, 510);
-            this.txtTest.Name = "txtTest";
-            this.txtTest.ReadOnly = true;
-            this.txtTest.Size = new System.Drawing.Size(18, 20);
-            this.txtTest.TabIndex = 10;
-            this.txtTest.Text = "1";
-            this.txtTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtTest.TextChanged += new System.EventHandler(this.txtTest_TextChanged);
+            this.txtPage.Location = new System.Drawing.Point(547, 510);
+            this.txtPage.Name = "txtPage";
+            this.txtPage.ReadOnly = true;
+            this.txtPage.Size = new System.Drawing.Size(18, 20);
+            this.txtPage.TabIndex = 10;
+            this.txtPage.Text = "1";
+            this.txtPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPage.TextChanged += new System.EventHandler(this.txtTest_TextChanged);
             // 
             // btnNext
             // 
@@ -200,7 +200,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.txtTest);
+            this.Controls.Add(this.txtPage);
             this.Controls.Add(this.lblID2);
             this.Controls.Add(this.lblID1);
             this.Controls.Add(this.txtID1);
@@ -239,7 +239,7 @@
         private System.Windows.Forms.TextBox txtID1;
         private System.Windows.Forms.Label lblID1;
         private System.Windows.Forms.Label lblID2;
-        private System.Windows.Forms.TextBox txtTest;
+        private System.Windows.Forms.TextBox txtPage;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label label3;

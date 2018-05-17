@@ -183,5 +183,11 @@ namespace SieuThiSach
             frmTonkho callForm = new frmTonkho();
             callForm.ShowDialog();
         }
+
+        private void ItemMnuBC_KQKinhDoanh_Click(object sender, EventArgs e)
+        {
+            frmBaoCao callForm = new frmBaoCao();
+            callForm.ShowDialog();
+        }
     }
 }
