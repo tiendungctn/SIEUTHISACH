@@ -136,7 +136,7 @@ namespace SieuThiSach.AllForm
             else
             {
                 if (dataGridView1.Rows.Count > 0)
-                    sql = ham+ " '" + UserInformation.PQ +
+                    sql = ham + " '" + UserInformation.PQ +
                     "','" + UserInformation.MaDV +
                     "','" + lblMaHD.Text +
                     "','" + dataGridView1.CurrentRow.Cells["MA_HANG"].Value.ToString() +
@@ -196,7 +196,7 @@ namespace SieuThiSach.AllForm
             if (MA_HD == "") lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
             else lblMaHD.Text = MA_HD;
             if (MA_DVI == "") MA_DVI = UserInformation.MaDV;
-            txtMaKH.Text =  DatLoa.NameReturn("KHACH_HANG", "TB_HOA_DON", "MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + MA_DVI + "'");
+            txtMaKH.Text = DatLoa.NameReturn("KHACH_HANG", "TB_HOA_DON", "MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + MA_DVI + "'");
             loadData();
         }
 
@@ -243,7 +243,7 @@ namespace SieuThiSach.AllForm
                     loadData();
                 }
                 else lblMaHD.Text = MA_HD;
-            }      
+            }
         }
 
         private void frmHD_FormClosing(object sender, FormClosingEventArgs e)
@@ -316,14 +316,14 @@ namespace SieuThiSach.AllForm
                 txtKhachtra.Enabled = true;
                 txtTongtienHD.Text = Convert.ToString(Convert.ToInt64(txtTamtinhHD.Text) -
                                             Convert.ToInt64(txtTienChieuKhauHD.Text));
-            }            
+            }
         }
 
         private void txtTongtienHD_TextChanged(object sender, EventArgs e)
         {
             if (txtTongtienHD.Text == "") txtTongtienHD.Text = "0";
             if (txtKhachtra.Text == "") txtKhachtra.Text = "0";
-            txtConlai.Text = Convert.ToString(Convert.ToInt64(txtKhachtra.Text) - 
+            txtConlai.Text = Convert.ToString(Convert.ToInt64(txtKhachtra.Text) -
                                 Convert.ToInt64(txtTongtienHD.Text));
             if (txtTongtienHD.Text != "" & txtTongtienHD.Text != "0")
                 lblTienThanhChu.Text = doctien.ChuyenSo(txtTongtienHD.Text);
@@ -365,8 +365,15 @@ namespace SieuThiSach.AllForm
             {
                 case Keys.F2:
                     e.SuppressKeyPress = true;
+                    if (LOAI == "N" && DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtMaKH.Text + "'") == "")
+                    {
+                        MessageBox.Show("Nhập nhà cung cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     using (frmMatHang f = new frmMatHang())
                     {
+                        if (LOAI == "N")
+                            f._Filter = " where MA_DVI = '" + UserInformation.MaDV + "' and NHA_CC = '" + txtMaKH.Text + "' and SDUNG = 'C' ";
                         if (f.ShowDialog() == DialogResult.OK)
                         {
                             txtMaMH.Text = f.MH_ID;
@@ -546,14 +553,23 @@ namespace SieuThiSach.AllForm
             if (e.Control && e.KeyCode == Keys.N) btnHuy.PerformClick();
             else if (e.Control && e.KeyCode == Keys.E) btnNhapLai.PerformClick();
             else if (e.Control && e.KeyCode == Keys.F)
+            {
+                if (LOAI == "N" && DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtMaKH.Text + "'") == "")
+                {
+                    MessageBox.Show("Nhập nhà cung cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 using (frmMatHang f = new frmMatHang())
                 {
+                    if (LOAI == "N")
+                        f._Filter = " where MA_DVI = '" + UserInformation.MaDV + "' and NHA_CC = '" + txtMaKH.Text + "' and SDUNG = 'C' ";
                     if (f.ShowDialog() == DialogResult.OK)
                     {
                         txtMaMH.Text = f.MH_ID;
                     }
                     DesignForm.vForm = this;
                 }
+            }
             else if (e.KeyCode == Keys.Escape)
             {
                 if (txtMaMH.Text != "") btnTralai.PerformClick();
@@ -562,7 +578,7 @@ namespace SieuThiSach.AllForm
                     if (dataGridView1.Rows.Count > 0) btnHuy.PerformClick();
                     else btnExit.PerformClick();
                 }
-                    
+
             }
             else if (e.KeyCode == Keys.Enter)
             {

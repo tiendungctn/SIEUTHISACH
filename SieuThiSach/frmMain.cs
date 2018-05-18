@@ -121,12 +121,6 @@ namespace SieuThiSach
             callForm.ShowDialog();
         }
 
-        private void ItemMnuDanhMuc_DSHANGHOA_Click(object sender, EventArgs e)
-        {
-            frmMatHang callForm = new frmMatHang();
-            callForm.ShowDialog();
-        }
-
         private void ItemMnuDanhMuc_CHINHANH_Click(object sender, EventArgs e)
         {
             frmChiNhanh callForm = new frmChiNhanh();
@@ -187,6 +181,12 @@ namespace SieuThiSach
         private void ItemMnuBC_KQKinhDoanh_Click(object sender, EventArgs e)
         {
             frmBaoCao callForm = new frmBaoCao();
+            callForm.ShowDialog();
+        }
+
+        private void ItemMnuDanhMuc_HANGHOA_Click(object sender, EventArgs e)
+        {
+            frmMatHang callForm = new frmMatHang();
             callForm.ShowDialog();
         }
     }

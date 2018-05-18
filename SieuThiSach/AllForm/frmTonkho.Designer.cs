@@ -118,9 +118,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.label2.Location = new System.Drawing.Point(286, 477);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 17);
+            this.label2.Size = new System.Drawing.Size(65, 17);
             this.label2.TabIndex = 16;
-            this.label2.Text = "Mã hàng:";
+            this.label2.Text = "Mã sách:";
             // 
             // txtMaHang
             // 

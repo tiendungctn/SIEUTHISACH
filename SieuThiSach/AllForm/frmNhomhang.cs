@@ -36,7 +36,7 @@ namespace SieuThiSach.AllForm
         private void AddNew()
         {
             string sql = "NHOM_HANG_NHAP N'" + UserInformation.PQ +
-                "','" + TxtName.Text.Trim() + "'";
+                "',N'" + TxtName.Text.Trim() + "'";
 
             int _ok = DatLoa.AddNew(sql);
             if (_ok > 0)

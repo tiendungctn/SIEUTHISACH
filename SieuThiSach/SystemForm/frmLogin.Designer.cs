@@ -91,7 +91,7 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(108, 20);
             this.txtUserName.TabIndex = 37;
-            this.txtUserName.Text = "ADMINIT";
+            this.txtUserName.Text = "HUYENBEO";
             this.txtUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserName_KeyPress);
             // 
             // label1

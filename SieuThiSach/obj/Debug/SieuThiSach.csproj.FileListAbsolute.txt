@@ -1,13 +1,15 @@
 D:\SieuThiSach\SieuThiSach\bin\Debug\SieuThiSach.exe.config
-D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.csproj.ResolveComReference.cache
 D:\SieuThiSach\SieuThiSach\bin\Debug\SieuThiSach.exe
 D:\SieuThiSach\SieuThiSach\bin\Debug\SieuThiSach.pdb
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.csprojResolveAssemblyReference.cache
+D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.csproj.ResolveComReference.cache
+D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmBaoCao.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmChiNhanh.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmHD.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmMatHang.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmNhomhang.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmPhanQuyen.resources
+D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmTonkho.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmExecl.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmKhachHang.resources
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.frmUsers.resources
@@ -20,5 +22,3 @@ D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.SystemForm.frmPassword.resource
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.csproj.GenerateResource.Cache
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.exe
 D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.pdb
-D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmTonkho.resources
-D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmBaoCao.resources
