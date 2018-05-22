@@ -375,7 +375,7 @@ namespace SieuThiSach.AllForm
             BindingSource gdSource = new BindingSource();
             gdSource = (BindingSource)this.dataGridView1.DataSource;
             MyReport.SetDataSource(gdSource.DataSource);
-            MyReport.SetParameterValue("Nguoi_Sdung", UserInformation.MaNV);
+            MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
 
             frmReportViewer f = new frmReportViewer();
             f.crystalReportViewer1.ReportSource = MyReport;

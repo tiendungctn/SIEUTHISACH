@@ -58,8 +58,8 @@
             this.lblUserID = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cmsMENU = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.test1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.test2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SMnuItemEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.SMnuItemHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.grButton1.SuspendLayout();
             this.grDetail.SuspendLayout();
@@ -415,24 +415,24 @@
             // cmsMENU
             // 
             this.cmsMENU.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.test1ToolStripMenuItem,
-            this.test2ToolStripMenuItem});
+            this.SMnuItemEdit,
+            this.SMnuItemHistory});
             this.cmsMENU.Name = "cmsMENU";
-            this.cmsMENU.Size = new System.Drawing.Size(112, 48);
+            this.cmsMENU.Size = new System.Drawing.Size(153, 70);
             // 
-            // test1ToolStripMenuItem
+            // SMnuItemEdit
             // 
-            this.test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
-            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
-            this.test1ToolStripMenuItem.Text = "Sửa";
-            this.test1ToolStripMenuItem.Click += new System.EventHandler(this.test1ToolStripMenuItem_Click);
+            this.SMnuItemEdit.Name = "SMnuItemEdit";
+            this.SMnuItemEdit.Size = new System.Drawing.Size(152, 22);
+            this.SMnuItemEdit.Text = "Sửa";
+            this.SMnuItemEdit.Click += new System.EventHandler(this.SMnuItemEdit_Click);
             // 
-            // test2ToolStripMenuItem
+            // SMnuItemHistory
             // 
-            this.test2ToolStripMenuItem.Name = "test2ToolStripMenuItem";
-            this.test2ToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
-            this.test2ToolStripMenuItem.Text = "Lịch sử";
-            this.test2ToolStripMenuItem.Click += new System.EventHandler(this.test2ToolStripMenuItem_Click);
+            this.SMnuItemHistory.Name = "SMnuItemHistory";
+            this.SMnuItemHistory.Size = new System.Drawing.Size(152, 22);
+            this.SMnuItemHistory.Text = "Lịch sử";
+            this.SMnuItemHistory.Click += new System.EventHandler(this.SMnuItemHistory_Click);
             // 
             // frmMatHang
             // 
@@ -494,8 +494,8 @@
         private System.Windows.Forms.TextBox TxtNhomHang;
         private System.Windows.Forms.TextBox TxtNhaCC;
         private System.Windows.Forms.ContextMenuStrip cmsMENU;
-        private System.Windows.Forms.ToolStripMenuItem test1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem test2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SMnuItemEdit;
+        private System.Windows.Forms.ToolStripMenuItem SMnuItemHistory;
         private System.Windows.Forms.ToolTip toolTip1;
     }
 }

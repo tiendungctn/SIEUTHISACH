@@ -298,20 +298,20 @@ namespace SieuThiSach.AllForm
                                 #endregion
 
                                 #region Sinh dữ liệu
-                                //sheet.Columns[4].NumberFormat = "@";//chuyển về dạng text
+                                sheet.Columns[2].NumberFormat = "@";//chuyển về dạng text
                                 for (int i = 1; i <= dataGridView1.Rows.Count; i++)
                                 {
                                     for (int j = 1; j <= dataGridView1.Columns.Count; j++)
                                     {
                                         sheet.Cells[i + 2, j] = dataGridView1.Rows[i - 1].Cells[j - 1].Value.ToString();
                                         sheet.Cells[i + 2, j].Borders.weight = Excel.XlBorderWeight.xlThin;
-                                        if (j == 10) // tinh chỉnh cột 4
+                                        if (j == 11) // tinh chỉnh cột 10
                                         {
-                                            sheet.Cells[i + 2, j].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter; //căn lề phải
+                                            sheet.Cells[i + 2, j].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter; //căn giữa
                                         }
                                     }
                                 }
-                                sheet.Columns[6].Delete(); sheet.Columns[4].Delete(); sheet.Columns[1].Delete();
+                                sheet.Columns[7].Delete(); sheet.Columns[5].Delete(); sheet.Columns[4].Delete(); sheet.Columns[1].Delete();//Xóa cột không cần
                                 #endregion
 
                                 wb.SaveAs(sfd.FileName);
@@ -381,7 +381,8 @@ namespace SieuThiSach.AllForm
             BindingSource gdSource = new BindingSource();
             gdSource = (BindingSource)this.dataGridView1.DataSource;
             MyReport.SetDataSource(gdSource.DataSource);
-            MyReport.SetParameterValue("Nguoi_Sdung", UserInformation.MaNV);
+            MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+            MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + UserInformation.MaDV + "'"));
 
             frmReportViewer f = new frmReportViewer();
             f.crystalReportViewer1.ReportSource = MyReport;
@@ -483,12 +484,12 @@ namespace SieuThiSach.AllForm
             TxtGiaBan.Text = Convert.ToString(Convert.ToInt64(TxtGiaNhap.Text) + Convert.ToInt64(TxtGiaNhap.Text) / 10);
         }
 
-        private void test1ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SMnuItemEdit_Click(object sender, EventArgs e)
         {
             btnEdit.PerformClick();
         }
 
-        private void test2ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SMnuItemHistory_Click(object sender, EventArgs e)
         {
             frmHistory htr = new frmHistory();
             htr.TB_History = "TB_MAT_HANG_HISTORY ";
