@@ -1,4 +1,5 @@
-﻿using SieuThiSach.DAL;
+﻿using SieuThiSach.CrystalReport;
+using SieuThiSach.DAL;
 using SieuThiSach.SO;
 using SieuThiSach.SystemForm;
 using System;
@@ -366,6 +367,19 @@ namespace SieuThiSach.AllForm
                     }
                 }
             }
+        }
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            crpDsKhachHang MyReport = new crpDsKhachHang();
+
+            BindingSource gdSource = new BindingSource();
+            gdSource = (BindingSource)this.dataGridView1.DataSource;
+            MyReport.SetDataSource(gdSource.DataSource);
+            MyReport.SetParameterValue("Nguoi_Sdung", UserInformation.MaNV);
+
+            frmReportViewer f = new frmReportViewer();
+            f.crystalReportViewer1.ReportSource = MyReport;
+            f.ShowDialog();
         }
 
         //Xử lý trên key trên form-----------------------------------------------------------

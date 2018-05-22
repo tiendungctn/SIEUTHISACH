@@ -262,7 +262,11 @@
             this.ClientSize = new System.Drawing.Size(1107, 676);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmBaoCao";
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Báo cáo Doanh thu";
             this.Load += new System.EventHandler(this.frmBaoCao_Load);
