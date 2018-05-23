@@ -189,11 +189,31 @@ namespace SieuThiSach.AllForm
             MyReport.SetParameterValue("Nhan_Vien", lblTenNV.Text);
             MyReport.SetParameterValue("Ma_HD", lblMaHD.Text);
             MyReport.SetParameterValue("Chi_Nhanh", lblDv.Text);
-            MyReport.SetParameterValue("Tam_Tinh", txtTamtinhHD.Text);
-            MyReport.SetParameterValue("Chiet_Khau", txtTienChieuKhauHD.Text);
-            MyReport.SetParameterValue("Tong_Tien", txtTongtienHD.Text);
-            MyReport.SetParameterValue("Khach_Tra", txtKhachtra.Text);
-            MyReport.SetParameterValue("Con_Lai", txtConlai.Text);
+            if (lblTenKH.Text != "")
+                MyReport.SetParameterValue("Khach_Hang", lblTenKH.Text);
+            else
+                MyReport.SetParameterValue("Khach_Hang", "Khách vãng lai");
+            MyReport.SetParameterValue("SDT", lblSDT.Text);
+            //Tính tạm tính
+            int tamtinh = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                tamtinh = tamtinh + Convert.ToInt32(dataGridView1.Rows[i].Cells["TAM_TINH_O"].Value.ToString());
+            }
+            MyReport.SetParameterValue("Tam_Tinh", tamtinh);
+            //__________________________________________________________________
+            //Tính chiết khấu
+            int chietkhau = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                chietkhau = chietkhau + Convert.ToInt32(dataGridView1.Rows[i].Cells["CHIET_KHAU"].Value.ToString());
+            }
+            chietkhau = chietkhau + Convert.ToInt32(txtTienChieuKhauHD.Text);
+            MyReport.SetParameterValue("Chiet_Khau", chietkhau);
+            //__________________________________________________________________
+            MyReport.SetParameterValue("Tong_Tien", Convert.ToInt32(txtTongtienHD.Text));
+            MyReport.SetParameterValue("Khach_Tra", Convert.ToInt32(txtKhachtra.Text));
+            MyReport.SetParameterValue("Con_Lai", Convert.ToInt32(txtConlai.Text));
 
             frmReportViewer f = new frmReportViewer();
             f.crystalReportViewer1.ReportSource = MyReport;
