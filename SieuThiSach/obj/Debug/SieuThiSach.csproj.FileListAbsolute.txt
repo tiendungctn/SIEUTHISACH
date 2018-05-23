@@ -42,5 +42,3 @@ D:\Văn bản, học tập\OneDrive\SieuThiSach\SieuThiSach\bin\Debug\ShockwaveF
 D:\Văn bản, học tập\OneDrive\SieuThiSach\SieuThiSach\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 D:\Văn bản, học tập\OneDrive\SieuThiSach\SieuThiSach\bin\Debug\stdole.dll
 D:\Văn bản, học tập\OneDrive\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.AllForm.frmReportViewer.resources
-D:\SieuThiSach\SieuThiSach\bin\Debug\SieuThiSach.exe.config
-D:\SieuThiSach\SieuThiSach\obj\Debug\SieuThiSach.csproj.ResolveComReference.cache

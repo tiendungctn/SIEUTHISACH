@@ -218,6 +218,26 @@ namespace SieuThiSach.AllForm
             if (MA_HD == "") lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
             else lblMaHD.Text = MA_HD;
             if (MA_DVI == "") MA_DVI = UserInformation.MaDV;
+
+            if (LOAI == "X")
+            {
+                Label32.Visible = true;
+                txtKhachtra.Visible = true;
+                Label33.Visible = true;
+                Label34.Visible = true;
+                txtConlai.Visible = true;
+                Label35.Visible = true;
+            }
+            else if (LOAI == "N")
+            {
+                Label32.Visible = false;
+                txtKhachtra.Visible = false;
+                Label33.Visible = false;
+                Label34.Visible = false;
+                txtConlai.Visible = false;
+                Label35.Visible = false;
+            }
+
             ViewMode();
             txtMaKH.Text = DatLoa.NameReturn("KHACH_HANG", "TB_HOA_DON", "MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + MA_DVI + "'");
             loadData();
