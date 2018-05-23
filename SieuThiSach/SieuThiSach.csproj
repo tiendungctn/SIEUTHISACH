@@ -101,11 +101,22 @@
       <DependentUpon>crpDsMatHang.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReport\crpHoaDon.cs">
+    <Compile Include="CrystalReport\crpHoaDonNhap.cs">
+      <DependentUpon>crpHoaDonNhap.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReport\crpHoaDonXuat.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>crpHoaDon.rpt</DependentUpon>
+      <DependentUpon>crpHoaDonXuat.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SIEU_THI_SACHDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -208,9 +219,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpDsMatHang.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReport\crpHoaDon.rpt">
+    <EmbeddedResource Include="CrystalReport\crpHoaDonNhap.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>crpHoaDon.cs</LastGenOutput>
+      <LastGenOutput>crpHoaDonNhap.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\crpHoaDonXuat.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpHoaDonXuat.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemForm\frmReportViewer.resx">
       <DependentUpon>frmReportViewer.cs</DependentUpon>
@@ -232,14 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="SystemForm\frmHistory.resx">
       <DependentUpon>frmHistory.cs</DependentUpon>
     </EmbeddedResource>
@@ -311,7 +321,12 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Thái-Hưng.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TH.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

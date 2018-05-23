@@ -16,14 +16,14 @@ namespace SieuThiSach.CrystalReport {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class crpHoaDon : ReportClass {
+    public class crpHoaDonNhap : ReportClass {
         
-        public crpHoaDon() {
+        public crpHoaDonNhap() {
         }
         
         public override string ResourceName {
             get {
-                return "crpHoaDon.rpt";
+                return "crpHoaDonNhap.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace SieuThiSach.CrystalReport {
         
         public override string FullResourceName {
             get {
-                return "SieuThiSach.CrystalReport.crpHoaDon.rpt";
+                return "SieuThiSach.CrystalReport.crpHoaDonNhap.rpt";
             }
             set {
                 // Do nothing
@@ -167,12 +167,28 @@ namespace SieuThiSach.CrystalReport {
                 return this.DataDefinition.ParameterFields[9];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Tien_Chu {
+            get {
+                return this.DataDefinition.ParameterFields[10];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_So_Luong {
+            get {
+                return this.DataDefinition.ParameterFields[11];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedcrpHoaDon : Component, ICachedReport {
+    public class CachedcrpHoaDonNhap : Component, ICachedReport {
         
-        public CachedcrpHoaDon() {
+        public CachedcrpHoaDonNhap() {
         }
         
         [Browsable(false)]
@@ -209,7 +225,7 @@ namespace SieuThiSach.CrystalReport {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            crpHoaDon rpt = new crpHoaDon();
+            crpHoaDonNhap rpt = new crpHoaDonNhap();
             rpt.Site = this.Site;
             return rpt;
         }

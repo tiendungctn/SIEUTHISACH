@@ -2,6 +2,7 @@
 using SieuThiSach.DAL;
 using SieuThiSach.Function;
 using SieuThiSach.SO;
+using SieuThiSach.SystemForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,6 +45,7 @@ namespace SieuThiSach.AllForm
                     txtTienChieuKhauHD.Enabled = false; txtTienChieuKhauHD.Text = "0";
                     txtKhachtra.Enabled = false; txtKhachtra.Text = "";
                     txtTongtienHD.Text = "0"; txtConlai.Text = "";
+                    txtTongSL.Text = "0";
 
                     if (LOAI == "X") lblTenPhieu.Text = "Phiếu Bán Hàng";
                     else if (LOAI == "N") lblTenPhieu.Text = "Phiếu Nhập Hàng";
@@ -168,7 +170,9 @@ namespace SieuThiSach.AllForm
             if (_ok > 0)
             {
                 _pMode = "";
-                PRINT();
+                if (LOAI == "X") PRINT_XUAT();
+                else if (LOAI == "N") PRINT_NHAP();
+
                 if (MA_HD == "")
                 {
                     lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
@@ -179,10 +183,9 @@ namespace SieuThiSach.AllForm
             }
         }
 
-        private void PRINT()
+        private void PRINT_XUAT()
         {
-            crpHoaDon MyReport = new crpHoaDon();
-
+            crpHoaDonXuat MyReport = new crpHoaDonXuat();
             BindingSource gdSource = new BindingSource();
             gdSource = (BindingSource)this.dataGridView1.DataSource;
             MyReport.SetDataSource(gdSource.DataSource);
@@ -214,7 +217,44 @@ namespace SieuThiSach.AllForm
             MyReport.SetParameterValue("Tong_Tien", Convert.ToInt32(txtTongtienHD.Text));
             MyReport.SetParameterValue("Khach_Tra", Convert.ToInt32(txtKhachtra.Text));
             MyReport.SetParameterValue("Con_Lai", Convert.ToInt32(txtConlai.Text));
+            MyReport.SetParameterValue("Tien_Chu", lblTienThanhChu.Text);
+            MyReport.SetParameterValue("So_Luong", txtTongSL.Text);
+            frmReportViewer f = new frmReportViewer();
+            f.crystalReportViewer1.ReportSource = MyReport;
+            f.ShowDialog();
+        }
 
+        private void PRINT_NHAP()
+        {
+            crpHoaDonNhap MyReport = new crpHoaDonNhap();
+            BindingSource gdSource = new BindingSource();
+            gdSource = (BindingSource)this.dataGridView1.DataSource;
+            MyReport.SetDataSource(gdSource.DataSource);
+            MyReport.SetParameterValue("Nhan_Vien", lblTenNV.Text);
+            MyReport.SetParameterValue("Ma_HD", lblMaHD.Text);
+            MyReport.SetParameterValue("Chi_Nhanh", lblDv.Text);
+            MyReport.SetParameterValue("Khach_Hang", lblTenKH.Text);
+            MyReport.SetParameterValue("SDT", lblSDT.Text);
+            //Tính tạm tính
+            int tamtinh = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                tamtinh = tamtinh + Convert.ToInt32(dataGridView1.Rows[i].Cells["TAM_TINH_O"].Value.ToString());
+            }
+            MyReport.SetParameterValue("Tam_Tinh", tamtinh);
+            //__________________________________________________________________
+            //Tính chiết khấu
+            int chietkhau = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                chietkhau = chietkhau + Convert.ToInt32(dataGridView1.Rows[i].Cells["CHIET_KHAU"].Value.ToString());
+            }
+            chietkhau = chietkhau + Convert.ToInt32(txtTienChieuKhauHD.Text);
+            MyReport.SetParameterValue("Chiet_Khau", chietkhau);
+            //__________________________________________________________________
+            MyReport.SetParameterValue("Tong_Tien", Convert.ToInt32(txtTongtienHD.Text));
+            MyReport.SetParameterValue("Tien_Chu", lblTienThanhChu.Text);
+            MyReport.SetParameterValue("So_Luong", txtTongSL.Text);
             frmReportViewer f = new frmReportViewer();
             f.crystalReportViewer1.ReportSource = MyReport;
             f.ShowDialog();
@@ -326,11 +366,15 @@ namespace SieuThiSach.AllForm
             if (dataGridView1.Rows.Count > 0)
             {
                 int tongtien = 0;
+                int tongsl = 0;
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     tongtien = tongtien + Convert.ToInt32(dataGridView1.Rows[i].Cells["TAM_TINH"].Value.ToString());
+                    if (LOAI == "X") tongsl = tongsl + Convert.ToInt32(dataGridView1.Rows[i].Cells["SL_XUAT"].Value.ToString());
+                    else if (LOAI == "N") tongsl = tongsl + Convert.ToInt32(dataGridView1.Rows[i].Cells["SL_NHAP"].Value.ToString());
                 }
                 txtTamtinhHD.Text = tongtien.ToString();
+                txtTongSL.Text = tongsl.ToString();
             }
 
         }

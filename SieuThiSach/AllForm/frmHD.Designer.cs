@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHD));
             this.txtMaKH = new System.Windows.Forms.TextBox();
             this.Label6 = new System.Windows.Forms.Label();
             this.lblTenPhieu = new System.Windows.Forms.Label();
@@ -44,6 +45,8 @@
             this.lblMaHD = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.GroupBox4 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTongSL = new System.Windows.Forms.TextBox();
             this.txtTyleChietKhauHD = new System.Windows.Forms.TextBox();
             this.Label23 = new System.Windows.Forms.Label();
             this.txtTienChieuKhauHD = new System.Windows.Forms.TextBox();
@@ -86,11 +89,13 @@
             this.lblSDT = new System.Windows.Forms.Label();
             this.lblDiaChi = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.GroupBox1.SuspendLayout();
             this.GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.GroupBox4.SuspendLayout();
             this.grMATHANG.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtMaKH
@@ -251,6 +256,8 @@
             // 
             // GroupBox4
             // 
+            this.GroupBox4.Controls.Add(this.label5);
+            this.GroupBox4.Controls.Add(this.txtTongSL);
             this.GroupBox4.Controls.Add(this.txtTyleChietKhauHD);
             this.GroupBox4.Controls.Add(this.Label23);
             this.GroupBox4.Controls.Add(this.txtTienChieuKhauHD);
@@ -274,6 +281,27 @@
             this.GroupBox4.TabIndex = 12;
             this.GroupBox4.TabStop = false;
             this.GroupBox4.Text = "Thông tin hóa đơn";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(102, 70);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(23, 16);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "sp";
+            // 
+            // txtTongSL
+            // 
+            this.txtTongSL.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtTongSL.Location = new System.Drawing.Point(65, 69);
+            this.txtTongSL.Name = "txtTongSL";
+            this.txtTongSL.ReadOnly = true;
+            this.txtTongSL.Size = new System.Drawing.Size(36, 20);
+            this.txtTongSL.TabIndex = 14;
+            this.txtTongSL.Text = "0";
+            this.txtTongSL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTyleChietKhauHD
             // 
@@ -329,10 +357,10 @@
             // txtTongtienHD
             // 
             this.txtTongtienHD.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtTongtienHD.Location = new System.Drawing.Point(66, 69);
+            this.txtTongtienHD.Location = new System.Drawing.Point(126, 69);
             this.txtTongtienHD.Name = "txtTongtienHD";
             this.txtTongtienHD.ReadOnly = true;
-            this.txtTongtienHD.Size = new System.Drawing.Size(144, 20);
+            this.txtTongtienHD.Size = new System.Drawing.Size(84, 20);
             this.txtTongtienHD.TabIndex = 1;
             this.txtTongtienHD.Text = "0";
             this.txtTongtienHD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -418,9 +446,9 @@
             this.Label29.AutoSize = true;
             this.Label29.Location = new System.Drawing.Point(7, 74);
             this.Label29.Name = "Label29";
-            this.Label29.Size = new System.Drawing.Size(55, 13);
+            this.Label29.Size = new System.Drawing.Size(35, 13);
             this.Label29.TabIndex = 0;
-            this.Label29.Text = "Tổng tiền:";
+            this.Label29.Text = "Tổng:";
             // 
             // Label21
             // 
@@ -710,6 +738,16 @@
             this.lblEmail.TabIndex = 20;
             this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(599, 374);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(81, 80);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmHD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -717,6 +755,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(720, 552);
             this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblDiaChi);
             this.Controls.Add(this.lblSDT);
@@ -741,7 +780,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Hóa đơn";
+            this.Text = "Công ty Cổ phần Phát hành sách Thái Nguyên";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmHD_FormClosing);
             this.Load += new System.EventHandler(this.frmHD_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHD_KeyDown);
@@ -754,6 +793,7 @@
             this.GroupBox4.PerformLayout();
             this.grMATHANG.ResumeLayout(false);
             this.grMATHANG.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -818,5 +858,8 @@
         internal System.Windows.Forms.Label lblSDT;
         internal System.Windows.Forms.Label lblDiaChi;
         internal System.Windows.Forms.Label lblEmail;
+        internal System.Windows.Forms.TextBox txtTongSL;
+        internal System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
