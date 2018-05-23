@@ -1,4 +1,5 @@
-﻿using SieuThiSach.DAL;
+﻿using SieuThiSach.CrystalReport;
+using SieuThiSach.DAL;
 using SieuThiSach.Function;
 using SieuThiSach.SO;
 using System;
@@ -49,7 +50,7 @@ namespace SieuThiSach.AllForm
 
                     lblNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
                     lblTenNV.Text = DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'");
-                    lblDv.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + UserInformation.MaDV + "'");
+                    lblDv.Text = DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + MA_DVI + "'");
                     break;
                 case "ADD_MH":
                     txtMaMH.Text = "";
@@ -167,6 +168,7 @@ namespace SieuThiSach.AllForm
             if (_ok > 0)
             {
                 _pMode = "";
+                PRINT();
                 if (MA_HD == "")
                 {
                     lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
@@ -175,6 +177,27 @@ namespace SieuThiSach.AllForm
                 }
                 else lblMaHD.Text = MA_HD;
             }
+        }
+
+        private void PRINT()
+        {
+            crpHoaDon MyReport = new crpHoaDon();
+
+            BindingSource gdSource = new BindingSource();
+            gdSource = (BindingSource)this.dataGridView1.DataSource;
+            MyReport.SetDataSource(gdSource.DataSource);
+            MyReport.SetParameterValue("Nhan_Vien", lblTenNV.Text);
+            MyReport.SetParameterValue("Ma_HD", lblMaHD.Text);
+            MyReport.SetParameterValue("Chi_Nhanh", lblDv.Text);
+            MyReport.SetParameterValue("Tam_Tinh", txtTamtinhHD.Text);
+            MyReport.SetParameterValue("Chiet_Khau", txtTienChieuKhauHD.Text);
+            MyReport.SetParameterValue("Tong_Tien", txtTongtienHD.Text);
+            MyReport.SetParameterValue("Khach_Tra", txtKhachtra.Text);
+            MyReport.SetParameterValue("Con_Lai", txtConlai.Text);
+
+            frmReportViewer f = new frmReportViewer();
+            f.crystalReportViewer1.ReportSource = MyReport;
+            f.ShowDialog();
         }
 
         private void DeleteHD()
@@ -192,10 +215,10 @@ namespace SieuThiSach.AllForm
 
         private void frmHD_Load(object sender, EventArgs e)
         {
-            ViewMode();
             if (MA_HD == "") lblMaHD.Text = DatLoa.CreatMAHD("HD_NHAP_WAIT", LOAI);
             else lblMaHD.Text = MA_HD;
             if (MA_DVI == "") MA_DVI = UserInformation.MaDV;
+            ViewMode();
             txtMaKH.Text = DatLoa.NameReturn("KHACH_HANG", "TB_HOA_DON", "MA_HD = '" + lblMaHD.Text + "' and MA_DVI = '" + MA_DVI + "'");
             loadData();
         }

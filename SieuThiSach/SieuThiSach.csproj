@@ -101,6 +101,12 @@
       <DependentUpon>crpDsMatHang.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport\crpHoaDon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpHoaDon.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SIEU_THI_SACHDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -201,6 +207,10 @@
     <EmbeddedResource Include="CrystalReport\crpDsMatHang.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpDsMatHang.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\crpHoaDon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpHoaDon.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemForm\frmReportViewer.resx">
       <DependentUpon>frmReportViewer.cs</DependentUpon>
