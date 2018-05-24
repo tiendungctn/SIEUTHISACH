@@ -89,12 +89,6 @@
     <Compile Include="AllForm\frmPhanQuyen.Designer.cs">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReport\crpBC_TonKho.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crpBC_TonKho.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CrystalReport\crpDsKhachHang.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -217,10 +211,6 @@
     <EmbeddedResource Include="AllForm\frmPhanQuyen.resx">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReport\crpBC_TonKho.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>crpBC_TonKho.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\crpDsKhachHang.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpDsKhachHang.cs</LastGenOutput>
@@ -330,9 +320,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Thái-Hưng.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TH.png" />

@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNhaCC = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cbbPhanLoai = new System.Windows.Forms.ComboBox();
             this.txtNhomHang = new System.Windows.Forms.TextBox();
@@ -58,14 +60,14 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.Location = new System.Drawing.Point(211, 11);
@@ -81,6 +83,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtNhaCC);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.cbbPhanLoai);
             this.groupBox1.Controls.Add(this.txtNhomHang);
@@ -104,6 +108,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tùy chọn";
             // 
+            // txtNhaCC
+            // 
+            this.txtNhaCC.Location = new System.Drawing.Point(71, 274);
+            this.txtNhaCC.Name = "txtNhaCC";
+            this.txtNhaCC.Size = new System.Drawing.Size(117, 20);
+            this.txtNhaCC.TabIndex = 17;
+            this.txtNhaCC.TextChanged += new System.EventHandler(this.txtNhaCC_TextChanged);
+            this.txtNhaCC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNhaCC_KeyDown);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 277);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(47, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Nhà CC:";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -119,7 +141,8 @@
             this.cbbPhanLoai.FormattingEnabled = true;
             this.cbbPhanLoai.Items.AddRange(new object[] {
             "Mặt Hàng",
-            "Nhóm Hàng"});
+            "Nhóm Hàng",
+            "Nhà Cung Cấp"});
             this.cbbPhanLoai.Location = new System.Drawing.Point(66, 157);
             this.cbbPhanLoai.Name = "cbbPhanLoai";
             this.cbbPhanLoai.Size = new System.Drawing.Size(122, 21);
@@ -134,6 +157,7 @@
             this.txtNhomHang.TabIndex = 13;
             this.txtNhomHang.TextChanged += new System.EventHandler(this.txtNhomHang_TextChanged);
             this.txtNhomHang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNhomHang_KeyDown);
+            this.txtNhomHang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNhomHang_KeyUp);
             // 
             // label7
             // 
@@ -152,6 +176,7 @@
             this.txtMaHang.TabIndex = 11;
             this.txtMaHang.TextChanged += new System.EventHandler(this.txtMaHang_TextChanged);
             this.txtMaHang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaHang_KeyDown);
+            this.txtMaHang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMaHang_KeyUp);
             // 
             // label6
             // 
@@ -297,5 +322,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbbPhanLoai;
+        private System.Windows.Forms.TextBox txtNhaCC;
+        private System.Windows.Forms.Label label9;
     }
 }

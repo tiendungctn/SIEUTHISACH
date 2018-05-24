@@ -21,11 +21,32 @@ namespace SieuThiSach.AllForm
         DataLoading DatLoa = new DataLoading();
         DesignForm DesFor = new DesignForm();
         public string _Filter = "";
+
+        private void loadDataMHforDay()
+        {
+            if (_Filter == "")
+                _Filter = " where ngay = '" + txtDay.Text + "' and thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
+                            "%' and (MA_HANG like '%" + txtMaHang.Text + "%' or TEN_HANG like N'%" + txtMaHang.Text + "%') group by MA_DVI,MA_HANG,TEN_HANG,NGAY,THANG,NAM ORDER BY NAM, THANG, NGAY";
+            DatLoa.loadData("MA_DVI,MA_HANG,TEN_HANG,NGAY,THANG,NAM,sum(SL_NHAP) as SL_NHAP,sum(SL_XUAT) as SL_XUAT,sum(TONG_TIEN_NHAP)" +
+                            " as TIEN_NHAP,sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU",
+                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+            DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
+            DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã hàng");
+            DesFor.EditCollum(ref dataGridView1, "TEN_HANG", true, "Tên hàng");
+            DesFor.EditCollum(ref dataGridView1, "THANG", true, "Tháng");
+            DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
+            DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
+            DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
+            _Filter = "";
+        }
         private void loadDataMHforMonth()
         {
             if (_Filter == "")
-                _Filter = " where thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text + 
-                            "%' and (MA_HANG like '%" + txtMaHang.Text + "%' or TEN_HANG like N'%"+ txtMaHang.Text + "%') group by MA_DVI,MA_HANG,TEN_HANG,THANG,NAM ORDER BY NAM, THANG";
+                _Filter = " where thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
+                            "%' and (MA_HANG like '%" + txtMaHang.Text + "%' or TEN_HANG like N'%" + txtMaHang.Text + "%') group by MA_DVI,MA_HANG,TEN_HANG,THANG,NAM ORDER BY NAM, THANG";
             DatLoa.loadData("MA_DVI,MA_HANG,TEN_HANG,THANG,NAM,sum(SL_NHAP) as SL_NHAP,sum(SL_XUAT) as SL_XUAT,sum(TONG_TIEN_NHAP)" +
                             " as TIEN_NHAP,sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU",
                             "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
@@ -54,6 +75,26 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_HANG", true, "Tên hàng");
+            DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
+            DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
+            DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
+            _Filter = "";
+        }
+
+        private void loadDataNHforDay()
+        {
+            if (_Filter == "")
+                _Filter = " where ngay = '" + txtDay.Text + "' and thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
+                            "%' and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') group by MA_DVI,NHOM_HANG,TEN_NHOM_HANG,NAM,THANG,NGAY ORDER BY NAM, THANG, NGAY";
+            DatLoa.loadData("MA_DVI,NHOM_HANG,TEN_NHOM_HANG,NGAY,THANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ",
+                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+            DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
+            DesFor.EditCollum(ref dataGridView1, "NHOM_HANG", true, "Mã hàng");
+            DesFor.EditCollum(ref dataGridView1, "TEN_NHOM_HANG", true, "Tên hàng");
+            DesFor.EditCollum(ref dataGridView1, "THANG", true, "Tháng");
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
             DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
             DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
@@ -102,6 +143,119 @@ namespace SieuThiSach.AllForm
             _Filter = "";
         }
 
+        private void loadDataNCCforDay()
+        {
+            string select = ""; string MH = ""; string NH = ""; string whereMH = ""; string whereNH = "";
+            string where = "";
+            string groupby = "";
+            if (_Filter == "")
+            {
+                if (txtMaHang.Text != "")
+                {
+                    MH = "MA_HANG,TEN_HANG,";
+                    whereMH = " and (MA_HANG like '%" + txtMaHang.Text + "%' or Ten_Hang like N'%" + txtMaHang.Text + "%') ";
+                }
+                if (txtNhomHang.Text != "")
+                {
+                    NH = "NHOM_HANG,TEN_NHOM_HANG,";
+                    whereNH = " and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') ";
+                }
+                select = "MA_DVI,NHA_CC,TEN_KH," + NH + MH + " NGAY,THANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ";
+                where = " where ngay = '" + txtDay.Text + "' and thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
+                            "%' and (NHA_CC like '%" + txtNhaCC.Text + "%' or TEN_KH like N'%" + txtNhaCC.Text + "%') " + whereNH + whereMH;
+                groupby = "group by MA_DVI,NHA_CC,TEN_KH, " + NH + MH + " NAM,THANG,NGAY ";
+
+                _Filter = where + groupby + " ORDER BY NAM, THANG, NGAY";
+            }
+
+            DatLoa.loadData(select,
+                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+            DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
+            DesFor.EditCollum(ref dataGridView1, "THANG", true, "Tháng");
+            DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
+            DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
+            DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
+            _Filter = "";
+        }
+
+        private void loadDataNCCforMonth()
+        {
+            string select = ""; string MH = ""; string NH = ""; string whereMH = ""; string whereNH = "";
+            string where = "";
+            string groupby = "";
+            if (_Filter == "")
+            {
+                if (txtMaHang.Text != "")
+                {
+                    MH = "MA_HANG,TEN_HANG,";
+                    whereMH = " and (MA_HANG like '%" + txtMaHang.Text + "%' or Ten_Hang like N'%" + txtMaHang.Text + "%') ";
+                }
+                if (txtNhomHang.Text != "")
+                {
+                    NH = "NHOM_HANG,TEN_NHOM_HANG,";
+                    whereNH = " and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') ";
+                }
+                select = "MA_DVI,NHA_CC,TEN_KH," + NH + MH + " THANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ";
+                where = " where thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
+                            "%' and (NHA_CC like '%" + txtNhaCC.Text + "%' or TEN_KH like N'%" + txtNhaCC.Text + "%') " + whereNH + whereMH;
+                groupby = "group by MA_DVI,NHA_CC,TEN_KH, " + NH + MH + " NAM,THANG ";
+
+                _Filter = where + groupby + " ORDER BY NAM, THANG";
+            }
+
+            DatLoa.loadData(select,
+                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+            DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
+            DesFor.EditCollum(ref dataGridView1, "THANG", true, "Tháng");
+            DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
+            DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
+            DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
+            _Filter = "";
+        }
+
+        private void loadDataNCCforYear()
+        {
+            string select = ""; string MH = ""; string NH = ""; string whereMH = ""; string whereNH = "";
+            string where = "";
+            string groupby = "";
+            if (_Filter == "")
+            {
+                if (txtMaHang.Text != "")
+                {
+                    MH = "MA_HANG,TEN_HANG,";
+                    whereMH = " and (MA_HANG like '%" + txtMaHang.Text + "%' or Ten_Hang like N'%" + txtMaHang.Text + "%') ";
+                }
+                if (txtNhomHang.Text != "")
+                {
+                    NH = "NHOM_HANG,TEN_NHOM_HANG,";
+                    whereNH = " and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') ";
+                }
+                select = "MA_DVI,NHA_CC,TEN_KH," + NH + MH + " NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ";
+                where = " where nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
+                            "%' and (NHA_CC like '%" + txtNhaCC.Text + "%' or TEN_KH like N'%" + txtNhaCC.Text + "%') " + whereNH + whereMH;
+                groupby = "group by MA_DVI,NHA_CC,TEN_KH, " + NH + MH + " NAM ";
+
+                _Filter = where + groupby + " ORDER BY NAM";
+            }
+
+            DatLoa.loadData(select,
+                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+            DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
+            DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
+            DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
+            DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
+            _Filter = "";
+        }
+
         private void TestLoad()
         {
             dataGridView1.DataSource = "";
@@ -113,9 +267,11 @@ namespace SieuThiSach.AllForm
                     txtMonth.Enabled = true;
                     if (txtMonth.Text == "") txtMonth.Text = DateTime.Now.Month.ToString();
                     if (cbbPhanLoai.Text == "Mặt Hàng")
-                        loadDataMHforMonth();
+                        loadDataMHforDay();
                     if (cbbPhanLoai.Text == "Nhóm Hàng")
-                        loadDataNHforMonth();
+                        loadDataNHforDay();
+                    if (cbbPhanLoai.Text == "Nhà Cung Cấp")
+                        loadDataNCCforDay();
                     break;
                 case "Theo Tháng":
                     txtDay.Enabled = false; txtDay.Text = "";
@@ -125,6 +281,8 @@ namespace SieuThiSach.AllForm
                         loadDataMHforMonth();
                     if (cbbPhanLoai.Text == "Nhóm Hàng")
                         loadDataNHforMonth();
+                    if (cbbPhanLoai.Text == "Nhà Cung Cấp")
+                        loadDataNCCforMonth();
                     break;
                 case "Theo Năm":
                     txtDay.Enabled = false; txtDay.Text = "";
@@ -133,6 +291,8 @@ namespace SieuThiSach.AllForm
                         loadDataMHforYear();
                     if (cbbPhanLoai.Text == "Nhóm Hàng")
                         loadDataNHforYear();
+                    if (cbbPhanLoai.Text == "Nhà Cung Cấp")
+                        loadDataNCCforYear();
                     break;
             }
         }
@@ -144,10 +304,17 @@ namespace SieuThiSach.AllForm
                 case "Mặt Hàng":
                     txtNhomHang.Enabled = false; txtNhomHang.Text = "";
                     txtMaHang.Enabled = true;
+                    txtNhaCC.Enabled = false; txtNhaCC.Text = "";
                     break;
                 case "Nhóm Hàng":
                     txtMaHang.Enabled = false; txtMaHang.Text = "";
                     txtNhomHang.Enabled = true;
+                    txtNhaCC.Enabled = false; txtNhaCC.Text = "";
+                    break;
+                case "Nhà Cung Cấp":
+                    txtMaHang.Enabled = true;
+                    txtNhomHang.Enabled = true;
+                    txtNhaCC.Enabled = true;
                     break;
             }
         }
@@ -252,6 +419,42 @@ namespace SieuThiSach.AllForm
         }
 
         private void txtNhomHang_TextChanged(object sender, EventArgs e)
+        {
+            TestLoad();
+        }
+
+        private void txtMaHang_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtMaHang.Text.Length != 0) txtNhomHang.Enabled = false;
+            else txtNhomHang.Enabled = true;
+        }
+
+        private void txtNhomHang_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtNhomHang.Text.Length != 0) txtMaHang.Enabled = false;
+            else txtMaHang.Enabled = true;
+        }
+
+        private void txtNhaCC_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F2:
+                    e.SuppressKeyPress = true;
+                    using (frmKhachHang f = new frmKhachHang())
+                    {
+                        f._Filter = " where MA_KH != 'KH00000' and MA_KH like '%CC%'";
+                        if (f.ShowDialog() == DialogResult.OK)
+                        {
+                            txtNhaCC.Text = f.KH_ID;
+                        }
+                        DesignForm.vForm = this;
+                    }
+                    break;
+            }
+        }
+
+        private void txtNhaCC_TextChanged(object sender, EventArgs e)
         {
             TestLoad();
         }
