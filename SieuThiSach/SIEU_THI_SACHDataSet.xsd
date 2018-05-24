@@ -47,7 +47,7 @@ SELECT MA_DVI, MA_HD, MA_HANG, SL_NHAP, SL_XUAT, DON_GIA, CHIET_KHAU, SDUNG FROM
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT MA_DVI, MA_HD, MA_HANG, SL_NHAP, SL_XUAT, DON_GIA, CHIET_KHAU, SDUNG FROM dbo.TB_CT_HOA_DON</CommandText>
                     <Parameters />
                   </DbCommand>
