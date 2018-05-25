@@ -38,6 +38,8 @@
             this.txtMaHang = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNhom = new System.Windows.Forms.TextBox();
+            this.btnIn = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +68,7 @@
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(718, 458);
+            this.dataGridView1.Size = new System.Drawing.Size(846, 458);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView1_CellPainting);
@@ -85,7 +87,7 @@
             // 
             // btnLoc
             // 
-            this.btnLoc.Location = new System.Drawing.Point(654, 474);
+            this.btnLoc.Location = new System.Drawing.Point(701, 474);
             this.btnLoc.Name = "btnLoc";
             this.btnLoc.Size = new System.Drawing.Size(75, 23);
             this.btnLoc.TabIndex = 12;
@@ -150,12 +152,37 @@
             this.txtNhom.TabIndex = 17;
             this.txtNhom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNhom_KeyDown);
             // 
+            // btnIn
+            // 
+            this.btnIn.Location = new System.Drawing.Point(620, 474);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(75, 23);
+            this.btnIn.TabIndex = 19;
+            this.btnIn.Text = "In";
+            this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.Location = new System.Drawing.Point(782, 474);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 20;
+            this.btnExit.Text = "Thoát";
+            this.btnExit.UseVisualStyleBackColor = true;
+            // 
             // frmTonkho
             // 
+            this.AcceptButton = this.btnLoc;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(740, 509);
+            this.CancelButton = this.btnExit;
+            this.ClientSize = new System.Drawing.Size(868, 509);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnIn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNhom);
             this.Controls.Add(this.label2);
@@ -165,6 +192,7 @@
             this.Controls.Add(this.btnLoc);
             this.Controls.Add(this.dDate);
             this.Controls.Add(this.dataGridView1);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmTonkho";
@@ -191,5 +219,7 @@
         private System.Windows.Forms.TextBox txtMaHang;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNhom;
+        private System.Windows.Forms.Button btnIn;
+        private System.Windows.Forms.Button btnExit;
     }
 }

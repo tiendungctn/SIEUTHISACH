@@ -1,4 +1,6 @@
-﻿using SieuThiSach.DAL;
+﻿using SieuThiSach.CrystalReport;
+using SieuThiSach.DAL;
+using SieuThiSach.SO;
 using SieuThiSach.SystemForm;
 using System;
 using System.Collections.Generic;
@@ -166,6 +168,35 @@ namespace SieuThiSach.AllForm
             htr.ID2 = "MA_HD";
             #endregion
             htr.ShowDialog();
+        }
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            crpBC_TonKho MyReport = new crpBC_TonKho();
+            BindingSource gdSource = new BindingSource();
+            gdSource = (BindingSource)this.dataGridView1.DataSource;
+            MyReport.SetDataSource(gdSource.DataSource);
+            MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+            if (DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtDvi.Text + "'") == "")
+                MyReport.SetParameterValue("Chi_Nhanh", "Tất cả Chi Nhánh");
+            else
+                MyReport.SetParameterValue("Chi_Nhanh", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtDvi.Text + "'"));
+
+            if (DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhom.Text + "'") == "")
+                MyReport.SetParameterValue("Nhom_Hang", "Tất cả Nhóm Hàng");
+            else
+                MyReport.SetParameterValue("Nhom_Hang", DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhom.Text + "'"));
+
+            if (DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'") == "")
+                MyReport.SetParameterValue("Mat_Hang", "Tất cả Mặt Hàng");
+            else
+                MyReport.SetParameterValue("Mat_Hang", DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'"));
+
+            MyReport.SetParameterValue("Ngay", String.Format("{0:dd/MM/yyyy}", Convert.ToDateTime(dDate.Text)));
+
+            frmReportViewer f = new frmReportViewer();
+            f.crystalReportViewer1.ReportSource = MyReport;
+            f.ShowDialog();
         }
     }
 }
