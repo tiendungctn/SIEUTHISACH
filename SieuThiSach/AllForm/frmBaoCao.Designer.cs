@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtNhaCC = new System.Windows.Forms.TextBox();
@@ -51,8 +51,20 @@
             this.cbbKyHan = new System.Windows.Forms.ComboBox();
             this.btnIn = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtLoiNhuan = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtDoanhThu = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtChiPhi = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtSLXuat = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtSLNhap = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -62,14 +74,14 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.Location = new System.Drawing.Point(211, 11);
@@ -82,6 +94,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(885, 654);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // groupBox1
             // 
@@ -283,22 +296,132 @@
             // 
             // btnIn
             // 
-            this.btnIn.Location = new System.Drawing.Point(131, 335);
+            this.btnIn.Location = new System.Drawing.Point(107, 613);
             this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(75, 23);
+            this.btnIn.Size = new System.Drawing.Size(99, 23);
             this.btnIn.TabIndex = 20;
             this.btnIn.Text = "In";
             this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(131, 364);
+            this.btnExit.Location = new System.Drawing.Point(107, 642);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.Size = new System.Drawing.Size(99, 23);
             this.btnExit.TabIndex = 21;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtLoiNhuan);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.txtDoanhThu);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.txtChiPhi);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.txtSLXuat);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.txtSLNhap);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Location = new System.Drawing.Point(12, 353);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(194, 156);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Tổng hợp";
+            // 
+            // txtLoiNhuan
+            // 
+            this.txtLoiNhuan.Location = new System.Drawing.Point(92, 123);
+            this.txtLoiNhuan.Name = "txtLoiNhuan";
+            this.txtLoiNhuan.ReadOnly = true;
+            this.txtLoiNhuan.Size = new System.Drawing.Size(96, 20);
+            this.txtLoiNhuan.TabIndex = 27;
+            this.txtLoiNhuan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 126);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(85, 13);
+            this.label14.TabIndex = 26;
+            this.label14.Text = "Tổng Lợi nhuận:";
+            // 
+            // txtDoanhThu
+            // 
+            this.txtDoanhThu.Location = new System.Drawing.Point(92, 97);
+            this.txtDoanhThu.Name = "txtDoanhThu";
+            this.txtDoanhThu.ReadOnly = true;
+            this.txtDoanhThu.Size = new System.Drawing.Size(96, 20);
+            this.txtDoanhThu.TabIndex = 25;
+            this.txtDoanhThu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 100);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(88, 13);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "Tổng Doanh thu:";
+            // 
+            // txtChiPhi
+            // 
+            this.txtChiPhi.Location = new System.Drawing.Point(92, 71);
+            this.txtChiPhi.Name = "txtChiPhi";
+            this.txtChiPhi.ReadOnly = true;
+            this.txtChiPhi.Size = new System.Drawing.Size(96, 20);
+            this.txtChiPhi.TabIndex = 23;
+            this.txtChiPhi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 74);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(72, 13);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Tổng Chi phí:";
+            // 
+            // txtSLXuat
+            // 
+            this.txtSLXuat.Location = new System.Drawing.Point(92, 45);
+            this.txtSLXuat.Name = "txtSLXuat";
+            this.txtSLXuat.ReadOnly = true;
+            this.txtSLXuat.Size = new System.Drawing.Size(96, 20);
+            this.txtSLXuat.TabIndex = 21;
+            this.txtSLXuat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 48);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Tổng SL Bán:";
+            // 
+            // txtSLNhap
+            // 
+            this.txtSLNhap.Location = new System.Drawing.Point(92, 19);
+            this.txtSLNhap.Name = "txtSLNhap";
+            this.txtSLNhap.ReadOnly = true;
+            this.txtSLNhap.Size = new System.Drawing.Size(96, 20);
+            this.txtSLNhap.TabIndex = 19;
+            this.txtSLNhap.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 22);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Tổng SL Nhập:";
             // 
             // frmBaoCao
             // 
@@ -308,6 +431,7 @@
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(1107, 676);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnIn);
             this.Controls.Add(this.groupBox1);
@@ -323,6 +447,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -351,5 +477,16 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnIn;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtSLXuat;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtSLNhap;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtChiPhi;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtDoanhThu;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtLoiNhuan;
+        private System.Windows.Forms.Label label14;
     }
 }
