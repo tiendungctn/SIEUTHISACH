@@ -397,6 +397,7 @@ namespace SieuThiSach.AllForm
             else if (e.Control && e.KeyCode == Keys.F) btnFind.PerformClick();
             else if (e.Control && e.KeyCode == Keys.H) btnHistory.PerformClick();
             else if (e.Control && e.KeyCode == Keys.L) btnExcel.PerformClick();
+            else if (e.Control && e.KeyCode == Keys.P) btnPrint.PerformClick();
             else if (e.KeyCode == Keys.Delete) btnDel.PerformClick();
             else if (e.KeyCode == Keys.Escape)
             {
