@@ -1,4 +1,5 @@
-﻿using SieuThiSach.DAL;
+﻿using SieuThiSach.CrystalReport;
+using SieuThiSach.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace SieuThiSach.AllForm
         DesignForm DesFor = new DesignForm();
         public string _Filter = "";
 
+        #region "Mặt hàng"
         private void loadDataMHforDay()
         {
             if (_Filter == "")
@@ -29,7 +31,7 @@ namespace SieuThiSach.AllForm
                             "%' and (MA_HANG like '%" + txtMaHang.Text + "%' or TEN_HANG like N'%" + txtMaHang.Text + "%') group by MA_DVI,MA_HANG,TEN_HANG,NGAY,THANG,NAM ORDER BY NAM, THANG, NGAY";
             DatLoa.loadData("MA_DVI,MA_HANG,TEN_HANG,NGAY,THANG,NAM,sum(SL_NHAP) as SL_NHAP,sum(SL_XUAT) as SL_XUAT,sum(TONG_TIEN_NHAP)" +
                             " as TIEN_NHAP,sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU",
-                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+                            "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_HANG", true, "Tên hàng");
@@ -49,7 +51,7 @@ namespace SieuThiSach.AllForm
                             "%' and (MA_HANG like '%" + txtMaHang.Text + "%' or TEN_HANG like N'%" + txtMaHang.Text + "%') group by MA_DVI,MA_HANG,TEN_HANG,THANG,NAM ORDER BY NAM, THANG";
             DatLoa.loadData("MA_DVI,MA_HANG,TEN_HANG,THANG,NAM,sum(SL_NHAP) as SL_NHAP,sum(SL_XUAT) as SL_XUAT,sum(TONG_TIEN_NHAP)" +
                             " as TIEN_NHAP,sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU",
-                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+                            "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_HANG", true, "Tên hàng");
@@ -71,7 +73,7 @@ namespace SieuThiSach.AllForm
             DatLoa.loadData("MA_DVI,MA_HANG,TEN_HANG,NAM," +
                             "sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT," +
                             "sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU  ",
-                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+                            "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_HANG", true, "Tên hàng");
@@ -83,14 +85,16 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
             _Filter = "";
         }
+        #endregion
 
+        #region "Nhóm hàng"
         private void loadDataNHforDay()
         {
             if (_Filter == "")
                 _Filter = " where ngay = '" + txtDay.Text + "' and thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
                             "%' and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') group by MA_DVI,NHOM_HANG,TEN_NHOM_HANG,NAM,THANG,NGAY ORDER BY NAM, THANG, NGAY";
             DatLoa.loadData("MA_DVI,NHOM_HANG,TEN_NHOM_HANG,NGAY,THANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ",
-                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+                            "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "NHOM_HANG", true, "Mã hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_NHOM_HANG", true, "Tên hàng");
@@ -110,7 +114,7 @@ namespace SieuThiSach.AllForm
                 _Filter = " where thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
                             "%' and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') group by MA_DVI,NHOM_HANG,TEN_NHOM_HANG,NAM,THANG ORDER BY NAM, THANG";
             DatLoa.loadData("MA_DVI,NHOM_HANG,TEN_NHOM_HANG,THANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ",
-                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+                            "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "NHOM_HANG", true, "Mã hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_NHOM_HANG", true, "Tên hàng");
@@ -130,7 +134,7 @@ namespace SieuThiSach.AllForm
                 _Filter = " where nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
                             "%' and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') group by MA_DVI,NHOM_HANG,TEN_NHOM_HANG,NAM ORDER BY NAM";
             DatLoa.loadData("MA_DVI,NHOM_HANG,TEN_NHOM_HANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ",
-                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+                            "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "NHOM_HANG", true, "Mã hàng");
             DesFor.EditCollum(ref dataGridView1, "TEN_NHOM_HANG", true, "Tên hàng");
@@ -142,7 +146,9 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
             _Filter = "";
         }
+        #endregion
 
+        #region "Nhà cung cấp"
         private void loadDataNCCforDay()
         {
             string select = ""; string MH = ""; string NH = ""; string whereMH = ""; string whereNH = "";
@@ -169,7 +175,7 @@ namespace SieuThiSach.AllForm
             }
 
             DatLoa.loadData(select,
-                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+                            "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "THANG", true, "Tháng");
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
@@ -207,7 +213,7 @@ namespace SieuThiSach.AllForm
             }
 
             DatLoa.loadData(select,
-                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+                            "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "THANG", true, "Tháng");
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
@@ -245,7 +251,7 @@ namespace SieuThiSach.AllForm
             }
 
             DatLoa.loadData(select,
-                            "V_BC_DoanhThu_MatHang " + _Filter, ref dataGridView1);
+                            "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
             DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
@@ -255,6 +261,7 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
             _Filter = "";
         }
+        #endregion
 
         private void TestLoad()
         {
@@ -457,6 +464,61 @@ namespace SieuThiSach.AllForm
         private void txtNhaCC_TextChanged(object sender, EventArgs e)
         {
             TestLoad();
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                int SLNhap = 0;
+                int SLXuat = 0;
+                int ChiPhi = 0;
+                int DoanhThu = 0;
+                int LoiNhuan = 0;
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    SLNhap = SLNhap + Convert.ToInt32(dataGridView1.Rows[i].Cells["SL_NHAP"].Value.ToString());
+                    SLXuat = SLXuat + Convert.ToInt32(dataGridView1.Rows[i].Cells["SL_XUAT"].Value.ToString());
+                    ChiPhi = ChiPhi + Convert.ToInt32(dataGridView1.Rows[i].Cells["TIEN_NHAP"].Value.ToString());
+                    DoanhThu = DoanhThu + Convert.ToInt32(dataGridView1.Rows[i].Cells["TIEN_XUAT"].Value.ToString());
+                    LoiNhuan = LoiNhuan + Convert.ToInt32(dataGridView1.Rows[i].Cells["DOANH_THU"].Value.ToString());
+                }
+                txtSLNhap.Text = SLNhap.ToString();
+                txtSLXuat.Text = SLXuat.ToString();
+                txtChiPhi.Text = String.Format("{0:0,0}", ChiPhi);
+                txtDoanhThu.Text = String.Format("{0:0,0}", DoanhThu);
+                if (LoiNhuan >= 0) txtLoiNhuan.Text = String.Format("{0:0,0}", LoiNhuan);
+                else
+                {
+                    LoiNhuan = LoiNhuan * -1;
+                    txtLoiNhuan.Text = "(" + String.Format("{0:0,0}", LoiNhuan) + ")";
+                }
+            }
+            else
+            {
+                txtSLNhap.Text = "0";
+                txtSLXuat.Text = "0";
+                txtChiPhi.Text = "0";
+                txtDoanhThu.Text = "0";
+                txtLoiNhuan.Text = "0";
+            }
+        }
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            if (cbbPhanLoai.Text == "Nhóm Hàng" && cbbKyHan.Text == "Theo Năm")
+            {
+                crpBC_DT_Nhom_Nam MyReport = new crpBC_DT_Nhom_Nam();
+
+                BindingSource gdSource = new BindingSource();
+                gdSource = (BindingSource)this.dataGridView1.DataSource;
+                MyReport.SetDataSource(gdSource.DataSource);
+                //MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                frmReportViewer f = new frmReportViewer();
+                f.crystalReportViewer1.ReportSource = MyReport;
+                f.ShowDialog();
+            }
         }
     }
 }
