@@ -513,6 +513,66 @@ namespace SieuThiSach.AllForm
 
         private void btnIn_Click(object sender, EventArgs e)
         {
+            #region " Nhóm - Ngày "
+            if (cbbPhanLoai.Text == "Nhóm Hàng" && cbbKyHan.Text == "Theo Ngày")
+            {
+                crpBC_DT_Nhom_Ngay MyReport = new crpBC_DT_Nhom_Ngay();
+
+                BindingSource gdSource = new BindingSource();
+                gdSource = (BindingSource)this.dataGridView1.DataSource;
+                MyReport.SetDataSource(gdSource.DataSource);
+                MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+                MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
+                MyReport.SetParameterValue("Ngay_SD", txtDay.Text);
+                if (DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+                if (DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", "Tất cả nhóm");
+                else MyReport.SetParameterValue("Nhom", DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'"));
+
+                MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                frmReportViewer f = new frmReportViewer();
+                f.crystalReportViewer1.ReportSource = MyReport;
+                f.ShowDialog();
+            }
+            #endregion
+
+            #region " Nhóm - Tháng "
+            if (cbbPhanLoai.Text == "Nhóm Hàng" && cbbKyHan.Text == "Theo Tháng")
+            {
+                crpBC_DT_Nhom_Thang MyReport = new crpBC_DT_Nhom_Thang();
+
+                BindingSource gdSource = new BindingSource();
+                gdSource = (BindingSource)this.dataGridView1.DataSource;
+                MyReport.SetDataSource(gdSource.DataSource);
+                MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+                MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
+                if (DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+                if (DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", "Tất cả nhóm");
+                else MyReport.SetParameterValue("Nhom", DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'"));
+
+                MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                frmReportViewer f = new frmReportViewer();
+                f.crystalReportViewer1.ReportSource = MyReport;
+                f.ShowDialog();
+            }
+            #endregion
+
+            #region " Nhóm - Năm "
             if (cbbPhanLoai.Text == "Nhóm Hàng" && cbbKyHan.Text == "Theo Năm")
             {
                 crpBC_DT_Nhom_Nam MyReport = new crpBC_DT_Nhom_Nam();
@@ -538,6 +598,9 @@ namespace SieuThiSach.AllForm
                 f.crystalReportViewer1.ReportSource = MyReport;
                 f.ShowDialog();
             }
+            #endregion
+
+
         }
 
         private void frmBaoCao_KeyDown(object sender, KeyEventArgs e)

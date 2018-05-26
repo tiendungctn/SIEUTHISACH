@@ -16,5 +16,10 @@ namespace SieuThiSach.AllForm
         {
             InitializeComponent();
         }
+
+        private void frmReportViewer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) this.Close();
+        }
     }
 }

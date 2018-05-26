@@ -89,6 +89,18 @@
     <Compile Include="AllForm\frmPhanQuyen.Designer.cs">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="CrystalReport\crpBC_DT_Nhom_Ngay.cs">
+      <DependentUpon>crpBC_DT_Nhom_Ngay.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReport\crpBC_DT_Nhom_Thang.cs">
+      <DependentUpon>crpBC_DT_Nhom_Thang.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CrystalReport\crpBC_DT_Nhom_Nam.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -222,6 +234,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AllForm\frmPhanQuyen.resx">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\crpBC_DT_Nhom_Ngay.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpBC_DT_Nhom_Ngay.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\crpBC_DT_Nhom_Thang.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpBC_DT_Nhom_Thang.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\crpBC_DT_Nhom_Nam.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
