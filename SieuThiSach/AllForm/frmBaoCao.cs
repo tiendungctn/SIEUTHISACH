@@ -31,7 +31,7 @@ namespace SieuThiSach.AllForm
                 _Filter = " where ngay = '" + txtDay.Text + "' and thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
                             "%' and (MA_HANG like '%" + txtMaHang.Text + "%' or TEN_HANG like N'%" + txtMaHang.Text + "%') group by MA_DVI,MA_HANG,TEN_HANG,NGAY,THANG,NAM ORDER BY NAM, THANG, NGAY";
             DatLoa.loadData("MA_DVI,MA_HANG,TEN_HANG,NGAY,THANG,NAM,sum(SL_NHAP) as SL_NHAP,sum(SL_XUAT) as SL_XUAT,sum(TONG_TIEN_NHAP)" +
-                            " as TIEN_NHAP,sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU",
+                            " as TONG_TIEN_NHAP,sum(TONG_TIEN_XUAT) as TONG_TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU",
                             "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã hàng");
@@ -40,8 +40,8 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
             DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
             DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_XUAT", true, "Doanh thu thuần");
             DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
             _Filter = "";
         }
@@ -51,7 +51,7 @@ namespace SieuThiSach.AllForm
                 _Filter = " where thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
                             "%' and (MA_HANG like '%" + txtMaHang.Text + "%' or TEN_HANG like N'%" + txtMaHang.Text + "%') group by MA_DVI,MA_HANG,TEN_HANG,THANG,NAM ORDER BY NAM, THANG";
             DatLoa.loadData("MA_DVI,MA_HANG,TEN_HANG,THANG,NAM,sum(SL_NHAP) as SL_NHAP,sum(SL_XUAT) as SL_XUAT,sum(TONG_TIEN_NHAP)" +
-                            " as TIEN_NHAP,sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU",
+                            " as TONG_TIEN_NHAP,sum(TONG_TIEN_XUAT) as TONG_TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU",
                             "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
             DesFor.EditCollum(ref dataGridView1, "MA_HANG", true, "Mã hàng");
@@ -60,8 +60,8 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
             DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
             DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_XUAT", true, "Doanh thu thuần");
             DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
             _Filter = "";
         }
@@ -72,7 +72,7 @@ namespace SieuThiSach.AllForm
                 _Filter = "  where nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
                             "%' and (MA_HANG like '%" + txtMaHang.Text + "%' or TEN_HANG like N'%" + txtMaHang.Text + "%') group by MA_DVI,MA_HANG,TEN_HANG,NAM ORDER BY NAM";
             DatLoa.loadData("MA_DVI,MA_HANG,TEN_HANG,NAM," +
-                            "sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT," +
+                            "sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TONG_TIEN_NHAP, sum(TONG_TIEN_XUAT) as TONG_TIEN_XUAT," +
                             "sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU  ",
                             "V_BC_DoanhThu " + _Filter, ref dataGridView1);
             DesFor.EditCollum(ref dataGridView1, "MA_DVI", true, "Mã đơn vị");
@@ -81,8 +81,8 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
             DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
             DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_XUAT", true, "Doanh thu thuần");
             DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
             _Filter = "";
         }
@@ -167,7 +167,7 @@ namespace SieuThiSach.AllForm
                     NH = "NHOM_HANG,TEN_NHOM_HANG,";
                     whereNH = " and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') ";
                 }
-                select = "MA_DVI,NHA_CC,TEN_KH," + NH + MH + " NGAY,THANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ";
+                select = "MA_DVI,NHA_CC,TEN_KH," + NH + MH + " NGAY,THANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TONG_TIEN_NHAP, sum(TONG_TIEN_XUAT) as TONG_TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ";
                 where = " where ngay = '" + txtDay.Text + "' and thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
                             "%' and (NHA_CC like '%" + txtNhaCC.Text + "%' or TEN_KH like N'%" + txtNhaCC.Text + "%') " + whereNH + whereMH;
                 groupby = "group by MA_DVI,NHA_CC,TEN_KH, " + NH + MH + " NAM,THANG,NGAY ";
@@ -182,8 +182,8 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
             DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
             DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_XUAT", true, "Doanh thu thuần");
             DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
             _Filter = "";
         }
@@ -205,7 +205,7 @@ namespace SieuThiSach.AllForm
                     NH = "NHOM_HANG,TEN_NHOM_HANG,";
                     whereNH = " and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') ";
                 }
-                select = "MA_DVI,NHA_CC,TEN_KH," + NH + MH + " THANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ";
+                select = "MA_DVI,NHA_CC,TEN_KH," + NH + MH + " THANG,NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TONG_TIEN_NHAP, sum(TONG_TIEN_XUAT) as TONG_TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ";
                 where = " where thang = '" + txtMonth.Text + "' and nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
                             "%' and (NHA_CC like '%" + txtNhaCC.Text + "%' or TEN_KH like N'%" + txtNhaCC.Text + "%') " + whereNH + whereMH;
                 groupby = "group by MA_DVI,NHA_CC,TEN_KH, " + NH + MH + " NAM,THANG ";
@@ -220,8 +220,8 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
             DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
             DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_XUAT", true, "Doanh thu thuần");
             DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
             _Filter = "";
         }
@@ -243,7 +243,7 @@ namespace SieuThiSach.AllForm
                     NH = "NHOM_HANG,TEN_NHOM_HANG,";
                     whereNH = " and (NHOM_HANG like '%" + txtNhomHang.Text + "%' or TEN_NHOM_HANG like N'%" + txtNhomHang.Text + "%') ";
                 }
-                select = "MA_DVI,NHA_CC,TEN_KH," + NH + MH + " NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TIEN_NHAP, sum(TONG_TIEN_XUAT) as TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ";
+                select = "MA_DVI,NHA_CC,TEN_KH," + NH + MH + " NAM,sum(SL_NHAP) as SL_NHAP, sum(SL_XUAT) as SL_XUAT, sum(TONG_TIEN_NHAP) as TONG_TIEN_NHAP, sum(TONG_TIEN_XUAT) as TONG_TIEN_XUAT,sum(TONG_TIEN_XUAT) - sum(TONG_TIEN_NHAP) as DOANH_THU ";
                 where = " where nam = '" + txtYear.Text + "' and MA_DVI like '%" + txtMaDV.Text +
                             "%' and (NHA_CC like '%" + txtNhaCC.Text + "%' or TEN_KH like N'%" + txtNhaCC.Text + "%') " + whereNH + whereMH;
                 groupby = "group by MA_DVI,NHA_CC,TEN_KH, " + NH + MH + " NAM ";
@@ -257,8 +257,8 @@ namespace SieuThiSach.AllForm
             DesFor.EditCollum(ref dataGridView1, "NAM", true, "Năm");
             DesFor.EditCollum(ref dataGridView1, "SL_NHAP", true, "SL Nhập");
             DesFor.EditCollum(ref dataGridView1, "SL_XUAT", true, "SL Xuất");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_NHAP", true, "Chi phí hàng");
-            DesFor.EditCollum(ref dataGridView1, "TIEN_XUAT", true, "Doanh thu thuần");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_NHAP", true, "Chi phí hàng");
+            DesFor.EditCollum(ref dataGridView1, "TONG_TIEN_XUAT", true, "Doanh thu thuần");
             DesFor.EditCollum(ref dataGridView1, "DOANH_THU", true, "Lợi nhuận");
             _Filter = "";
         }
