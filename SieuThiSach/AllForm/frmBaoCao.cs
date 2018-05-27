@@ -513,6 +513,100 @@ namespace SieuThiSach.AllForm
 
         private void btnIn_Click(object sender, EventArgs e)
         {
+            #region " Hàng - Ngày "
+            if (cbbPhanLoai.Text == "Mặt Hàng" && cbbKyHan.Text == "Theo Ngày")
+            {
+                crpBC_DT_MH_Ngay MyReport = new crpBC_DT_MH_Ngay();
+
+                BindingSource gdSource = new BindingSource();
+                gdSource = (BindingSource)this.dataGridView1.DataSource;
+                MyReport.SetDataSource(gdSource.DataSource);
+                MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+                MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
+                MyReport.SetParameterValue("Ngay_SD", txtDay.Text);
+                if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
+                else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+                if (txtMaHang.Text == "") MyReport.SetParameterValue("MH", "Tất cả mặt hàng");
+                else if (txtMaHang.Text != "" && DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'") == "") MyReport.SetParameterValue("MH", "Lọc theo mặt hàng");
+                else MyReport.SetParameterValue("MH", "Mặt hàng: " + DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'"));
+
+                MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                frmReportViewer f = new frmReportViewer();
+                f.crystalReportViewer1.ReportSource = MyReport;
+                f.ShowDialog();
+            }
+            #endregion
+
+            #region " Hàng - Tháng "
+            if (cbbPhanLoai.Text == "Mặt Hàng" && cbbKyHan.Text == "Theo Tháng")
+            {
+                crpBC_DT_MH_Thang MyReport = new crpBC_DT_MH_Thang();
+
+                BindingSource gdSource = new BindingSource();
+                gdSource = (BindingSource)this.dataGridView1.DataSource;
+                MyReport.SetDataSource(gdSource.DataSource);
+                MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+                MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
+                if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
+                else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+                if (txtMaHang.Text == "") MyReport.SetParameterValue("MH", "Tất cả mặt hàng");
+                else if (txtMaHang.Text != "" && DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'") == "") MyReport.SetParameterValue("MH", "Lọc theo mặt hàng");
+                else MyReport.SetParameterValue("MH", "Mặt hàng: " + DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'"));
+
+                MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                frmReportViewer f = new frmReportViewer();
+                f.crystalReportViewer1.ReportSource = MyReport;
+                f.ShowDialog();
+            }
+            #endregion
+
+            #region " Hàng - Năm "
+            if (cbbPhanLoai.Text == "Mặt Hàng" && cbbKyHan.Text == "Theo Năm")
+            {
+                crpBC_DT_MH_Nam MyReport = new crpBC_DT_MH_Nam();
+
+                BindingSource gdSource = new BindingSource();
+                gdSource = (BindingSource)this.dataGridView1.DataSource;
+                MyReport.SetDataSource(gdSource.DataSource);
+                MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+                if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
+                else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+                if (txtMaHang.Text == "") MyReport.SetParameterValue("MH", "Tất cả mặt hàng");
+                else if (txtMaHang.Text != "" && DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'") == "") MyReport.SetParameterValue("MH", "Lọc theo mặt hàng");
+                else MyReport.SetParameterValue("MH", "Mặt hàng: " + DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'"));
+
+                MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                frmReportViewer f = new frmReportViewer();
+                f.crystalReportViewer1.ReportSource = MyReport;
+                f.ShowDialog();
+            }
+            #endregion
+
+
             #region " Nhóm - Ngày "
             if (cbbPhanLoai.Text == "Nhóm Hàng" && cbbKyHan.Text == "Theo Ngày")
             {
@@ -529,10 +623,12 @@ namespace SieuThiSach.AllForm
                 MyReport.SetParameterValue("Nam_SD", txtYear.Text);
                 MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
                 MyReport.SetParameterValue("Ngay_SD", txtDay.Text);
-                if (DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
                 else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
 
-                if (DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", "Tất cả nhóm");
+                if (txtNhomHang.Text == "") MyReport.SetParameterValue("Nhom", "Tất cả nhóm");
+                else if (txtNhomHang.Text != "" && DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", "Lọc theo nhóm hàng");
                 else MyReport.SetParameterValue("Nhom", DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'"));
 
                 MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
@@ -558,10 +654,12 @@ namespace SieuThiSach.AllForm
                 MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
                 MyReport.SetParameterValue("Nam_SD", txtYear.Text);
                 MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
-                if (DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
                 else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
 
-                if (DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", "Tất cả nhóm");
+                if (txtNhomHang.Text == "") MyReport.SetParameterValue("Nhom", "Tất cả nhóm");
+                else if (txtNhomHang.Text != "" && DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", "Lọc theo nhóm hàng");
                 else MyReport.SetParameterValue("Nhom", DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'"));
 
                 MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
@@ -586,10 +684,12 @@ namespace SieuThiSach.AllForm
                 MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
                 MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
                 MyReport.SetParameterValue("Nam_SD", txtYear.Text);
-                if (DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
                 else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
 
-                if (DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", "Tất cả nhóm");
+                if (txtNhomHang.Text == "") MyReport.SetParameterValue("Nhom", "Tất cả nhóm");
+                else if (txtNhomHang.Text != "" && DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", "Lọc theo nhóm hàng");
                 else MyReport.SetParameterValue("Nhom", DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'"));
 
                 MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
@@ -601,6 +701,263 @@ namespace SieuThiSach.AllForm
             #endregion
 
 
+            #region " NCC - Ngày "
+            if (cbbPhanLoai.Text == "Nhà Cung Cấp" && cbbKyHan.Text == "Theo Ngày")
+            {
+                if (txtMaHang.Text == "" && txtNhomHang.Text == "")
+                {
+                    crpBC_DT_NCC_Ngay_O MyReport = new crpBC_DT_NCC_Ngay_O();
+                    BindingSource gdSource = new BindingSource();
+                    gdSource = (BindingSource)this.dataGridView1.DataSource;
+                    MyReport.SetDataSource(gdSource.DataSource);
+                    //--------------------------------------------------------------------------------------------------------
+                    MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                    MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                    MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                    MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                    MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                    MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+                    MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
+                    MyReport.SetParameterValue("Ngay_SD", txtDay.Text);
+
+                    if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                    else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
+                    else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+
+                    MyReport.SetParameterValue("MH", "");
+                    MyReport.SetParameterValue("Nhom", "");
+
+
+                    if (txtNhaCC.Text == "") MyReport.SetParameterValue("NCC", "Tất cả Nhà cung cấp");
+                    else if (txtNhaCC.Text != "" && DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'") == "") MyReport.SetParameterValue("NCC", "Lọc theo Nhà cung cấp");
+                    else MyReport.SetParameterValue("NCC", "Nhà cung cấp: " + DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'"));
+
+                    MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                    //--------------------------------------------------------------------------------------------------------
+
+                    frmReportViewer f = new frmReportViewer();
+                    f.crystalReportViewer1.ReportSource = MyReport;
+                    f.ShowDialog();
+                }
+                else
+                {
+                    crpBC_DT_NCC_Ngay_Loc MyReport = new crpBC_DT_NCC_Ngay_Loc();
+                    BindingSource gdSource = new BindingSource();
+                    gdSource = (BindingSource)this.dataGridView1.DataSource;
+                    MyReport.SetDataSource(gdSource.DataSource);
+                    //--------------------------------------------------------------------------------------------------------
+                    MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                    MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                    MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                    MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                    MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                    MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+                    MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
+                    MyReport.SetParameterValue("Ngay_SD", txtDay.Text);
+
+                    if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                    else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
+                    else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+
+                    if (txtMaHang.Text == "") MyReport.SetParameterValue("MH", "");
+                    else if (txtMaHang.Text != "" && DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'") == "") MyReport.SetParameterValue("MH", ", Lọc theo mặt hàng");
+                    else MyReport.SetParameterValue("MH", "Mặt hàng: " + DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'"));
+
+                    if (txtNhomHang.Text == "") MyReport.SetParameterValue("Nhom", "");
+                    else if (txtNhomHang.Text != "" && DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", ", Lọc theo nhóm hàng");
+                    else MyReport.SetParameterValue("Nhom", DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'"));
+
+
+                    if (txtNhaCC.Text == "") MyReport.SetParameterValue("NCC", "Tất cả Nhà cung cấp");
+                    else if (txtNhaCC.Text != "" && DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'") == "") MyReport.SetParameterValue("NCC", "Lọc theo Nhà cung cấp");
+                    else MyReport.SetParameterValue("NCC", "Nhà cung cấp: " + DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'"));
+
+                    MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                    //--------------------------------------------------------------------------------------------------------
+
+                    frmReportViewer f = new frmReportViewer();
+                    f.crystalReportViewer1.ReportSource = MyReport;
+                    f.ShowDialog();
+                }
+                    
+
+                
+            }
+            #endregion
+
+            #region " NCC - Tháng "
+            if (cbbPhanLoai.Text == "Nhà Cung Cấp" && cbbKyHan.Text == "Theo Tháng")
+            {
+                if (txtMaHang.Text == "" && txtNhomHang.Text == "")
+                {
+                    crpBC_DT_NCC_Thang_O MyReport = new crpBC_DT_NCC_Thang_O();
+                    BindingSource gdSource = new BindingSource();
+                    gdSource = (BindingSource)this.dataGridView1.DataSource;
+                    MyReport.SetDataSource(gdSource.DataSource);
+                    //--------------------------------------------------------------------------------------------------------
+                    MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                    MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                    MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                    MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                    MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                    MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+                    MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
+
+                    if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                    else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
+                    else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+
+                    MyReport.SetParameterValue("MH", "");
+                    MyReport.SetParameterValue("Nhom", "");
+
+
+                    if (txtNhaCC.Text == "") MyReport.SetParameterValue("NCC", "Tất cả Nhà cung cấp");
+                    else if (txtNhaCC.Text != "" && DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'") == "") MyReport.SetParameterValue("NCC", "Lọc theo Nhà cung cấp");
+                    else MyReport.SetParameterValue("NCC", "Nhà cung cấp: " + DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'"));
+
+                    MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                    //--------------------------------------------------------------------------------------------------------
+
+                    frmReportViewer f = new frmReportViewer();
+                    f.crystalReportViewer1.ReportSource = MyReport;
+                    f.ShowDialog();
+                }
+                else
+                {
+                    crpBC_DT_NCC_Thang_Loc MyReport = new crpBC_DT_NCC_Thang_Loc();
+                    BindingSource gdSource = new BindingSource();
+                    gdSource = (BindingSource)this.dataGridView1.DataSource;
+                    MyReport.SetDataSource(gdSource.DataSource);
+                    //--------------------------------------------------------------------------------------------------------
+                    MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                    MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                    MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                    MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                    MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                    MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+                    MyReport.SetParameterValue("Thang_SD", txtMonth.Text);
+
+                    if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                    else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
+                    else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+
+                    if (txtMaHang.Text == "") MyReport.SetParameterValue("MH", "");
+                    else if (txtMaHang.Text != "" && DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'") == "") MyReport.SetParameterValue("MH", ", Lọc theo mặt hàng");
+                    else MyReport.SetParameterValue("MH", "Mặt hàng: " + DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'"));
+
+                    if (txtNhomHang.Text == "") MyReport.SetParameterValue("Nhom", "");
+                    else if (txtNhomHang.Text != "" && DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", ", Lọc theo nhóm hàng");
+                    else MyReport.SetParameterValue("Nhom", DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'"));
+
+
+                    if (txtNhaCC.Text == "") MyReport.SetParameterValue("NCC", "Tất cả Nhà cung cấp");
+                    else if (txtNhaCC.Text != "" && DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'") == "") MyReport.SetParameterValue("NCC", "Lọc theo Nhà cung cấp");
+                    else MyReport.SetParameterValue("NCC", "Nhà cung cấp: " + DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'"));
+
+                    MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                    //--------------------------------------------------------------------------------------------------------
+
+                    frmReportViewer f = new frmReportViewer();
+                    f.crystalReportViewer1.ReportSource = MyReport;
+                    f.ShowDialog();
+                }
+
+
+
+            }
+            #endregion
+
+            #region " NCC - Tháng "
+            if (cbbPhanLoai.Text == "Nhà Cung Cấp" && cbbKyHan.Text == "Theo Năm")
+            {
+                if (txtMaHang.Text == "" && txtNhomHang.Text == "")
+                {
+                    crpBC_DT_NCC_Nam_O MyReport = new crpBC_DT_NCC_Nam_O();
+                    BindingSource gdSource = new BindingSource();
+                    gdSource = (BindingSource)this.dataGridView1.DataSource;
+                    MyReport.SetDataSource(gdSource.DataSource);
+                    //--------------------------------------------------------------------------------------------------------
+                    MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                    MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                    MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                    MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                    MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                    MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+
+                    if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                    else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
+                    else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+
+                    MyReport.SetParameterValue("MH", "");
+                    MyReport.SetParameterValue("Nhom", "");
+
+
+                    if (txtNhaCC.Text == "") MyReport.SetParameterValue("NCC", "Tất cả Nhà cung cấp");
+                    else if (txtNhaCC.Text != "" && DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'") == "") MyReport.SetParameterValue("NCC", "Lọc theo Nhà cung cấp");
+                    else MyReport.SetParameterValue("NCC", "Nhà cung cấp: " + DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'"));
+
+                    MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                    //--------------------------------------------------------------------------------------------------------
+
+                    frmReportViewer f = new frmReportViewer();
+                    f.crystalReportViewer1.ReportSource = MyReport;
+                    f.ShowDialog();
+                }
+                else
+                {
+                    crpBC_DT_NCC_Nam_Loc MyReport = new crpBC_DT_NCC_Nam_Loc();
+                    BindingSource gdSource = new BindingSource();
+                    gdSource = (BindingSource)this.dataGridView1.DataSource;
+                    MyReport.SetDataSource(gdSource.DataSource);
+                    //--------------------------------------------------------------------------------------------------------
+                    MyReport.SetParameterValue("SL_Nhap", txtSLNhap.Text);
+                    MyReport.SetParameterValue("SL_Ban", txtSLXuat.Text);
+                    MyReport.SetParameterValue("Tien_Nhap", txtChiPhi.Text);
+                    MyReport.SetParameterValue("Tien_Ban", txtDoanhThu.Text);
+                    MyReport.SetParameterValue("Loi_Nhuan", txtLoiNhuan.Text);
+                    MyReport.SetParameterValue("Nam_SD", txtYear.Text);
+
+                    if (txtMaDV.Text == "") MyReport.SetParameterValue("Dvi", "Tất cả đơn vị");
+                    else if (txtMaDV.Text != "" && DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'") == "") MyReport.SetParameterValue("Dvi", "Lọc theo đơn vị");
+                    else MyReport.SetParameterValue("Dvi", DatLoa.NameReturn("TEN_DVI", "TB_DVI", "MA_DVI = '" + txtMaDV.Text + "'"));
+
+
+                    if (txtMaHang.Text == "") MyReport.SetParameterValue("MH", "");
+                    else if (txtMaHang.Text != "" && DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'") == "") MyReport.SetParameterValue("MH", ", Lọc theo mặt hàng");
+                    else MyReport.SetParameterValue("MH", "Mặt hàng: " + DatLoa.NameReturn("TEN_HANG", "TB_MAT_HANG", "MA_HANG = '" + txtMaHang.Text + "'"));
+
+                    if (txtNhomHang.Text == "") MyReport.SetParameterValue("Nhom", "");
+                    else if (txtNhomHang.Text != "" && DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'") == "") MyReport.SetParameterValue("Nhom", ", Lọc theo nhóm hàng");
+                    else MyReport.SetParameterValue("Nhom", DatLoa.NameReturn("TEN_NHOM_HANG", "TB_NHOM_HANG", "MA_NHOM_HANG = '" + txtNhomHang.Text + "'"));
+
+
+                    if (txtNhaCC.Text == "") MyReport.SetParameterValue("NCC", "Tất cả Nhà cung cấp");
+                    else if (txtNhaCC.Text != "" && DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'") == "") MyReport.SetParameterValue("NCC", "Lọc theo Nhà cung cấp");
+                    else MyReport.SetParameterValue("NCC", "Nhà cung cấp: " + DatLoa.NameReturn("TEN_KH", "TB_KHACH_HANG", "MA_KH = '" + txtNhaCC.Text + "'"));
+
+                    MyReport.SetParameterValue("Nguoi_Sdung", DatLoa.NameReturn("TEN_NHAN_VIEN", "TB_NHAN_VIEN", "MA_NHAN_VIEN = '" + UserInformation.MaNV + "'"));
+
+                    //--------------------------------------------------------------------------------------------------------
+
+                    frmReportViewer f = new frmReportViewer();
+                    f.crystalReportViewer1.ReportSource = MyReport;
+                    f.ShowDialog();
+                }
+
+
+
+            }
+            #endregion
         }
 
         private void frmBaoCao_KeyDown(object sender, KeyEventArgs e)

@@ -986,12 +986,12 @@ SELECT CODE, PQUYEN, MA_NHAN_VIEN, MA_DVI, SDUNG, CHECK_PASS, NGAY_HET_HAN FROM 
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_BC_DoanhThu_MatHangTableAdapter" GeneratorDataComponentClassName="V_BC_DoanhThu_MatHangTableAdapter" Name="V_BC_DoanhThu_MatHang" UserDataComponentName="V_BC_DoanhThu_MatHangTableAdapter">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_BC_DoanhThuTableAdapter" GeneratorDataComponentClassName="V_BC_DoanhThuTableAdapter" Name="V_BC_DoanhThu" UserDataComponentName="V_BC_DoanhThuTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SIEU_THI_SACHConnectionString (Settings)" DbObjectName="SIEU_THI_SACH.dbo.V_BC_DoanhThu_MatHang" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="SIEU_THI_SACHConnectionString (Settings)" DbObjectName="SIEU_THI_SACH.dbo.V_BC_DoanhThu" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT MA_DVI, MA_HANG, TEN_HANG, NHOM_HANG, TEN_NHOM_HANG, NGAY, THANG, NAM, SL_NHAP, SL_XUAT, TONG_TIEN_NHAP, TONG_TIEN_XUAT FROM dbo.V_BC_DoanhThu_MatHang</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT MA_DVI, MA_HANG, TEN_HANG, NHOM_HANG, TEN_NHOM_HANG, NHA_CC, TEN_KH, NGAY, THANG, NAM, SL_NHAP, SL_XUAT, TONG_TIEN_NHAP, TONG_TIEN_XUAT FROM dbo.V_BC_DoanhThu</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -1010,6 +1010,8 @@ SELECT CODE, PQUYEN, MA_NHAN_VIEN, MA_DVI, SDUNG, CHECK_PASS, NGAY_HET_HAN FROM 
               <Mapping SourceColumn="SL_XUAT" DataSetColumn="SL_XUAT" />
               <Mapping SourceColumn="TONG_TIEN_NHAP" DataSetColumn="TONG_TIEN_NHAP" />
               <Mapping SourceColumn="TONG_TIEN_XUAT" DataSetColumn="TONG_TIEN_XUAT" />
+              <Mapping SourceColumn="NHA_CC" DataSetColumn="NHA_CC" />
+              <Mapping SourceColumn="TEN_KH" DataSetColumn="TEN_KH" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -2182,7 +2184,7 @@ SELECT CODE, PQUYEN, MA_NHAN_VIEN, MA_DVI, SDUNG, CHECK_PASS, NGAY_HET_HAN FROM 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="V_BC_DoanhThu_MatHang" msprop:Generator_TableClassName="V_BC_DoanhThu_MatHangDataTable" msprop:Generator_TableVarName="tableV_BC_DoanhThu_MatHang" msprop:Generator_TablePropName="V_BC_DoanhThu_MatHang" msprop:Generator_RowDeletingName="V_BC_DoanhThu_MatHangRowDeleting" msprop:Generator_RowChangingName="V_BC_DoanhThu_MatHangRowChanging" msprop:Generator_RowEvHandlerName="V_BC_DoanhThu_MatHangRowChangeEventHandler" msprop:Generator_RowDeletedName="V_BC_DoanhThu_MatHangRowDeleted" msprop:Generator_UserTableName="V_BC_DoanhThu_MatHang" msprop:Generator_RowChangedName="V_BC_DoanhThu_MatHangRowChanged" msprop:Generator_RowEvArgName="V_BC_DoanhThu_MatHangRowChangeEvent" msprop:Generator_RowClassName="V_BC_DoanhThu_MatHangRow">
+        <xs:element name="V_BC_DoanhThu" msprop:Generator_TableClassName="V_BC_DoanhThuDataTable" msprop:Generator_TableVarName="tableV_BC_DoanhThu" msprop:Generator_TablePropName="V_BC_DoanhThu" msprop:Generator_RowDeletingName="V_BC_DoanhThuRowDeleting" msprop:Generator_RowChangingName="V_BC_DoanhThuRowChanging" msprop:Generator_RowEvHandlerName="V_BC_DoanhThuRowChangeEventHandler" msprop:Generator_RowDeletedName="V_BC_DoanhThuRowDeleted" msprop:Generator_UserTableName="V_BC_DoanhThu" msprop:Generator_RowChangedName="V_BC_DoanhThuRowChanged" msprop:Generator_RowEvArgName="V_BC_DoanhThuRowChangeEvent" msprop:Generator_RowClassName="V_BC_DoanhThuRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MA_DVI" msprop:Generator_ColumnVarNameInTable="columnMA_DVI" msprop:Generator_ColumnPropNameInRow="MA_DVI" msprop:Generator_ColumnPropNameInTable="MA_DVIColumn" msprop:Generator_UserColumnName="MA_DVI">
@@ -2227,6 +2229,20 @@ SELECT CODE, PQUYEN, MA_NHAN_VIEN, MA_DVI, SDUNG, CHECK_PASS, NGAY_HET_HAN FROM 
               <xs:element name="SL_XUAT" msprop:Generator_ColumnVarNameInTable="columnSL_XUAT" msprop:Generator_ColumnPropNameInRow="SL_XUAT" msprop:Generator_ColumnPropNameInTable="SL_XUATColumn" msprop:Generator_UserColumnName="SL_XUAT" type="xs:int" minOccurs="0" />
               <xs:element name="TONG_TIEN_NHAP" msprop:Generator_ColumnVarNameInTable="columnTONG_TIEN_NHAP" msprop:Generator_ColumnPropNameInRow="TONG_TIEN_NHAP" msprop:Generator_ColumnPropNameInTable="TONG_TIEN_NHAPColumn" msprop:Generator_UserColumnName="TONG_TIEN_NHAP" type="xs:long" minOccurs="0" />
               <xs:element name="TONG_TIEN_XUAT" msprop:Generator_ColumnVarNameInTable="columnTONG_TIEN_XUAT" msprop:Generator_ColumnPropNameInRow="TONG_TIEN_XUAT" msprop:Generator_ColumnPropNameInTable="TONG_TIEN_XUATColumn" msprop:Generator_UserColumnName="TONG_TIEN_XUAT" type="xs:long" minOccurs="0" />
+              <xs:element name="NHA_CC" msprop:Generator_ColumnVarNameInTable="columnNHA_CC" msprop:Generator_ColumnPropNameInRow="NHA_CC" msprop:Generator_ColumnPropNameInTable="NHA_CCColumn" msprop:Generator_UserColumnName="NHA_CC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TEN_KH" msprop:Generator_ColumnVarNameInTable="columnTEN_KH" msprop:Generator_ColumnPropNameInRow="TEN_KH" msprop:Generator_ColumnPropNameInTable="TEN_KHColumn" msprop:Generator_UserColumnName="TEN_KH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
