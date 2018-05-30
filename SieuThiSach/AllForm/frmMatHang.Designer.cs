@@ -418,19 +418,19 @@
             this.SMnuItemEdit,
             this.SMnuItemHistory});
             this.cmsMENU.Name = "cmsMENU";
-            this.cmsMENU.Size = new System.Drawing.Size(153, 70);
+            this.cmsMENU.Size = new System.Drawing.Size(112, 48);
             // 
             // SMnuItemEdit
             // 
             this.SMnuItemEdit.Name = "SMnuItemEdit";
-            this.SMnuItemEdit.Size = new System.Drawing.Size(152, 22);
+            this.SMnuItemEdit.Size = new System.Drawing.Size(111, 22);
             this.SMnuItemEdit.Text = "Sửa";
             this.SMnuItemEdit.Click += new System.EventHandler(this.SMnuItemEdit_Click);
             // 
             // SMnuItemHistory
             // 
             this.SMnuItemHistory.Name = "SMnuItemHistory";
-            this.SMnuItemHistory.Size = new System.Drawing.Size(152, 22);
+            this.SMnuItemHistory.Size = new System.Drawing.Size(111, 22);
             this.SMnuItemHistory.Text = "Lịch sử";
             this.SMnuItemHistory.Click += new System.EventHandler(this.SMnuItemHistory_Click);
             // 
@@ -441,6 +441,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(778, 401);
+            this.ControlBox = false;
             this.Controls.Add(this.grButton1);
             this.Controls.Add(this.grDetail);
             this.Controls.Add(this.dataGridView1);
